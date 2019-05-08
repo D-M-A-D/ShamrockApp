@@ -823,7 +823,7 @@ namespace Shamrock
             float ctImageWidth, origImageHeight, origImageWidth, firstWidth;
             float interstice = 20f;
 
-            ctGraph = iTextSharp.text.Image.GetInstance(Path.Combine("data", "image.jpg"));
+            ctGraph = iTextSharp.text.Image.GetInstance(Path.Combine("Assets", "image.jpg"));
             origImageWidth = ctGraph.Width;
             origImageHeight = ctGraph.Height;
             firstWidth = ctImageWidth = ctImageHeight;

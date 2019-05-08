@@ -104,9 +104,10 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1380, 757);
+            this.tabControl1.Size = new System.Drawing.Size(2070, 1165);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -115,19 +116,21 @@
             this.tabPage1.Controls.Add(this.textBoxDataFolder);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(1372, 731);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage1.Size = new System.Drawing.Size(2062, 1132);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Input";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // buttonShPoints
             // 
-            this.buttonShPoints.Location = new System.Drawing.Point(482, 71);
+            this.buttonShPoints.Location = new System.Drawing.Point(723, 109);
+            this.buttonShPoints.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShPoints.Name = "buttonShPoints";
-            this.buttonShPoints.Size = new System.Drawing.Size(117, 25);
+            this.buttonShPoints.Size = new System.Drawing.Size(176, 38);
             this.buttonShPoints.TabIndex = 11;
             this.buttonShPoints.Text = "Configs for Year";
             this.buttonShPoints.UseVisualStyleBackColor = true;
@@ -135,11 +138,12 @@
             // 
             // textBoxDataFolder
             // 
-            this.textBoxDataFolder.Location = new System.Drawing.Point(482, 25);
+            this.textBoxDataFolder.Location = new System.Drawing.Point(723, 38);
+            this.textBoxDataFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDataFolder.Name = "textBoxDataFolder";
-            this.textBoxDataFolder.Size = new System.Drawing.Size(117, 20);
+            this.textBoxDataFolder.Size = new System.Drawing.Size(174, 26);
             this.textBoxDataFolder.TabIndex = 10;
-            this.textBoxDataFolder.Text = "2018";
+            this.textBoxDataFolder.Text = "2019_bktl";
             // 
             // groupBox2
             // 
@@ -154,18 +158,21 @@
             this.groupBox2.Controls.Add(this.radioButton3);
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Location = new System.Drawing.Point(605, 6);
+            this.groupBox2.Location = new System.Drawing.Point(908, 9);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(481, 385);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(722, 592);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Courses";
             // 
             // buttonCalcHoleStats
             // 
-            this.buttonCalcHoleStats.Location = new System.Drawing.Point(93, 252);
+            this.buttonCalcHoleStats.Location = new System.Drawing.Point(140, 388);
+            this.buttonCalcHoleStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCalcHoleStats.Name = "buttonCalcHoleStats";
-            this.buttonCalcHoleStats.Size = new System.Drawing.Size(83, 25);
+            this.buttonCalcHoleStats.Size = new System.Drawing.Size(124, 38);
             this.buttonCalcHoleStats.TabIndex = 11;
             this.buttonCalcHoleStats.Text = "HoleStats";
             this.buttonCalcHoleStats.UseVisualStyleBackColor = true;
@@ -174,9 +181,10 @@
             // buttonSimulatePlayerScores
             // 
             this.buttonSimulatePlayerScores.Enabled = false;
-            this.buttonSimulatePlayerScores.Location = new System.Drawing.Point(381, 335);
+            this.buttonSimulatePlayerScores.Location = new System.Drawing.Point(572, 515);
+            this.buttonSimulatePlayerScores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSimulatePlayerScores.Name = "buttonSimulatePlayerScores";
-            this.buttonSimulatePlayerScores.Size = new System.Drawing.Size(83, 35);
+            this.buttonSimulatePlayerScores.Size = new System.Drawing.Size(124, 54);
             this.buttonSimulatePlayerScores.TabIndex = 10;
             this.buttonSimulatePlayerScores.Text = "Simulate Scores";
             this.buttonSimulatePlayerScores.UseVisualStyleBackColor = true;
@@ -184,9 +192,10 @@
             // 
             // buttonMatchResults
             // 
-            this.buttonMatchResults.Location = new System.Drawing.Point(271, 27);
+            this.buttonMatchResults.Location = new System.Drawing.Point(406, 42);
+            this.buttonMatchResults.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonMatchResults.Name = "buttonMatchResults";
-            this.buttonMatchResults.Size = new System.Drawing.Size(83, 25);
+            this.buttonMatchResults.Size = new System.Drawing.Size(124, 38);
             this.buttonMatchResults.TabIndex = 9;
             this.buttonMatchResults.Text = "MatchResults";
             this.buttonMatchResults.UseVisualStyleBackColor = true;
@@ -194,9 +203,10 @@
             // 
             // buttonReporting
             // 
-            this.buttonReporting.Location = new System.Drawing.Point(93, 119);
+            this.buttonReporting.Location = new System.Drawing.Point(140, 183);
+            this.buttonReporting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonReporting.Name = "buttonReporting";
-            this.buttonReporting.Size = new System.Drawing.Size(83, 25);
+            this.buttonReporting.Size = new System.Drawing.Size(124, 38);
             this.buttonReporting.TabIndex = 8;
             this.buttonReporting.Text = "Reporting";
             this.buttonReporting.UseVisualStyleBackColor = true;
@@ -204,9 +214,10 @@
             // 
             // buttonScores
             // 
-            this.buttonScores.Location = new System.Drawing.Point(182, 27);
+            this.buttonScores.Location = new System.Drawing.Point(273, 42);
+            this.buttonScores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonScores.Name = "buttonScores";
-            this.buttonScores.Size = new System.Drawing.Size(83, 25);
+            this.buttonScores.Size = new System.Drawing.Size(124, 38);
             this.buttonScores.TabIndex = 7;
             this.buttonScores.Text = "Scores";
             this.buttonScores.UseVisualStyleBackColor = true;
@@ -214,9 +225,10 @@
             // 
             // buttonCourse
             // 
-            this.buttonCourse.Location = new System.Drawing.Point(93, 27);
+            this.buttonCourse.Location = new System.Drawing.Point(140, 42);
+            this.buttonCourse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCourse.Name = "buttonCourse";
-            this.buttonCourse.Size = new System.Drawing.Size(83, 25);
+            this.buttonCourse.Size = new System.Drawing.Size(124, 38);
             this.buttonCourse.TabIndex = 6;
             this.buttonCourse.Text = "Course";
             this.buttonCourse.UseVisualStyleBackColor = true;
@@ -225,9 +237,10 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(17, 119);
+            this.radioButton5.Location = new System.Drawing.Point(26, 183);
+            this.radioButton5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(61, 20);
+            this.radioButton5.Size = new System.Drawing.Size(77, 24);
             this.radioButton5.TabIndex = 5;
             this.radioButton5.Text = "Rnd 5";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -235,9 +248,10 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(17, 96);
+            this.radioButton4.Location = new System.Drawing.Point(26, 148);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(61, 20);
+            this.radioButton4.Size = new System.Drawing.Size(77, 24);
             this.radioButton4.TabIndex = 4;
             this.radioButton4.Text = "Rnd 4";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -245,9 +259,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(17, 73);
+            this.radioButton3.Location = new System.Drawing.Point(26, 112);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(61, 20);
+            this.radioButton3.Size = new System.Drawing.Size(77, 24);
             this.radioButton3.TabIndex = 3;
             this.radioButton3.Text = "Rnd 3";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -255,9 +270,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(17, 50);
+            this.radioButton2.Location = new System.Drawing.Point(26, 77);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(61, 20);
+            this.radioButton2.Size = new System.Drawing.Size(77, 24);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.Text = "Rnd 2";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -266,9 +282,10 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(17, 27);
+            this.radioButton1.Location = new System.Drawing.Point(26, 42);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(61, 20);
+            this.radioButton1.Size = new System.Drawing.Size(77, 24);
             this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Rnd 1";
@@ -278,18 +295,21 @@
             // 
             this.groupBox1.Controls.Add(this.buttonSavePlayers);
             this.groupBox1.Controls.Add(this.dataGridViewPlayers);
-            this.groupBox1.Location = new System.Drawing.Point(8, 6);
+            this.groupBox1.Location = new System.Drawing.Point(12, 9);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(456, 351);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(684, 540);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Players";
             // 
             // buttonSavePlayers
             // 
-            this.buttonSavePlayers.Location = new System.Drawing.Point(375, 318);
+            this.buttonSavePlayers.Location = new System.Drawing.Point(562, 489);
+            this.buttonSavePlayers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSavePlayers.Name = "buttonSavePlayers";
-            this.buttonSavePlayers.Size = new System.Drawing.Size(75, 23);
+            this.buttonSavePlayers.Size = new System.Drawing.Size(112, 35);
             this.buttonSavePlayers.TabIndex = 7;
             this.buttonSavePlayers.Text = "Save";
             this.buttonSavePlayers.UseVisualStyleBackColor = true;
@@ -301,9 +321,10 @@
             this.dataGridViewPlayers.AllowUserToDeleteRows = false;
             this.dataGridViewPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPlayers.Location = new System.Drawing.Point(6, 19);
+            this.dataGridViewPlayers.Location = new System.Drawing.Point(9, 29);
+            this.dataGridViewPlayers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 293);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(666, 451);
             this.dataGridViewPlayers.TabIndex = 5;
             // 
             // tabPage3
@@ -337,19 +358,21 @@
             this.tabPage3.Controls.Add(this.dataGridTeamsGrid);
             this.tabPage3.Controls.Add(this.dataGridPlayerMatrixStats);
             this.tabPage3.Controls.Add(this.dataGridPlayerMatrix);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage3.Size = new System.Drawing.Size(1372, 731);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage3.Size = new System.Drawing.Size(2062, 1132);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Draw";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button10_8
             // 
-            this.button10_8.Location = new System.Drawing.Point(165, 345);
+            this.button10_8.Location = new System.Drawing.Point(248, 531);
+            this.button10_8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_8.Name = "button10_8";
-            this.button10_8.Size = new System.Drawing.Size(40, 23);
+            this.button10_8.Size = new System.Drawing.Size(60, 35);
             this.button10_8.TabIndex = 34;
             this.button10_8.Text = "10_8";
             this.button10_8.UseVisualStyleBackColor = true;
@@ -357,9 +380,10 @@
             // 
             // button10_7
             // 
-            this.button10_7.Location = new System.Drawing.Point(122, 345);
+            this.button10_7.Location = new System.Drawing.Point(183, 531);
+            this.button10_7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_7.Name = "button10_7";
-            this.button10_7.Size = new System.Drawing.Size(40, 23);
+            this.button10_7.Size = new System.Drawing.Size(60, 35);
             this.button10_7.TabIndex = 33;
             this.button10_7.Text = "10_7";
             this.button10_7.UseVisualStyleBackColor = true;
@@ -367,9 +391,10 @@
             // 
             // button10_6
             // 
-            this.button10_6.Location = new System.Drawing.Point(207, 320);
+            this.button10_6.Location = new System.Drawing.Point(310, 492);
+            this.button10_6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_6.Name = "button10_6";
-            this.button10_6.Size = new System.Drawing.Size(40, 23);
+            this.button10_6.Size = new System.Drawing.Size(60, 35);
             this.button10_6.TabIndex = 32;
             this.button10_6.Text = "10_6";
             this.button10_6.UseVisualStyleBackColor = true;
@@ -377,9 +402,10 @@
             // 
             // button10_5
             // 
-            this.button10_5.Location = new System.Drawing.Point(165, 320);
+            this.button10_5.Location = new System.Drawing.Point(248, 492);
+            this.button10_5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_5.Name = "button10_5";
-            this.button10_5.Size = new System.Drawing.Size(40, 23);
+            this.button10_5.Size = new System.Drawing.Size(60, 35);
             this.button10_5.TabIndex = 31;
             this.button10_5.Text = "10_5";
             this.button10_5.UseVisualStyleBackColor = true;
@@ -387,9 +413,10 @@
             // 
             // button10_4
             // 
-            this.button10_4.Location = new System.Drawing.Point(122, 320);
+            this.button10_4.Location = new System.Drawing.Point(183, 492);
+            this.button10_4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_4.Name = "button10_4";
-            this.button10_4.Size = new System.Drawing.Size(40, 23);
+            this.button10_4.Size = new System.Drawing.Size(60, 35);
             this.button10_4.TabIndex = 30;
             this.button10_4.Text = "10_4";
             this.button10_4.UseVisualStyleBackColor = true;
@@ -397,9 +424,10 @@
             // 
             // button10_3
             // 
-            this.button10_3.Location = new System.Drawing.Point(207, 294);
+            this.button10_3.Location = new System.Drawing.Point(310, 452);
+            this.button10_3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_3.Name = "button10_3";
-            this.button10_3.Size = new System.Drawing.Size(40, 23);
+            this.button10_3.Size = new System.Drawing.Size(60, 35);
             this.button10_3.TabIndex = 29;
             this.button10_3.Text = "10_3";
             this.button10_3.UseVisualStyleBackColor = true;
@@ -407,9 +435,10 @@
             // 
             // button10_2
             // 
-            this.button10_2.Location = new System.Drawing.Point(165, 294);
+            this.button10_2.Location = new System.Drawing.Point(248, 452);
+            this.button10_2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_2.Name = "button10_2";
-            this.button10_2.Size = new System.Drawing.Size(40, 23);
+            this.button10_2.Size = new System.Drawing.Size(60, 35);
             this.button10_2.TabIndex = 28;
             this.button10_2.Text = "10_2";
             this.button10_2.UseVisualStyleBackColor = true;
@@ -417,9 +446,10 @@
             // 
             // button10_1
             // 
-            this.button10_1.Location = new System.Drawing.Point(122, 294);
+            this.button10_1.Location = new System.Drawing.Point(183, 452);
+            this.button10_1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10_1.Name = "button10_1";
-            this.button10_1.Size = new System.Drawing.Size(40, 23);
+            this.button10_1.Size = new System.Drawing.Size(60, 35);
             this.button10_1.TabIndex = 27;
             this.button10_1.Text = "10_1";
             this.button10_1.UseVisualStyleBackColor = true;
@@ -427,9 +457,10 @@
             // 
             // buttonEvaluateSavedDraws
             // 
-            this.buttonEvaluateSavedDraws.Location = new System.Drawing.Point(378, 189);
+            this.buttonEvaluateSavedDraws.Location = new System.Drawing.Point(567, 291);
+            this.buttonEvaluateSavedDraws.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEvaluateSavedDraws.Name = "buttonEvaluateSavedDraws";
-            this.buttonEvaluateSavedDraws.Size = new System.Drawing.Size(130, 29);
+            this.buttonEvaluateSavedDraws.Size = new System.Drawing.Size(195, 45);
             this.buttonEvaluateSavedDraws.TabIndex = 26;
             this.buttonEvaluateSavedDraws.Text = "Evaluate Saved Draws";
             this.buttonEvaluateSavedDraws.UseVisualStyleBackColor = true;
@@ -437,9 +468,10 @@
             // 
             // buttonResultDraw_TeamInput_SaveAs
             // 
-            this.buttonResultDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(1171, 493);
+            this.buttonResultDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(1756, 758);
+            this.buttonResultDraw_TeamInput_SaveAs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonResultDraw_TeamInput_SaveAs.Name = "buttonResultDraw_TeamInput_SaveAs";
-            this.buttonResultDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(130, 26);
+            this.buttonResultDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(195, 40);
             this.buttonResultDraw_TeamInput_SaveAs.TabIndex = 25;
             this.buttonResultDraw_TeamInput_SaveAs.Text = "Save Draw (as)...";
             this.buttonResultDraw_TeamInput_SaveAs.UseVisualStyleBackColor = true;
@@ -448,17 +480,19 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1168, 6);
+            this.label4.Location = new System.Drawing.Point(1752, 9);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 65);
+            this.label4.Size = new System.Drawing.Size(141, 100);
             this.label4.TabIndex = 24;
             this.label4.Text = "Input Team:\r\n4B: A1, A1, A2, A2\r\nWinch: A1, A2, A3\r\n2B: A1, A2\r\nabandon: 0\r\n";
             // 
             // buttonDrawPerm
             // 
-            this.buttonDrawPerm.Location = new System.Drawing.Point(378, 225);
+            this.buttonDrawPerm.Location = new System.Drawing.Point(567, 346);
+            this.buttonDrawPerm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawPerm.Name = "buttonDrawPerm";
-            this.buttonDrawPerm.Size = new System.Drawing.Size(130, 21);
+            this.buttonDrawPerm.Size = new System.Drawing.Size(195, 32);
             this.buttonDrawPerm.TabIndex = 23;
             this.buttonDrawPerm.Text = "Draw Permutations";
             this.buttonDrawPerm.UseVisualStyleBackColor = true;
@@ -467,35 +501,39 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 393);
+            this.label3.Location = new System.Drawing.Point(9, 605);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(84, 20);
             this.label3.TabIndex = 22;
             this.label3.Text = "DrawStats";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(512, 99);
+            this.label2.Location = new System.Drawing.Point(768, 152);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(98, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Player Matrix";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(383, 393);
+            this.label1.Location = new System.Drawing.Point(574, 605);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 20;
             this.label1.Text = "Teams";
             // 
             // buttonResultDraw_TeamInput_SaveProd
             // 
-            this.buttonResultDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(1171, 409);
+            this.buttonResultDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(1756, 629);
+            this.buttonResultDraw_TeamInput_SaveProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonResultDraw_TeamInput_SaveProd.Name = "buttonResultDraw_TeamInput_SaveProd";
-            this.buttonResultDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(130, 26);
+            this.buttonResultDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(195, 40);
             this.buttonResultDraw_TeamInput_SaveProd.TabIndex = 19;
             this.buttonResultDraw_TeamInput_SaveProd.Text = "Save Draw to Prod";
             this.buttonResultDraw_TeamInput_SaveProd.UseVisualStyleBackColor = true;
@@ -504,17 +542,19 @@
             // labelDrawText
             // 
             this.labelDrawText.AutoSize = true;
-            this.labelDrawText.Location = new System.Drawing.Point(3, 372);
+            this.labelDrawText.Location = new System.Drawing.Point(4, 572);
+            this.labelDrawText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDrawText.Name = "labelDrawText";
-            this.labelDrawText.Size = new System.Drawing.Size(35, 13);
+            this.labelDrawText.Size = new System.Drawing.Size(51, 20);
             this.labelDrawText.TabIndex = 18;
             this.labelDrawText.Text = "label1";
             // 
             // buttonStartDraw_TeamInput_LoadFrom
             // 
-            this.buttonStartDraw_TeamInput_LoadFrom.Location = new System.Drawing.Point(273, 293);
+            this.buttonStartDraw_TeamInput_LoadFrom.Location = new System.Drawing.Point(410, 451);
+            this.buttonStartDraw_TeamInput_LoadFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_LoadFrom.Name = "buttonStartDraw_TeamInput_LoadFrom";
-            this.buttonStartDraw_TeamInput_LoadFrom.Size = new System.Drawing.Size(101, 23);
+            this.buttonStartDraw_TeamInput_LoadFrom.Size = new System.Drawing.Size(152, 35);
             this.buttonStartDraw_TeamInput_LoadFrom.TabIndex = 17;
             this.buttonStartDraw_TeamInput_LoadFrom.Text = "Load...";
             this.buttonStartDraw_TeamInput_LoadFrom.UseVisualStyleBackColor = true;
@@ -522,9 +562,10 @@
             // 
             // buttonStartDraw_TeamInput_SaveAs
             // 
-            this.buttonStartDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(273, 318);
+            this.buttonStartDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(410, 489);
+            this.buttonStartDraw_TeamInput_SaveAs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_SaveAs.Name = "buttonStartDraw_TeamInput_SaveAs";
-            this.buttonStartDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(101, 26);
+            this.buttonStartDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(152, 40);
             this.buttonStartDraw_TeamInput_SaveAs.TabIndex = 16;
             this.buttonStartDraw_TeamInput_SaveAs.Text = "Save (as)...";
             this.buttonStartDraw_TeamInput_SaveAs.UseVisualStyleBackColor = true;
@@ -535,16 +576,18 @@
             this.dataGridDrawRestrictionInput.AllowUserToAddRows = false;
             this.dataGridDrawRestrictionInput.AllowUserToDeleteRows = false;
             this.dataGridDrawRestrictionInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDrawRestrictionInput.Location = new System.Drawing.Point(378, 6);
+            this.dataGridDrawRestrictionInput.Location = new System.Drawing.Point(567, 9);
+            this.dataGridDrawRestrictionInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridDrawRestrictionInput.Name = "dataGridDrawRestrictionInput";
-            this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(784, 89);
+            this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(1176, 137);
             this.dataGridDrawRestrictionInput.TabIndex = 15;
             // 
             // buttonDisplayStats
             // 
-            this.buttonDisplayStats.Location = new System.Drawing.Point(379, 290);
+            this.buttonDisplayStats.Location = new System.Drawing.Point(568, 446);
+            this.buttonDisplayStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDisplayStats.Name = "buttonDisplayStats";
-            this.buttonDisplayStats.Size = new System.Drawing.Size(130, 23);
+            this.buttonDisplayStats.Size = new System.Drawing.Size(195, 35);
             this.buttonDisplayStats.TabIndex = 14;
             this.buttonDisplayStats.Text = "Display Stats";
             this.buttonDisplayStats.UseVisualStyleBackColor = true;
@@ -552,9 +595,10 @@
             // 
             // buttonStartDraw_TeamInput_LoadProd
             // 
-            this.buttonStartDraw_TeamInput_LoadProd.Location = new System.Drawing.Point(14, 294);
+            this.buttonStartDraw_TeamInput_LoadProd.Location = new System.Drawing.Point(21, 452);
+            this.buttonStartDraw_TeamInput_LoadProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_LoadProd.Name = "buttonStartDraw_TeamInput_LoadProd";
-            this.buttonStartDraw_TeamInput_LoadProd.Size = new System.Drawing.Size(96, 23);
+            this.buttonStartDraw_TeamInput_LoadProd.Size = new System.Drawing.Size(144, 35);
             this.buttonStartDraw_TeamInput_LoadProd.TabIndex = 13;
             this.buttonStartDraw_TeamInput_LoadProd.Text = "Load from Prod";
             this.buttonStartDraw_TeamInput_LoadProd.UseVisualStyleBackColor = true;
@@ -562,9 +606,10 @@
             // 
             // buttonStartDraw_TeamInput_SaveProd
             // 
-            this.buttonStartDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(14, 318);
+            this.buttonStartDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(21, 489);
+            this.buttonStartDraw_TeamInput_SaveProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_SaveProd.Name = "buttonStartDraw_TeamInput_SaveProd";
-            this.buttonStartDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(96, 23);
+            this.buttonStartDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(144, 35);
             this.buttonStartDraw_TeamInput_SaveProd.TabIndex = 12;
             this.buttonStartDraw_TeamInput_SaveProd.Text = "Save to Prod";
             this.buttonStartDraw_TeamInput_SaveProd.UseVisualStyleBackColor = true;
@@ -575,16 +620,18 @@
             this.dataGridViewInput.AllowUserToAddRows = false;
             this.dataGridViewInput.AllowUserToDeleteRows = false;
             this.dataGridViewInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewInput.Location = new System.Drawing.Point(14, 6);
+            this.dataGridViewInput.Location = new System.Drawing.Point(21, 9);
+            this.dataGridViewInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewInput.Name = "dataGridViewInput";
-            this.dataGridViewInput.Size = new System.Drawing.Size(359, 284);
+            this.dataGridViewInput.Size = new System.Drawing.Size(538, 437);
             this.dataGridViewInput.TabIndex = 10;
             // 
             // buttonDrawNew
             // 
-            this.buttonDrawNew.Location = new System.Drawing.Point(378, 137);
+            this.buttonDrawNew.Location = new System.Drawing.Point(567, 211);
+            this.buttonDrawNew.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawNew.Name = "buttonDrawNew";
-            this.buttonDrawNew.Size = new System.Drawing.Size(130, 49);
+            this.buttonDrawNew.Size = new System.Drawing.Size(195, 75);
             this.buttonDrawNew.TabIndex = 9;
             this.buttonDrawNew.Text = "Draw Teams (new)";
             this.buttonDrawNew.UseVisualStyleBackColor = true;
@@ -592,9 +639,10 @@
             // 
             // buttonDrawTeams
             // 
-            this.buttonDrawTeams.Location = new System.Drawing.Point(379, 261);
+            this.buttonDrawTeams.Location = new System.Drawing.Point(568, 402);
+            this.buttonDrawTeams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawTeams.Name = "buttonDrawTeams";
-            this.buttonDrawTeams.Size = new System.Drawing.Size(130, 23);
+            this.buttonDrawTeams.Size = new System.Drawing.Size(195, 35);
             this.buttonDrawTeams.TabIndex = 5;
             this.buttonDrawTeams.Text = "Draw Teams orig(10)";
             this.buttonDrawTeams.UseVisualStyleBackColor = true;
@@ -605,9 +653,10 @@
             this.dataGridTeamsGrid.AllowUserToAddRows = false;
             this.dataGridTeamsGrid.AllowUserToDeleteRows = false;
             this.dataGridTeamsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridTeamsGrid.Location = new System.Drawing.Point(379, 409);
+            this.dataGridTeamsGrid.Location = new System.Drawing.Point(568, 629);
+            this.dataGridTeamsGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridTeamsGrid.Name = "dataGridTeamsGrid";
-            this.dataGridTeamsGrid.Size = new System.Drawing.Size(784, 275);
+            this.dataGridTeamsGrid.Size = new System.Drawing.Size(1176, 423);
             this.dataGridTeamsGrid.TabIndex = 7;
             // 
             // dataGridPlayerMatrixStats
@@ -615,9 +664,10 @@
             this.dataGridPlayerMatrixStats.AllowUserToAddRows = false;
             this.dataGridPlayerMatrixStats.AllowUserToDeleteRows = false;
             this.dataGridPlayerMatrixStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPlayerMatrixStats.Location = new System.Drawing.Point(6, 409);
+            this.dataGridPlayerMatrixStats.Location = new System.Drawing.Point(9, 629);
+            this.dataGridPlayerMatrixStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridPlayerMatrixStats.Name = "dataGridPlayerMatrixStats";
-            this.dataGridPlayerMatrixStats.Size = new System.Drawing.Size(367, 275);
+            this.dataGridPlayerMatrixStats.Size = new System.Drawing.Size(550, 423);
             this.dataGridPlayerMatrixStats.TabIndex = 8;
             // 
             // dataGridPlayerMatrix
@@ -625,18 +675,20 @@
             this.dataGridPlayerMatrix.AllowUserToAddRows = false;
             this.dataGridPlayerMatrix.AllowUserToDeleteRows = false;
             this.dataGridPlayerMatrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPlayerMatrix.Location = new System.Drawing.Point(514, 116);
+            this.dataGridPlayerMatrix.Location = new System.Drawing.Point(771, 178);
+            this.dataGridPlayerMatrix.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridPlayerMatrix.Name = "dataGridPlayerMatrix";
-            this.dataGridPlayerMatrix.Size = new System.Drawing.Size(648, 286);
+            this.dataGridPlayerMatrix.Size = new System.Drawing.Size(972, 440);
             this.dataGridPlayerMatrix.TabIndex = 6;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.listBoxYearForStats);
             this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1372, 731);
+            this.tabPage2.Size = new System.Drawing.Size(2062, 1132);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "History";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -644,6 +696,7 @@
             // listBoxYearForStats
             // 
             this.listBoxYearForStats.FormattingEnabled = true;
+            this.listBoxYearForStats.ItemHeight = 20;
             this.listBoxYearForStats.Items.AddRange(new object[] {
             "2004",
             "2005",
@@ -660,17 +713,19 @@
             "2016",
             "2017",
             "2018"});
-            this.listBoxYearForStats.Location = new System.Drawing.Point(66, 22);
+            this.listBoxYearForStats.Location = new System.Drawing.Point(99, 34);
+            this.listBoxYearForStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxYearForStats.Name = "listBoxYearForStats";
             this.listBoxYearForStats.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxYearForStats.Size = new System.Drawing.Size(39, 277);
+            this.listBoxYearForStats.Size = new System.Drawing.Size(56, 424);
             this.listBoxYearForStats.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(134, 22);
+            this.button1.Location = new System.Drawing.Point(201, 34);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(112, 35);
             this.button1.TabIndex = 0;
             this.button1.Text = "CalcHistory";
             this.button1.UseVisualStyleBackColor = true;
@@ -684,11 +739,12 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1380, 757);
+            this.ClientSize = new System.Drawing.Size(2070, 1165);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Shamrock";
             this.tabControl1.ResumeLayout(false);
