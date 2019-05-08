@@ -11,6 +11,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Force.DeepCloner;
 using Combinatorics.Collections;
+using System.Configuration;
 
 namespace Shamrock
 {
@@ -28,14 +29,14 @@ namespace Shamrock
         public Form1()
         {
             InitializeComponent();
-            _dataRoot = "data\\";
-            _dataFolder = _dataRoot + textBoxDataFolder.Text;
+            _dataRoot = ConfigurationManager.AppSettings["dataFolder"];
+            _dataFolder = Path.Combine(_dataRoot, textBoxDataFolder.Text);
             ctDay = getDayNrFromRadio();
             initialiseCompet();
         }
         private void initialiseFolders()
         {
-            _dataFolder = _dataRoot + textBoxDataFolder.Text;
+            _dataFolder = Path.Combine(_dataRoot, textBoxDataFolder.Text);
             _dataInputTeamsSubFolder = Path.Combine(_dataFolder, "DrawTemp");
         }
         private void initialiseCompet(bool doLoadresults = true)
@@ -1722,7 +1723,7 @@ namespace Shamrock
                 #region read everything for years
                 foreach (string ctYear in years)
                 {
-                    string ctDF = _dataRoot + ctYear;
+                    string ctDF = Path.Combine(_dataRoot, ctYear);
                     Compet ctC = new Compet(ctYear);
                     ctC.Players = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(Path.Combine(ctDF, "Players.json")));
                     ctC.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(ctDF, "configForYear.json")));
@@ -1782,7 +1783,7 @@ namespace Shamrock
                 #endregion
 
                 #region writeCSVFile
-                System.IO.StreamWriter csvFile = new System.IO.StreamWriter(_dataRoot + "MatchHistory.csv");
+                System.IO.StreamWriter csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, "MatchHistory.csv"));
                 string separator = ",";
                 csvFile.Write("Player" + separator);
                 csvFile.Write("Year" + separator);
@@ -1870,7 +1871,7 @@ namespace Shamrock
                 csvFile.Close();
                 #endregion
                 #region writeCSVFileTeamMate
-                csvFile = new System.IO.StreamWriter(_dataRoot + "statsMatchTeamMate.csv");
+                csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, "statsMatchTeamMate.csv"));
                 csvFile.Write("PairKey" + separator);
                 csvFile.Write("Player1" + separator);
                 csvFile.Write("Player2" + separator);
@@ -1892,7 +1893,7 @@ namespace Shamrock
                 csvFile.Close();
                 #endregion
                 #region writeCSVFileTeamMate
-                csvFile = new System.IO.StreamWriter(_dataRoot + "statsMatchBeteNoire.csv");
+                csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, "statsMatchBeteNoire.csv"));
                 csvFile.Write("Player" + separator);
                 csvFile.Write("Opponent" + separator);
                 csvFile.Write("Won" + separator);
@@ -1935,7 +1936,7 @@ namespace Shamrock
             _c.calculate(getDayNrFromRadio());
             List<HoleForStat> statHoles = _c.GetHoleStats(getDayNrFromRadio());
             #region writeCSVFile HoleStats
-            System.IO.StreamWriter csvFile = new System.IO.StreamWriter(_dataRoot + "statsHolesOverall.csv");
+            System.IO.StreamWriter csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, "statsHolesOverall.csv"));
             string separator = ",";
             csvFile.Write("Year" + separator);
             csvFile.Write("Player" + separator);
