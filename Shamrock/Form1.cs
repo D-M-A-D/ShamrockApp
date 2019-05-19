@@ -29,7 +29,7 @@ namespace Shamrock
         public Form1()
         {
             InitializeComponent();
-            _dataRoot = ConfigurationManager.AppSettings["dataFolder"];
+            _dataRoot = ConfigurationManager.AppSettings["dataFolderSecret"];
             _dataFolder = Path.Combine(_dataRoot, textBoxDataFolder.Text);
             ctDay = getDayNrFromRadio();
             initialiseCompet();
@@ -91,6 +91,14 @@ namespace Shamrock
                     catch (Exception ex)
                     {
                         MessageBox.Show(String.Format("Could not initialise MatchScores for day {0}: {1}", ctDay, ex.Message));
+                    }
+                    try
+                    {
+                        _c.getDaybyNr(i).extras = JsonConvert.DeserializeObject<dailyExtras>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("ExtraShamrock{0}.json", i))));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(String.Format("Could not initialise ExtraShamrocks for day {0}: {1}", ctDay, ex.Message));
                     }
                     #endregion
                 }
@@ -205,6 +213,15 @@ namespace Shamrock
         {
             initialiseCompet();
             using (Form4 f = new Form4())
+            {
+                f.ShowDialog(getDayNrFromRadio(), _dataFolder, _c);
+            }
+            initialiseCompet();
+        }
+        private void buttonExtraPts_Click(object sender, EventArgs e)
+        {
+            initialiseCompet();
+            using (FormExtra f = new FormExtra())
             {
                 f.ShowDialog(getDayNrFromRadio(), _dataFolder, _c);
             }
@@ -2052,6 +2069,8 @@ namespace Shamrock
             button10_helper(InputTeamsStartOfDraw);
 
         }
+
+
     }
     public class TeamInput
     {

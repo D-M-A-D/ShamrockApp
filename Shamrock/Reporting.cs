@@ -110,7 +110,7 @@ namespace Shamrock
                 ctY = document.Top - topAfterHeader;
                 #region 1st WeekResults
 
-                ctPdfPTable = new PdfPTable(new float[] { 7f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                ctPdfPTable = new PdfPTable(new float[] { 7f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
                 ctPdfPTable.TotalWidth = ctColWidth;
                 isEvenLine = true;
                 //Title
@@ -122,6 +122,7 @@ namespace Shamrock
                 {
                     AddDetailCell((object)ctPdfPTable, "Mt");
                     AddDetailCell((object)ctPdfPTable, "SD");
+                    AddDetailCell((object)ctPdfPTable, "Ex");
                     AddDetailCell((object)ctPdfPTable, "SW");
                     AddDetailCell((object)ctPdfPTable, "Ef");
                     AddDetailCell((object)ctPdfPTable, "Vi");
@@ -133,7 +134,7 @@ namespace Shamrock
                 {
                     Boolean showVirtual = false;
                     isEvenLine = false;
-                    AddDetailCell((object)ctPdfPTable, playerName, isEvenLine);
+                    AddDetailCell((object)ctPdfPTable, playerName.Left(4), isEvenLine);
                     foreach (day ctDay in c.days)
                     {
                         if (!showVirtual && ctDay.stblPoints.isValidForStblDay())
@@ -141,6 +142,7 @@ namespace Shamrock
 
                         if (ctDay.courseDefinition == null)
                         {
+                            AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
@@ -159,6 +161,11 @@ namespace Shamrock
                                 AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
                             else
                                 AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shStblDay, isEvenLine, OutputFormat.Number1);
+
+                            if (c.getResultsbyDayNr(ctDay.nr)[playerName].shExtraDay == 0)
+                                AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
+                            else
+                                AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shExtraDay, isEvenLine, OutputFormat.Number1);
 
                             if (!showVirtual ||c.getResultsbyDayNr(ctDay.nr)[playerName].shStblWeek == 0)
                                 AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
@@ -236,7 +243,7 @@ namespace Shamrock
                         break;
                     isEvenLine = true;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Yds: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
 
                     AddHeaderCell((object)ctPdfPTable, " ");
                     foreach (Player P in c.Players)
@@ -332,7 +339,7 @@ namespace Shamrock
                         break;
                     isEvenLine = false;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Yds: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
 
                     AddHeaderCell((object)ctPdfPTable, "Flt");
                     AddHeaderCell((object)ctPdfPTable, "Type");
@@ -359,6 +366,13 @@ namespace Shamrock
                                     //AddDetailCell((object)ctPdfPTable, "-", isEvenLine);
                                     //AddDetailCell((object)ctPdfPTable, "-", isEvenLine);
                                 }
+                                else if (ctMS.WinnerteamName.ToString() == "-1")
+                                {
+                                    AddDetailCell((object)ctPdfPTable, string.Format("{0} vs. {1}", m.Team1.GetPlayersString(), m.Team2.GetPlayersString()), isEvenLine);
+                                    AddDetailCell((object)ctPdfPTable, "-", isEvenLine);
+                                    //AddDetailCell((object)ctPdfPTable, "-", isEvenLine);
+                                    //AddDetailCell((object)ctPdfPTable, "-", isEvenLine);
+                                }
                                 else
                                 {
                                     if (ctMS.WinnerteamName.ToString() == "1")
@@ -376,6 +390,13 @@ namespace Shamrock
                                     {
                                         AddDetailCell((object)ctPdfPTable, string.Format("{0} def. {1}", WinnerTeam.GetPlayersString(), LoserTeam.GetPlayersString()), isEvenLine);
                                         AddDetailCell((object)ctPdfPTable, string.Format("{0}&{1}", ctMS.nrPoints, ctMS.nrHolesLeft), isEvenLine);
+                                        //AddDetailCell((object)ctPdfPTable, WinnerTeam.name1based, isEvenLine);
+                                        //AddDetailCell((object)ctPdfPTable, LoserTeam.name1based, isEvenLine);
+                                    }
+                                    else if (ctMS.nrPoints < 0 || ctMS.nrHolesLeft < 0) //na
+                                    {
+                                        AddDetailCell((object)ctPdfPTable, string.Format("{0} def. {1}", WinnerTeam.GetPlayersString(), LoserTeam.GetPlayersString()), isEvenLine);
+                                        AddDetailCell((object)ctPdfPTable, "n.a.", isEvenLine);
                                         //AddDetailCell((object)ctPdfPTable, WinnerTeam.name1based, isEvenLine);
                                         //AddDetailCell((object)ctPdfPTable, LoserTeam.name1based, isEvenLine);
                                     }
@@ -430,7 +451,7 @@ namespace Shamrock
                         break;
                     isEvenLine = false;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns - 5, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Yds: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns - 5, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
                     ctPdfPTable.AddCell(GetTitleCellAlternative(5, String.Format("")));
 
                     #region course par
@@ -550,7 +571,7 @@ namespace Shamrock
                 ctY = document.Top - topAfterHeader;
                 #region 1st Column Teams
 
-                ctPdfPTable = new PdfPTable(new float[] { 3f, 1f, 2f, 2f, 2f, 2f});
+                ctPdfPTable = new PdfPTable(new float[] { 3f, 2f, 4f, 2f, 2f, 2f, 2f, 2f, 2f });
                 ctPdfPTable.TotalWidth = ctColWidth;
                 foreach (day ctDay in c.days)
                 {
@@ -558,14 +579,17 @@ namespace Shamrock
                         break;
                     isEvenLine = false;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Yds: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
                     #region Table Column Headers
                     AddHeaderCell((object)ctPdfPTable, "Mode");
-                    AddHeaderCell((object)ctPdfPTable, "Tm");
+                    AddHeaderCell((object)ctPdfPTable, "T");
                     AddHeaderCell((object)ctPdfPTable, "Player");
                     AddHeaderCell((object)ctPdfPTable, "Hcp", OutputFormat.TextRight);
                     AddHeaderCell((object)ctPdfPTable, "Play", OutputFormat.TextRight);
-                    AddHeaderCell((object)ctPdfPTable, "Stroke", OutputFormat.TextRight);
+                    AddHeaderCell((object)ctPdfPTable, "c4B", OutputFormat.TextRight);
+                    AddHeaderCell((object)ctPdfPTable, "1/3", OutputFormat.TextRight);
+                    AddHeaderCell((object)ctPdfPTable, "cFS", OutputFormat.TextRight);
+                    AddHeaderCell((object)ctPdfPTable, "2/3", OutputFormat.TextRight);
                     #endregion
                     #region DetailsCells
                     int cnt = -1;
@@ -587,20 +611,41 @@ namespace Shamrock
                                     AddDetailCell((object)ctPdfPTable, ctPlayer.initialHcp, isEvenLine, OutputFormat.Number2);
                                     AddDetailCell((object)ctPdfPTable, ctPlayer.playingHcp, isEvenLine, OutputFormat.Number2);
 
-                                    if (ctDay.isFoursome && ctFlight.matchType != flight.MatchType.Match2b)
+                                    if (ctFlight.coupsRecu4B[ctTeam.name + ctPlayer.name] > 0)
                                     {
-                                        if (ctFlight.coupsRecuFS[ctTeam.name] > 0)
-                                            AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuFS[ctTeam.name], isEvenLine, OutputFormat.Number2);
-                                        else
-                                            AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecu4B[ctTeam.name + ctPlayer.name], isEvenLine, OutputFormat.Number2);
+                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecu4B[ctTeam.name + ctPlayer.name]/3, isEvenLine, OutputFormat.Number2);
                                     }
                                     else
                                     {
-                                        if (ctFlight.coupsRecu4B[ctTeam.name + b.name] > 0)
-                                            AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecu4B[ctTeam.name + b.name], isEvenLine, OutputFormat.Number2);
-                                        else
-                                            AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                        AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                        AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
                                     }
+
+                                    if (ctFlight.coupsRecuFS[ctTeam.name] > 0)
+                                    {
+                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuFS[ctTeam.name], isEvenLine, OutputFormat.Number2);
+                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuFS[ctTeam.name]*2/3, isEvenLine, OutputFormat.Number2);
+                                    }
+                                    else
+                                    {
+                                        AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                        AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                    }
+                                    //if (ctDay.isFoursome && ctFlight.matchType != flight.MatchType.Match2b)
+                                    //{
+                                    //    if (ctFlight.coupsRecuFS[ctTeam.name] > 0)
+                                    //        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuFS[ctTeam.name], isEvenLine, OutputFormat.Number2);
+                                    //    else
+                                    //        AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                    //}
+                                    //else
+                                    //{
+                                    //    if (ctFlight.coupsRecu4B[ctTeam.name + b.name] > 0)
+                                    //        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecu4B[ctTeam.name + b.name], isEvenLine, OutputFormat.Number2);
+                                    //    else
+                                    //        AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                    //}
                                 }
                             }
                         }
@@ -768,7 +813,7 @@ namespace Shamrock
                         break;
                     isEvenLine = true;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Yds: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
 
                     if (ctDay.stblPoints.isValidForStblDay())
                     {

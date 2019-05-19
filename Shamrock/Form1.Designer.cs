@@ -83,6 +83,7 @@
             this.listBoxYearForStats = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.buttonExtraPts = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -147,6 +148,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonExtraPts);
             this.groupBox2.Controls.Add(this.buttonCalcHoleStats);
             this.groupBox2.Controls.Add(this.buttonSimulatePlayerScores);
             this.groupBox2.Controls.Add(this.buttonMatchResults);
@@ -192,7 +194,7 @@
             // 
             // buttonMatchResults
             // 
-            this.buttonMatchResults.Location = new System.Drawing.Point(406, 42);
+            this.buttonMatchResults.Location = new System.Drawing.Point(272, 90);
             this.buttonMatchResults.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonMatchResults.Name = "buttonMatchResults";
             this.buttonMatchResults.Size = new System.Drawing.Size(124, 38);
@@ -214,7 +216,7 @@
             // 
             // buttonScores
             // 
-            this.buttonScores.Location = new System.Drawing.Point(273, 42);
+            this.buttonScores.Location = new System.Drawing.Point(140, 90);
             this.buttonScores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonScores.Name = "buttonScores";
             this.buttonScores.Size = new System.Drawing.Size(124, 38);
@@ -737,6 +739,17 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // buttonExtraPts
+            // 
+            this.buttonExtraPts.Location = new System.Drawing.Point(404, 90);
+            this.buttonExtraPts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonExtraPts.Name = "buttonExtraPts";
+            this.buttonExtraPts.Size = new System.Drawing.Size(124, 38);
+            this.buttonExtraPts.TabIndex = 12;
+            this.buttonExtraPts.Text = "Extra. (chips)";
+            this.buttonExtraPts.UseVisualStyleBackColor = true;
+            this.buttonExtraPts.Click += new System.EventHandler(this.buttonExtraPts_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -821,6 +834,7 @@
         private System.Windows.Forms.Button button10_2;
         private System.Windows.Forms.Button button10_8;
         private System.Windows.Forms.Button button10_7;
+        private System.Windows.Forms.Button buttonExtraPts;
     }
 }
 

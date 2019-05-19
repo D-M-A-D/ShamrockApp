@@ -149,7 +149,7 @@ namespace Shamrock
                 ++ret;
             return ret;
         }
-        public double GetBestHcpInFlight()
+        public double GetBestBallHcpInFlight()
         {
             double bestHcp = 150;
             foreach (team ctT in teams.Values)
@@ -159,6 +159,21 @@ namespace Shamrock
                     if (b.GetPlayingHcp() < bestHcp)
                     {
                         bestHcp = b.GetPlayingHcp();
+                    }
+                }
+            }
+            return bestHcp;
+        }
+        public double GetBestPlayerHcpInFlight()
+        {
+            double bestHcp = 150;
+            foreach (team ctT in teams.Values)
+            {
+                foreach (Player p in ctT.players.Values)
+                {
+                    if (p.playingHcp < bestHcp)
+                    {
+                        bestHcp = p.playingHcp;
                     }
                 }
             }
@@ -199,15 +214,21 @@ namespace Shamrock
         public void CalcCoupsRecu(Double perc4B = 0.85)
         {
             //ToCheck9
-            double BestHcpInFlight = GetBestHcpInFlight();
+            double BestBallHcpInFlight = GetBestBallHcpInFlight();
+            double BestPlayerHcpInFlight = GetBestPlayerHcpInFlight();
             double bestTeamHcp = GetBestAvgHcpTeamInFlight();
             foreach (team ctT in teams.Values)
             {
                 foreach (playingBall b in ctT.playingBalls.Values)
                 {
-                    coupsRecu4B.Add(ctT.name + b.name, (b.GetPlayingHcp() - BestHcpInFlight) * perc4B);
+                    coupsRecu4B.Add(ctT.name + b.name, (b.GetPlayingHcp() - BestBallHcpInFlight) * perc4B);
+                    //calc coupsrecu even if day.isfoursome (--> easier for patsome)
+                    foreach (Player ctPlayer in b.players.Values)
+                    {
+                        coupsRecu4B.Add(ctT.name + ctPlayer.name, (ctPlayer.playingHcp - BestPlayerHcpInFlight) * perc4B);
+                    }
                 }
-                coupsRecuFS.Add(ctT.name, (ctT.GetAvgPlayingHcp() - bestTeamHcp) * perc4B);
+                coupsRecuFS.Add(ctT.name, (ctT.GetAvgPlayingHcp() - bestTeamHcp));
             }
         }
         /// <summary>

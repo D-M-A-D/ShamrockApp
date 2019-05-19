@@ -125,6 +125,7 @@ namespace Shamrock
                     PlayerResult ctPR = new PlayerResult();
                     ctPR.PlayerName = P.name;
                     ctPR.StblDay = ctDay.stblPoints.getStblPointsForLastHoles(P.name);
+                    ctPR.shExtraDay = ctDay.getShPointsForExtra(P.name);
                     ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear);
                     ctPR.shStblDay = ctDay.getShPointsForStblDaily(P.name, configForYear);
                     int Position = sortedList.FindIndex(x => x == P.name);
@@ -150,7 +151,7 @@ namespace Shamrock
                         sumStbl += ctStbl; // sum up
                         sortableScore += factor * (double)ctStbl; //store for sort
                         factor *= 1000;
-                        sumEff += getResultsbyDayNr(j)[P.name].shMatch + getResultsbyDayNr(j)[P.name].shStblDay;
+                        sumEff += getResultsbyDayNr(j)[P.name].shMatch + getResultsbyDayNr(j)[P.name].shStblDay + getResultsbyDayNr(j)[P.name].shExtraDay;
                     }
                     sortableScore += factor * (double)sumStbl; //store for sort
                     getResultsbyDayNr(i)[P.name].shEffective = sumEff; //sum of matchs + daily sh
@@ -425,6 +426,7 @@ namespace Shamrock
         public int StblDay;
         public int posStblDay;
         public double shStblDay;
+        public double shExtraDay;
         public int StblWeek;
         public int posStblWeek;
         public double shStblWeek;

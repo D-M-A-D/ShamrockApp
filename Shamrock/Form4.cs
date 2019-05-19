@@ -76,9 +76,9 @@ namespace Shamrock
             // Confirm that the cell is not empty.
             if (headerText.Equals("WinnerTeam"))
             {
-                if(e.FormattedValue.ToString() != "1" && e.FormattedValue.ToString() != "2" && e.FormattedValue.ToString() != "0")
+                if(e.FormattedValue.ToString() != "1" && e.FormattedValue.ToString() != "2" && e.FormattedValue.ToString() != "0" && e.FormattedValue.ToString() != "-1")
                 {
-                    dataGridView1.Rows[e.RowIndex].ErrorText = "WinnerTeam, plz enter 1 or 2 (0 for tie)";
+                    dataGridView1.Rows[e.RowIndex].ErrorText = "WinnerTeam, plz enter 1 or 2 (0 for tie, -1 not played yet)";
                     e.Cancel = true;
                 }
             }
@@ -152,7 +152,11 @@ namespace Shamrock
             save();
             this.Close();
         }
-        
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class matchScoreForDisplay
     {

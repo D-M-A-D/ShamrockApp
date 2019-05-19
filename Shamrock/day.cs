@@ -204,6 +204,7 @@ namespace Shamrock
 
         public course courseDefinition;
         public dailyScores scores = new dailyScores();
+        public dailyExtras extras = new dailyExtras();
         public MatchScores matchScores = new MatchScores();
         public dailySblPoints stblPoints = new dailySblPoints();
         public dailySblPoints stblPointsForNewHcp = new dailySblPoints();
@@ -485,6 +486,13 @@ namespace Shamrock
             return ret;
         }
 
+        public double getShPointsForExtra(string PlayerName)
+        {
+            double ret = 0;
+            if (extras.extras.ContainsKey(PlayerName))
+                ret = extras.extras[PlayerName];
+            return ret;
+        }
         public double getShPointsForMatch(String PlayerName, ConfigsForYear shPointsDef)
         {
             double ret = 0;
@@ -554,6 +562,10 @@ namespace Shamrock
             }
             return ret;
         }
+        public void initialiseEmptyExtra()
+        {
+            extras.initialise(this);
+        }
         public void initialiseEmptyScore()
         {
             scores.initialise(this);
@@ -561,6 +573,23 @@ namespace Shamrock
         public void simulateScores()
         {
             scores.simulate(this);
+        }
+    }
+    public class dailyExtras //extra shamrock points (saut a pied joint, chips...)
+    {
+        public Dictionary<string, double> extras = new Dictionary<string, double>();
+        public void initialise(day d)
+        {
+            foreach (flight f in d.flights.Values)
+            {
+                foreach (team t in f.teams.Values)
+                {
+                    foreach(Player p in t.players.Values)
+                    {
+                        extras.Add(p.name, 0);
+                    }
+                }
+            }
         }
     }
     public class dailyScores //score by holes (serialized)
@@ -657,6 +686,11 @@ namespace Shamrock
     }
     public class MatchScore
     {
+        public MatchScore()
+        {
+            WinnerteamName = -1;
+
+        }
         public int WinnerteamName { get; set; }
         public int nrHolesLeft { get; set; }
         public int nrPoints { get; set; }
