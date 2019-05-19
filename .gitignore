@@ -3,6 +3,7 @@
 
 #add manually
 pdf.txt
+secret.config
 
 # User-specific files
 *.suo
