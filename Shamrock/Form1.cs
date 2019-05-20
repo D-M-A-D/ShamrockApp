@@ -116,6 +116,20 @@ namespace Shamrock
         {
             if (DrawRestrictions.Count == 0)
             {
+                DrawRestriction drBest8 = new DrawRestriction();
+                drBest8.nrTry = 4000;
+                drBest8.MaxFlt = 3;
+                drBest8.MaxEmy = 2;
+                drBest8.MaxTm = 1;
+
+                drBest8.Flt0 = 0;
+                drBest8.Emy0 = 0;
+
+                drBest8.Max2B = 4;
+                drBest8.MaxWch = 4;
+                drBest8.Max4B = 4;
+                drBest8.Description = "best for 8 (4 rounds)";
+
                 DrawRestriction drBest10 = new DrawRestriction();
                 drBest10.nrTry = 4000;
                 drBest10.MaxFlt = 2;
@@ -149,6 +163,9 @@ namespace Shamrock
                 {
                     dr = drBest10.CloneJson();
                     dr.Description = "active";
+                    DrawRestrictions.Add(dr);
+                    DrawRestrictions.Add(drBest10);
+                    DrawRestrictions.Add(drBest10abandon);
                 }
                 else
                 {
@@ -162,10 +179,9 @@ namespace Shamrock
                     dr.Flt0 = 0;
                     dr.Emy0 = 10;
                     dr.Description = "active";
+                    DrawRestrictions.Add(dr);
+                    DrawRestrictions.Add(drBest8);
                 }
-                DrawRestrictions.Add(dr);
-                DrawRestrictions.Add(drBest10);
-                DrawRestrictions.Add(drBest10abandon);
             }
             dataGridDrawRestrictionInput.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             var bindingList = new BindingList<DrawRestriction>(DrawRestrictions);
@@ -1619,7 +1635,7 @@ namespace Shamrock
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
             saveFileDialog1.InitialDirectory = _dataInputTeamsSubFolder;
-            saveFileDialog1.Filter = "*.json";
+            saveFileDialog1.Filter = "json files (*.json)";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
@@ -2069,7 +2085,6 @@ namespace Shamrock
             button10_helper(InputTeamsStartOfDraw);
 
         }
-
 
     }
     public class TeamInput

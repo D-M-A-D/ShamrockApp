@@ -35,6 +35,7 @@
             this.buttonShPoints = new System.Windows.Forms.Button();
             this.textBoxDataFolder = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonExtraPts = new System.Windows.Forms.Button();
             this.buttonCalcHoleStats = new System.Windows.Forms.Button();
             this.buttonSimulatePlayerScores = new System.Windows.Forms.Button();
             this.buttonMatchResults = new System.Windows.Forms.Button();
@@ -83,7 +84,6 @@
             this.listBoxYearForStats = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.buttonExtraPts = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -144,7 +144,7 @@
             this.textBoxDataFolder.Name = "textBoxDataFolder";
             this.textBoxDataFolder.Size = new System.Drawing.Size(174, 26);
             this.textBoxDataFolder.TabIndex = 10;
-            this.textBoxDataFolder.Text = "2019_bktl";
+            this.textBoxDataFolder.Text = "2019";
             // 
             // groupBox2
             // 
@@ -168,6 +168,17 @@
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Courses";
+            // 
+            // buttonExtraPts
+            // 
+            this.buttonExtraPts.Location = new System.Drawing.Point(404, 90);
+            this.buttonExtraPts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonExtraPts.Name = "buttonExtraPts";
+            this.buttonExtraPts.Size = new System.Drawing.Size(124, 38);
+            this.buttonExtraPts.TabIndex = 12;
+            this.buttonExtraPts.Text = "Extra. (chips)";
+            this.buttonExtraPts.UseVisualStyleBackColor = true;
+            this.buttonExtraPts.Click += new System.EventHandler(this.buttonExtraPts_Click);
             // 
             // buttonCalcHoleStats
             // 
@@ -459,7 +470,7 @@
             // 
             // buttonEvaluateSavedDraws
             // 
-            this.buttonEvaluateSavedDraws.Location = new System.Drawing.Point(567, 291);
+            this.buttonEvaluateSavedDraws.Location = new System.Drawing.Point(567, 323);
             this.buttonEvaluateSavedDraws.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEvaluateSavedDraws.Name = "buttonEvaluateSavedDraws";
             this.buttonEvaluateSavedDraws.Size = new System.Drawing.Size(195, 45);
@@ -491,7 +502,7 @@
             // 
             // buttonDrawPerm
             // 
-            this.buttonDrawPerm.Location = new System.Drawing.Point(567, 346);
+            this.buttonDrawPerm.Location = new System.Drawing.Point(567, 378);
             this.buttonDrawPerm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawPerm.Name = "buttonDrawPerm";
             this.buttonDrawPerm.Size = new System.Drawing.Size(195, 32);
@@ -586,7 +597,7 @@
             // 
             // buttonDisplayStats
             // 
-            this.buttonDisplayStats.Location = new System.Drawing.Point(568, 446);
+            this.buttonDisplayStats.Location = new System.Drawing.Point(567, 489);
             this.buttonDisplayStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDisplayStats.Name = "buttonDisplayStats";
             this.buttonDisplayStats.Size = new System.Drawing.Size(195, 35);
@@ -630,10 +641,10 @@
             // 
             // buttonDrawNew
             // 
-            this.buttonDrawNew.Location = new System.Drawing.Point(567, 211);
+            this.buttonDrawNew.Location = new System.Drawing.Point(569, 268);
             this.buttonDrawNew.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawNew.Name = "buttonDrawNew";
-            this.buttonDrawNew.Size = new System.Drawing.Size(195, 75);
+            this.buttonDrawNew.Size = new System.Drawing.Size(195, 35);
             this.buttonDrawNew.TabIndex = 9;
             this.buttonDrawNew.Text = "Draw Teams (new)";
             this.buttonDrawNew.UseVisualStyleBackColor = true;
@@ -641,7 +652,7 @@
             // 
             // buttonDrawTeams
             // 
-            this.buttonDrawTeams.Location = new System.Drawing.Point(568, 402);
+            this.buttonDrawTeams.Location = new System.Drawing.Point(567, 444);
             this.buttonDrawTeams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawTeams.Name = "buttonDrawTeams";
             this.buttonDrawTeams.Size = new System.Drawing.Size(195, 35);
@@ -738,17 +749,6 @@
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // buttonExtraPts
-            // 
-            this.buttonExtraPts.Location = new System.Drawing.Point(404, 90);
-            this.buttonExtraPts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonExtraPts.Name = "buttonExtraPts";
-            this.buttonExtraPts.Size = new System.Drawing.Size(124, 38);
-            this.buttonExtraPts.TabIndex = 12;
-            this.buttonExtraPts.Text = "Extra. (chips)";
-            this.buttonExtraPts.UseVisualStyleBackColor = true;
-            this.buttonExtraPts.Click += new System.EventHandler(this.buttonExtraPts_Click);
             // 
             // Form1
             // 
