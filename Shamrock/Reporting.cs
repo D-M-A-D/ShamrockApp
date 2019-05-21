@@ -110,7 +110,22 @@ namespace Shamrock
                 ctY = document.Top - topAfterHeader;
                 #region 1st WeekResults
 
-                ctPdfPTable = new PdfPTable(new float[] { 7f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                List<float> colWidths = new List<float>();
+                colWidths.Add(7f); //Players
+                foreach (day ctDay in c.days)
+                {
+                    colWidths.Add(4f); //Mt
+                    colWidths.Add(4f); //SD
+                    if(c.configForYear.useExtra)
+                        colWidths.Add(4f); //Ex
+                    colWidths.Add(4f); //SW
+                    colWidths.Add(4f); //Ef
+                    colWidths.Add(4f); //Vi
+                    colWidths.Add(4f); //R
+                }
+
+                ctPdfPTable = new PdfPTable(colWidths.ToArray());
+                //ctPdfPTable = new PdfPTable(new float[] { 7f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
                 ctPdfPTable.TotalWidth = ctColWidth;
                 isEvenLine = true;
                 //Title
@@ -122,7 +137,8 @@ namespace Shamrock
                 {
                     AddDetailCell((object)ctPdfPTable, "Mt");
                     AddDetailCell((object)ctPdfPTable, "SD");
-                    AddDetailCell((object)ctPdfPTable, "Ex");
+                    if (c.configForYear.useExtra)
+                        AddDetailCell((object)ctPdfPTable, "Ex");
                     AddDetailCell((object)ctPdfPTable, "SW");
                     AddDetailCell((object)ctPdfPTable, "Ef");
                     AddDetailCell((object)ctPdfPTable, "Vi");
@@ -144,7 +160,8 @@ namespace Shamrock
                         {
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
-                            AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
+                            if (c.configForYear.useExtra)
+                                AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
                             AddDetailCell((object)ctPdfPTable, " ", isEvenLine);
@@ -162,10 +179,13 @@ namespace Shamrock
                             else
                                 AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shStblDay, isEvenLine, OutputFormat.Number1);
 
-                            if (c.getResultsbyDayNr(ctDay.nr)[playerName].shExtraDay == 0)
-                                AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
-                            else
-                                AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shExtraDay, isEvenLine, OutputFormat.Number1);
+                            if (c.configForYear.useExtra)
+                            {
+                                if (c.getResultsbyDayNr(ctDay.nr)[playerName].shExtraDay == 0)
+                                    AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
+                                else
+                                    AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shExtraDay, isEvenLine, OutputFormat.Number1);
+                            }
 
                             if (!showVirtual ||c.getResultsbyDayNr(ctDay.nr)[playerName].shStblWeek == 0)
                                 AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);

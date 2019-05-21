@@ -48,7 +48,9 @@ namespace Shamrock
             _c.Players = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(Path.Combine(_dataFolder, "Players.json")));
             _c.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(_dataFolder, "configForYear.json")));
             InputTeamsProd = JsonConvert.DeserializeObject<List<TeamInput>>(File.ReadAllText(Path.Combine(_dataFolder, "InputTeams.json")));
-            for (int i = 1; i <= 5; ++i)
+            int nbRounds = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds : 5;
+
+            for (int i = 1; i <= nbRounds; ++i)
             {
                 _c.newDay(_c.configForYear.getPlayModeForRound(i));
             }
@@ -94,7 +96,8 @@ namespace Shamrock
                     }
                     try
                     {
-                        _c.getDaybyNr(i).extras = JsonConvert.DeserializeObject<dailyExtras>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("ExtraShamrock{0}.json", i))));
+                        if (_c.configForYear.useExtra)
+                            _c.getDaybyNr(i).extras = JsonConvert.DeserializeObject<dailyExtras>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("ExtraShamrock{0}.json", i))));
                     }
                     catch (Exception ex)
                     {

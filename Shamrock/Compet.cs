@@ -379,6 +379,8 @@ namespace Shamrock
         public int PlayModeR3 { get; set; }
         public int PlayModeR4 { get; set; }
         public int PlayModeR5 { get; set; }
+        public int nbRounds { get; set; }
+        public bool useExtra { get; set; }
         public day.PlayMode getPlayModeForRound(int Rnr)
         {
             day.PlayMode ret = day.PlayMode.P8_2x4b;

@@ -34,6 +34,7 @@ namespace Shamrock
                 _c.configForYear.ptsMatch = "2,2"; //2 points for match, 2 points for foursome
                 _c.configForYear.stlDay = "1.5,1,0.5";
                 _c.configForYear.stlWeek = "4,3,2,1,0.5";
+                _c.configForYear.useExtra = false;
             }
 
             display();
