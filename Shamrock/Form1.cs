@@ -172,15 +172,15 @@ namespace Shamrock
                 }
                 else
                 {
-                    dr.nrTry = 4000;
-                    dr.Max4B = 5;
-                    dr.Max2B = 3;
-                    dr.MaxWch = 5;
-                    dr.MaxFlt = 4;
-                    dr.MaxTm = 2;
+                    dr.nrTry = 10000;
+                    dr.Max4B = 4;
+                    dr.Max2B = 4;
+                    dr.MaxWch = 4;
+                    dr.MaxFlt = 3;
+                    dr.MaxTm = 1;
                     dr.MaxEmy = 2;
                     dr.Flt0 = 0;
-                    dr.Emy0 = 10;
+                    dr.Emy0 = 0;
                     dr.Description = "active";
                     DrawRestrictions.Add(dr);
                     DrawRestrictions.Add(drBest8);
@@ -316,8 +316,8 @@ namespace Shamrock
 
             drawResults drawRes = new drawResults();
             drawResults drawResLastTry = new drawResults();
-
-            int nbOfDay = getDayNrFromRadio();
+            
+            int nbOfDay = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds: getDayNrFromRadio();
             day ctDay;
             InitialiseForDraw_ReadSetPlayers(nbOfDay, drawRes, lPlayers2);
 
