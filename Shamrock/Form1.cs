@@ -39,11 +39,11 @@ namespace Shamrock
             _dataFolder = Path.Combine(_dataRoot, textBoxDataFolder.Text);
             _dataInputTeamsSubFolder = Path.Combine(_dataFolder, "DrawTemp");
         }
-        private void initialiseCompet(bool doLoadresults = true)
+        private void initialiseCompet(bool doLoadresults = true, int untilDay = 0)
         {
             labelDrawText.Text = "";
             initialiseFolders();
-            ctDay = getDayNrFromRadio();
+            ctDay = untilDay > 0 ? untilDay:getDayNrFromRadio();
             _c = new Compet(textBoxDataFolder.Text);
             _c.Players = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(Path.Combine(_dataFolder, "Players.json")));
             _c.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(_dataFolder, "configForYear.json")));
@@ -2090,6 +2090,123 @@ namespace Shamrock
 
         }
 
+        private void buttonInitialiseForDay_Click(object sender, EventArgs e)
+        {
+            int nbRounds = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds : 5;
+            string iniType = "";
+            int i = getDayNrFromRadio();
+
+            iniType = "course";
+            bool iniCourse = MessageBox.Show($"Do you want to initialise the {iniType} files for day {i}? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for day {i}: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            iniType = "score";
+            bool iniScore = MessageBox.Show($"Do you want to initialise the {iniType} files for day {i}? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for day {i}: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            iniType = "match";
+            bool iniMatch = MessageBox.Show($"Do you want to initialise the {iniType} files for day {i}? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for day {i}: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+
+            iniType = "extra";
+            bool iniExtra = false;
+            if (_c.configForYear.useExtra)
+                iniExtra = MessageBox.Show($"Do you want to initialise the {iniType} files for day {i}? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for day {i}: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+
+            if (iniCourse)
+            {
+                using (Form2 f = new Form2())
+                {
+                    f.initialiseFileWithoutDialog(i, _dataFolder);
+                }
+            }
+            initialiseCompet(false, i);
+
+            if (iniCourse)
+            {
+                using (Form3 f = new Form3())
+                {
+                    f.initialiseFileWithoutDialog(i, _dataFolder, _c);
+                }
+            }
+            initialiseCompet(false, i);
+
+            //matchScores
+            if (iniMatch)
+            {
+                using (Form4 f = new Form4())
+                {
+                    f.initialiseFileWithoutDialog(i, _dataFolder, _c);
+                }
+            }
+            initialiseCompet(false, i);
+
+            //Extras
+            if (_c.configForYear.useExtra && iniExtra)
+            {
+                using (FormExtra f = new FormExtra())
+                {
+                    f.initialiseFileWithoutDialog(i, _dataFolder, _c);
+                }
+                initialiseCompet(false, i);
+            }
+
+        }
+
+        private void buttonInitialiseforYear_Click(object sender, EventArgs e)
+        {
+
+            int nbRounds = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds : 5;
+            string iniType = "";
+
+            iniType = "course";
+            bool iniCourse = MessageBox.Show($"Do you want to initialise the {iniType} files for year? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for year: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            iniType = "score";
+            bool iniScore = MessageBox.Show($"Do you want to initialise the {iniType} files for year? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for year: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            iniType = "match";
+            bool iniMatch = MessageBox.Show($"Do you want to initialise the {iniType} files for year? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for year: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+
+            iniType = "extra";
+            bool iniExtra = false;
+            if (_c.configForYear.useExtra)
+                iniExtra = MessageBox.Show($"Do you want to initialise the {iniType} files for year? {Environment.NewLine}(overwrite existing ones if any!)", $"Initialse files for year: {iniType}", MessageBoxButtons.YesNo) == DialogResult.Yes;
+
+            for (int i = 1; i <= nbRounds; ++i)
+            {
+                if (iniCourse)
+                {
+                    using (Form2 f = new Form2())
+                    {
+                        f.initialiseFileWithoutDialog(i, _dataFolder);
+                    }
+                }
+                initialiseCompet(false, i);
+
+                if (iniCourse)
+                {
+                    using (Form3 f = new Form3())
+                    {
+                        f.initialiseFileWithoutDialog(i, _dataFolder, _c);
+                    }
+                }
+                initialiseCompet(false, i);
+
+                //matchScores
+                if (iniMatch)
+                {
+                    using (Form4 f = new Form4())
+                    {
+                        f.initialiseFileWithoutDialog(i, _dataFolder, _c);
+                    }
+                }
+                    initialiseCompet(false, i);
+                
+                //Extras
+                if (_c.configForYear.useExtra && iniExtra)
+                {
+                    using (FormExtra f = new FormExtra())
+                    {
+                        f.initialiseFileWithoutDialog(i, _dataFolder, _c);
+                    }
+                    initialiseCompet(false, i);
+                }
+            }
+        }
     }
     public class TeamInput
     {

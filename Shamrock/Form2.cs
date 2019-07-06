@@ -29,7 +29,7 @@ namespace Shamrock
             if (File.Exists(_file))
                 ctCourse = JsonConvert.DeserializeObject<course>(File.ReadAllText(_file));
             else
-                initialise();
+                initialiseData();
 
             display();
             this.Text = "Course definition round " + _dayNr.ToString(); 
@@ -37,13 +37,21 @@ namespace Shamrock
             this.ShowDialog();
 
         }
-        public void initialise()
+        public void initialiseData()
         {
             ctCourse = new course();
             for (int i = 1; i <= 18; ++i)
             {
                 ctCourse.addHole(4, i);
             }
+        }
+        public void initialiseFileWithoutDialog(int dayNr, String folderData)
+        {
+            _dayNr = dayNr;
+            _file = Path.Combine(folderData, String.Format("Course{0}.json", _dayNr));
+
+            initialiseData();
+            File.WriteAllText(_file, JsonConvert.SerializeObject(ctCourse));
         }
         public void save()
         {

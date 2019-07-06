@@ -39,6 +39,15 @@ namespace Shamrock
             this.ShowDialog();
 
         }
+        public void initialiseFileWithoutDialog(int dayNr, String folderData, Compet Compet)
+        {
+            _dayNr = dayNr;
+            _c = Compet;
+            _file = Path.Combine(folderData, String.Format("MatchScores{0}.json", _dayNr));
+
+            _c.getDaybyNr(_dayNr).matchScores.initialise(_c.getDaybyNr(_dayNr).flights);
+            File.WriteAllText(_file, JsonConvert.SerializeObject(_c.getDaybyNr(_dayNr).matchScores));
+        }
         public void display()
         {
             initialiseForDisplay(_c.getDaybyNr(_dayNr).flights, _c.getDaybyNr(_dayNr).matchScores);

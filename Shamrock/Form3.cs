@@ -40,6 +40,16 @@ namespace Shamrock
             this.ShowDialog();
 
         }
+        public void initialiseFileWithoutDialog(int dayNr, String folderData, Compet Compet)
+        {
+            _dayNr = dayNr;
+            _c = Compet;
+            _file = Path.Combine(folderData, String.Format("PlayerScores{0}.json", _dayNr));
+
+            _c.getDaybyNr(_dayNr).initialiseEmptyScore();
+            File.WriteAllText(_file, JsonConvert.SerializeObject(_c.getDaybyNr(_dayNr).scores));
+        }
+
         public void save()
         {
             _c.getDaybyNr(_dayNr).scores.holeResults.Clear();
