@@ -1765,8 +1765,9 @@ namespace Shamrock
                     ctC.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(ctDF, "configForYear.json")));
                     List<TeamInput> ctTeams = new List<TeamInput>();
                     ctTeams = JsonConvert.DeserializeObject<List<TeamInput>>(File.ReadAllText(Path.Combine(ctDF, "InputTeams.json")));
+                    int nbRounds = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds : 5;
 
-                    for (int i = 1; i <= 5; ++i)
+                    for (int i = 1; i <= nbRounds; ++i)
                     {
                         day.PlayMode ctPlayMode = ctC.configForYear.getPlayModeForRound(i);
                         if (ctPlayMode == day.PlayMode.NoGame)
