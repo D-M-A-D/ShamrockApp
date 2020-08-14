@@ -64,6 +64,8 @@ namespace Shamrock
                     case 3: ctInput = ti.R3; break;
                     case 4: ctInput = ti.R4; break;
                     case 5: ctInput = ti.R5; break;
+                    case 6: ctInput = ti.R6; break;
+                    case 7: ctInput = ti.R7; break;
                 }
                 if (!String.IsNullOrWhiteSpace(ctInput) && ctInput != "0" && ctInput.Length >= 2) //0=Abandon
                 {
@@ -379,6 +381,8 @@ namespace Shamrock
         public int PlayModeR3 { get; set; }
         public int PlayModeR4 { get; set; }
         public int PlayModeR5 { get; set; }
+        public int PlayModeR6 { get; set; }
+        public int PlayModeR7 { get; set; }
         public int nbRounds { get; set; }
         public bool useExtra { get; set; }
         public day.PlayMode getPlayModeForRound(int Rnr)
@@ -401,6 +405,12 @@ namespace Shamrock
                     break;
                 case 5:
                     playModeNr = PlayModeR5;
+                    break;
+                case 6:
+                    playModeNr = PlayModeR6;
+                    break;
+                case 7:
+                    playModeNr = PlayModeR7;
                     break;
             }
             switch (playModeNr)

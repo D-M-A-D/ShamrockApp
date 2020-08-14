@@ -59,7 +59,9 @@ namespace Shamrock
                 #region Load Course Definition and initialise Flights
                 try
                 {
-                    _c.getDaybyNr(i).courseDefinition = JsonConvert.DeserializeObject<course>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("Course{0}.json", i))));
+                    string path = Path.Combine(_dataFolder, $"Course{i}.json");
+                    if(File.Exists(path))
+                        _c.getDaybyNr(i).courseDefinition = JsonConvert.DeserializeObject<course>(File.ReadAllText(path));
                 }
                 catch (Exception ex)
                 {
@@ -80,15 +82,19 @@ namespace Shamrock
                     #region Load PlayerScores and MatchScores
                     try
                     {
-                        _c.getDaybyNr(i).scores = JsonConvert.DeserializeObject<dailyScores>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("PlayerScores{0}.json", i))));
+                        string path = Path.Combine(_dataFolder, $"PlayerScores{i}.json");
+                        if (File.Exists(path))
+                            _c.getDaybyNr(i).scores = JsonConvert.DeserializeObject<dailyScores>(File.ReadAllText(path));
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(String.Format("Could not initialise dailyScores for day {0}: {1}", ctDay, ex.Message));
+                       MessageBox.Show(String.Format("Could not initialise dailyScores for day {0}: {1}", ctDay, ex.Message));
                     }
                     try
                     {
-                        _c.getDaybyNr(i).matchScores = JsonConvert.DeserializeObject<MatchScores>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("MatchScores{0}.json", i))));
+                        string path = Path.Combine(_dataFolder, $"MatchScores{i}.json");
+                        if (File.Exists(path))
+                            _c.getDaybyNr(i).matchScores = JsonConvert.DeserializeObject<MatchScores>(File.ReadAllText(path));
                     }
                     catch (Exception ex)
                     {
@@ -96,8 +102,9 @@ namespace Shamrock
                     }
                     try
                     {
-                        if (_c.configForYear.useExtra)
-                            _c.getDaybyNr(i).extras = JsonConvert.DeserializeObject<dailyExtras>(File.ReadAllText(Path.Combine(_dataFolder, String.Format("ExtraShamrock{0}.json", i))));
+                        string path = Path.Combine(_dataFolder, $"ExtraShamrock{i}.json");
+                        if (_c.configForYear.useExtra && File.Exists(path))
+                            _c.getDaybyNr(i).extras = JsonConvert.DeserializeObject<dailyExtras>(File.ReadAllText(path));
                     }
                     catch (Exception ex)
                     {
@@ -208,6 +215,10 @@ namespace Shamrock
                 return 4;
             else if (radioButton5.Checked)
                 return 5;
+            else if (radioButton6.Checked)
+                return 6;
+            else if (radioButton7.Checked)
+                return 7;
             else
                 return 0;
         }
@@ -633,6 +644,8 @@ namespace Shamrock
                                     case 3: tis[P.name].R3 = ctFlight.name + ctTeam.name1based + ballName; break;
                                     case 4: tis[P.name].R4 = ctFlight.name + ctTeam.name1based + ballName; break;
                                     case 5: tis[P.name].R5 = ctFlight.name + ctTeam.name1based + ballName; break;
+                                    case 6: tis[P.name].R6 = ctFlight.name + ctTeam.name1based + ballName; break;
+                                    case 7: tis[P.name].R7 = ctFlight.name + ctTeam.name1based + ballName; break;
                                 }
                             }
                         }
@@ -1126,6 +1139,8 @@ namespace Shamrock
                                     case 3: tis[P.name].R3 = ctFlight.name + ctTeam.name1based + ballName; break;
                                     case 4: tis[P.name].R4 = ctFlight.name + ctTeam.name1based + ballName; break;
                                     case 5: tis[P.name].R5 = ctFlight.name + ctTeam.name1based + ballName; break;
+                                    case 6: tis[P.name].R6 = ctFlight.name + ctTeam.name1based + ballName; break;
+                                    case 7: tis[P.name].R7 = ctFlight.name + ctTeam.name1based + ballName; break;
                                 }
                             }
                         }
@@ -1577,6 +1592,8 @@ namespace Shamrock
                                 case 3: ti.R3 = ctFlight.name + ctTeam.name1based; break;
                                 case 4: ti.R4 = ctFlight.name + ctTeam.name1based; break;
                                 case 5: ti.R5 = ctFlight.name + ctTeam.name1based; break;
+                                case 6: ti.R6 = ctFlight.name + ctTeam.name1based; break;
+                                case 7: ti.R7 = ctFlight.name + ctTeam.name1based; break;
                             }
                             InputTeamsStartOfDraw.Add(ti);
                         }
@@ -2216,6 +2233,8 @@ namespace Shamrock
         public String R3 { get; set; }
         public String R4 { get; set; }
         public String R5 { get; set; }
+        public String R6 { get; set; }
+        public String R7 { get; set; }
     }
     public class DrawRestriction
     {

@@ -14,7 +14,7 @@ namespace Shamrock
     {
         #region declaration, fonts + colors
         private readonly BaseFont basefont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
-        enum OutputFormat { Number, Number1, Number2, Number4, Percent, PercentLeft, Text, TextRight, Date, DateTime };
+        enum OutputFormat { Number, Number1, Number2, Number4, Percent, PercentLeft, Text, TextRight, TextMid, Date, DateTime };
 
         System.Globalization.CultureInfo clientNumberFormat = new System.Globalization.CultureInfo("de-CH");
         Boolean useGermanNumberSeparators = false;
@@ -49,13 +49,13 @@ namespace Shamrock
 
             fontDocHeader = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 12, iTextSharp.text.Font.BOLD, ColorBlue));
             fontDocSubHeader = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 10, iTextSharp.text.Font.BOLD, BaseColor.LIGHT_GRAY));
-            fontTableTitle = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 6, iTextSharp.text.Font.BOLD, new BaseColor(50,59,62)));
-            fontTableTitleAlternative = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 8, iTextSharp.text.Font.BOLD, BaseColor.ORANGE));
-            fontTableHeader = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 6, iTextSharp.text.Font.BOLD, ColorBlue));
-            fontDetail = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 6, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
-            fontTotal = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 6, iTextSharp.text.Font.BOLD, BaseColor.BLACK));
-            fontDetailNeg = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 6, iTextSharp.text.Font.NORMAL, BaseColor.RED));
-            fontDetailWhite = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 6, iTextSharp.text.Font.NORMAL, BaseColor.WHITE));
+            fontTableTitle = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, new BaseColor(50,59,62)));
+            fontTableTitleAlternative = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, BaseColor.ORANGE));
+            fontTableHeader = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, ColorBlue));
+            fontDetail = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            fontTotal = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            fontDetailNeg = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, BaseColor.RED));
+            fontDetailWhite = new iTextSharp.text.Font(FontFactory.GetFont("microsoftsansserif", 5, iTextSharp.text.Font.NORMAL, BaseColor.WHITE));
         }
         #endregion
         public Reporting()
@@ -132,14 +132,14 @@ namespace Shamrock
                 ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Position after Round {0} (Mt=Sh.Points Match, SD=Sh.Points Stbl.Day, SW=Sh.Points Stbl.Week, Ef=Sh.Points Effective, Vi=Sh.Points Virtual", c.ctDayOfCompetition)));
 
                 //Header
-                AddHeaderCell((object)ctPdfPTable, "Player");
+                AddHeaderCell((object)ctPdfPTable, "P");
                 foreach (day ctDay in c.days)
                 {
                     AddDetailCell((object)ctPdfPTable, "Mt");
-                    AddDetailCell((object)ctPdfPTable, "SD");
+                    AddDetailCell((object)ctPdfPTable, "D");
                     if (c.configForYear.useExtra)
                         AddDetailCell((object)ctPdfPTable, "Ex");
-                    AddDetailCell((object)ctPdfPTable, "SW");
+                    AddDetailCell((object)ctPdfPTable, "W");
                     AddDetailCell((object)ctPdfPTable, "Ef");
                     AddDetailCell((object)ctPdfPTable, "Vi");
                     AddHeaderCell((object)ctPdfPTable, "R" + ctDay.nr);
@@ -282,13 +282,13 @@ namespace Shamrock
                         AddDetailCell((object)ctPdfPTable, "Stbl.Day", isEvenLine);
                         foreach (Player P in c.Players)
                         {
-                            AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay, isEvenLine);
+                            AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid);
                         }
-                        AddDetailCell((object)ctPdfPTable, "Position Stbl.Week", isEvenLine);
-                        foreach (Player P in c.Players)
-                        {
-                            AddDetailCell((object)ctPdfPTable, String.Format("#{0}", c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")), isEvenLine);
-                        }
+                        //AddDetailCell((object)ctPdfPTable, "Position Stbl.Day", isEvenLine);
+                        //foreach (Player P in c.Players)
+                        //{
+                        //    AddDetailCell((object)ctPdfPTable, String.Format("#{0}", c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")), isEvenLine);
+                        //}
                         isEvenLine = !isEvenLine;
                         AddDetailCell((object)ctPdfPTable, "Sh.Points Stbl.Day", isEvenLine);
                         foreach (Player P in c.Players)
@@ -300,13 +300,13 @@ namespace Shamrock
                     AddDetailCell((object)ctPdfPTable, "Stbl.Week", isEvenLine);
                     foreach (Player P in c.Players)
                     {
-                        AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].StblWeek, isEvenLine, OutputFormat.Number);
+                        AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblWeek.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblWeek}", isEvenLine, OutputFormat.TextMid);
                     }
-                    AddDetailCell((object)ctPdfPTable, "Position Stbl.Week", isEvenLine);
-                    foreach (Player P in c.Players)
-                    {
-                        AddDetailCell((object)ctPdfPTable, String.Format("#{0}", c.getResultsbyDayNr(ctDay.nr)[P.name].posStblWeek.ToString("N0")), isEvenLine);
-                    }
+                    //AddDetailCell((object)ctPdfPTable, "Position Stbl.Week", isEvenLine);
+                    //foreach (Player P in c.Players)
+                    //{
+                    //    AddDetailCell((object)ctPdfPTable, String.Format("#{0}", c.getResultsbyDayNr(ctDay.nr)[P.name].posStblWeek.ToString("N0")), isEvenLine);
+                    //}
                     isEvenLine = !isEvenLine;
                     AddDetailCell((object)ctPdfPTable, "Sh.Points Stbl.Week", isEvenLine);
                     foreach (Player P in c.Players)
@@ -938,7 +938,8 @@ namespace Shamrock
             ret.Phrase = new Phrase(" ", fontTableTitle);
             ret.BackgroundColor = BaseColor.WHITE;
             ret.BorderColor = new BaseColor(System.Drawing.Color.White);
-            //ret.FixedHeight = 10; //Header-Height
+            ret.BorderWidth = 0.3f;
+            ret.FixedHeight = 2; //Header-Height
             ret.Colspan = span;
             ret.HorizontalAlignment = 0;
 
@@ -951,6 +952,7 @@ namespace Shamrock
             ret.Phrase = new Phrase(cellContent, fontTableTitle);
             ret.BackgroundColor = ColorLightBlue;
             ret.BorderColor = new BaseColor(System.Drawing.Color.White);
+            ret.BorderWidth = 0.3f;
             //ret.FixedHeight = 10; //Header-Height
             ret.Colspan = span;
             ret.HorizontalAlignment = 0;
@@ -964,7 +966,8 @@ namespace Shamrock
             ret.Phrase = new Phrase(cellContent, fontTableTitleAlternative);
             ret.BackgroundColor = ColorGrey4;
             ret.BorderColor = new BaseColor(System.Drawing.Color.White);
-            ret.FixedHeight = 10; // Header-Height
+            ret.BorderWidth = 0.3f;
+            //ret.FixedHeight = 10; // Header-Height
             ret.Colspan = span;
             ret.HorizontalAlignment = 0;
 
@@ -992,6 +995,7 @@ namespace Shamrock
             else
                 ret.BackgroundColor = ColorGrey2;
             ret.BorderColor = new BaseColor(System.Drawing.Color.White);
+            ret.BorderWidth = 0.3f;
 
             switch (format)
             {
@@ -1002,6 +1006,9 @@ namespace Shamrock
                 case OutputFormat.Percent:
                 case OutputFormat.TextRight:
                     ret.HorizontalAlignment = 2; // Right
+                    break;
+                case OutputFormat.TextMid:
+                    ret.HorizontalAlignment = PdfPCell.ALIGN_JUSTIFIED_ALL; // Mid
                     break;
                 default:
                     ret.HorizontalAlignment = 0; // Left
@@ -1102,7 +1109,8 @@ namespace Shamrock
                 ret.BackgroundColor = ColorGrey5;
 
             ret.BorderColor = new BaseColor(System.Drawing.Color.White);
-            //ret.FixedHeight = 8;
+            ret.BorderWidth = 0.3f;
+            //ret.FixedHeight = 10;
 
             switch (format)
             {
@@ -1113,6 +1121,9 @@ namespace Shamrock
                 case OutputFormat.Percent:
                 case OutputFormat.TextRight:
                     ret.HorizontalAlignment = 2; // Right
+                    break;
+                case OutputFormat.TextMid:
+                    ret.HorizontalAlignment = PdfPCell.ALIGN_JUSTIFIED_ALL; // Mid
                     break;
                 case OutputFormat.PercentLeft:
                     ret.HorizontalAlignment = 0;
@@ -1177,7 +1188,8 @@ namespace Shamrock
             ret.BackgroundColor = ColorLightBlue;
 
             ret.BorderColor = BaseColor.WHITE;
-            //ret.FixedHeight = 8; // Header-Height
+            ret.BorderWidth = 0.3f;
+            //ret.FixedHeight = 10; // Header-Height
 
             //ret.BorderColorTop = BaseColor.BLACK;
             //ret.BorderWidthTop = 1;
@@ -1191,6 +1203,9 @@ namespace Shamrock
                 case OutputFormat.Percent:
                 case OutputFormat.TextRight:
                     ret.HorizontalAlignment = 2; // Right
+                    break;
+                case OutputFormat.TextMid:
+                    ret.HorizontalAlignment = PdfPCell.ALIGN_JUSTIFIED_ALL; // Mid
                     break;
                 case OutputFormat.PercentLeft:
                     ret.HorizontalAlignment = 0;
