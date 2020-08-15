@@ -140,6 +140,20 @@ namespace Shamrock
                 drBest8.Max4B = 4;
                 drBest8.Description = "best for 8 (4 rounds)";
 
+                DrawRestriction drBest8r7 = new DrawRestriction();
+                drBest8r7.nrTry = 4000;
+                drBest8r7.MaxFlt = 3;
+                drBest8r7.MaxEmy = 3;
+                drBest8r7.MaxTm = 1;
+
+                drBest8r7.Flt0 = 0;
+                drBest8r7.Emy0 = 0;
+
+                drBest8r7.Max2B = 0;
+                drBest8r7.MaxWch = 0;
+                drBest8r7.Max4B = 7;
+                drBest8r7.Description = "best for 8 (7 rounds)";
+
                 DrawRestriction drBest10 = new DrawRestriction();
                 drBest10.nrTry = 4000;
                 drBest10.MaxFlt = 2;
@@ -180,17 +194,18 @@ namespace Shamrock
                 else
                 {
                     dr.nrTry = 10000;
-                    dr.Max4B = 4;
-                    dr.Max2B = 4;
-                    dr.MaxWch = 4;
+                    dr.Max4B = 7;
+                    dr.Max2B = 0;
+                    dr.MaxWch = 0;
                     dr.MaxFlt = 3;
                     dr.MaxTm = 1;
-                    dr.MaxEmy = 2;
+                    dr.MaxEmy = 3;
                     dr.Flt0 = 0;
                     dr.Emy0 = 0;
                     dr.Description = "active";
                     DrawRestrictions.Add(dr);
                     DrawRestrictions.Add(drBest8);
+                    DrawRestrictions.Add(drBest8r7);
                 }
             }
             dataGridDrawRestrictionInput.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -1672,90 +1687,12 @@ namespace Shamrock
 
             //initialiseCompet();
             drawResults drawRes = new drawResults();
-            InitialiseForDraw_ReadSetPlayers(5, drawRes, lPlayers, InputTeamsStartOfDraw);
+            
+            InitialiseForDraw_ReadSetPlayers(_c.days.Count, drawRes, lPlayers, InputTeamsStartOfDraw);
             drawRes.calculateDrawStatXT(lPlayers);
 
             DisplayDrawPlayer(drawRes, lPlayers);
             DisplayTeamsGrid(drawRes);
-            //#region display xFlight-xEnemy-xTeam Matrix
-            //dataGridPlayerMatrix.ColumnCount = _c.Players.Count + 1;
-            //dataGridPlayerMatrix.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            //dataGridPlayerMatrix.Rows.Clear();
-            //dataGridPlayerMatrix.Columns[0].Name = "Flight|Enemy|Team";
-
-            //for (int iP1 = 0; iP1 < _c.Players.Count; iP1++)
-            //{
-            //    dataGridPlayerMatrix.Columns[iP1 + 1].Name = _c.Players[iP1].name.Left(4);
-            //    dataGridPlayerMatrix.Rows.Add();
-            //    dataGridPlayerMatrix.Rows[iP1].Cells[0].Value = _c.Players[iP1].name.Left(4);
-            //    for (int iP2 = 0; iP2 < _c.Players.Count; iP2++)
-            //    {
-            //        if (iP1 > iP2)
-            //        {
-            //            int ctHTFlight = _c.GetHowManyTimeInSameFlight(_c.Players[iP1], _c.Players[iP2]);
-            //            int ctHTEnemy = _c.GetHowManyTimeEnemy(_c.Players[iP1], _c.Players[iP2]);
-            //            int ctHTTeam = _c.GetHowManyTimeInSameTeam(_c.Players[iP1], _c.Players[iP2]);
-            //            dataGridPlayerMatrix.Rows[iP1].Cells[iP2 + 1].Value = String.Format("{0} | {1} | {2}", ctHTFlight, ctHTEnemy, ctHTTeam);
-            //            if (ctHTEnemy == 0)
-            //                dataGridPlayerMatrix.Rows[iP1].Cells[iP2 + 1].Style.BackColor = Color.Azure;
-            //        }
-            //    }
-            //}
-            //#endregion
-            //#region display stats
-            //dataGridPlayerMatrixStats.ColumnCount = 8;
-            //dataGridPlayerMatrixStats.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            //dataGridPlayerMatrixStats.Rows.Clear();
-            //dataGridPlayerMatrixStats.Rows.Add();
-            //dataGridPlayerMatrixStats.Rows.Add();
-            //dataGridPlayerMatrixStats.Rows.Add();
-            //dataGridPlayerMatrixStats.Rows.Add();
-            //dataGridPlayerMatrixStats.Rows.Add();
-            //for (int i = 0; i < dataGridPlayerMatrixStats.Columns.Count; i++)
-            //{
-            //    if (i == 0)
-            //    {
-            //        dataGridPlayerMatrixStats.Rows[0].Cells[i].Value = "Flight";
-            //        dataGridPlayerMatrixStats.Rows[1].Cells[i].Value = "Enemy";
-            //        dataGridPlayerMatrixStats.Rows[2].Cells[i].Value = "in2B";
-            //        dataGridPlayerMatrixStats.Rows[3].Cells[i].Value = "inWinch";
-            //        dataGridPlayerMatrixStats.Rows[4].Cells[i].Value = "in4B";
-            //    }
-            //    else
-            //    {
-            //        dataGridPlayerMatrixStats.Columns[i].Name = (i - 1).ToString();
-            //        dataGridPlayerMatrixStats.Rows[0].Cells[i].Value = _c.statXTFlight[i - 1];
-            //        dataGridPlayerMatrixStats.Rows[1].Cells[i].Value = _c.statXTEnemy[i - 1];
-            //        dataGridPlayerMatrixStats.Rows[2].Cells[i].Value = _c.statXTIn2B[i - 1];
-            //        dataGridPlayerMatrixStats.Rows[3].Cells[i].Value = _c.statXTInWinch[i - 1];
-            //        dataGridPlayerMatrixStats.Rows[4].Cells[i].Value = _c.statXTIn4B[i - 1];
-            //    }
-            //}
-            //#endregion
-            //#region display teams Grid
-            //dataGridTeamsGrid.ColumnCount = _c.days.Count * 2;
-            //dataGridTeamsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            //dataGridTeamsGrid.Rows.Clear();
-
-            //dataGridTeamsGrid.Rows.Add(_c.Players.Count);
-            //foreach (day ctD in _c.days)
-            //{
-            //    int ctRow = -1;
-            //    dataGridTeamsGrid.Columns[(int)((ctD.nr - 1) * 2)].Name = ctD.nr.ToString();
-            //    foreach (flight ctFlight in ctD.flights.Values)
-            //    {
-            //        foreach (team ctTeam in ctFlight.teams.Values)
-            //        {
-            //            foreach (Player P in ctTeam.players.Values)
-            //            {
-            //                ctRow++;
-            //                dataGridTeamsGrid.Rows[ctRow].Cells[(int)((ctD.nr - 1) * 2)].Value = ctFlight.name + ctTeam.name;
-            //                dataGridTeamsGrid.Rows[ctRow].Cells[(int)(((ctD.nr - 1) * 2) + 1)].Value = P.name;
-            //            }
-            //        }
-            //    }
-            //}
-            //#endregion
 
         }
 
@@ -2223,6 +2160,11 @@ namespace Shamrock
                     initialiseCompet(false, i);
                 }
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public class TeamInput

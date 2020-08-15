@@ -53,18 +53,8 @@
             this.buttonSavePlayers = new System.Windows.Forms.Button();
             this.dataGridViewPlayers = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button10_8 = new System.Windows.Forms.Button();
-            this.button10_7 = new System.Windows.Forms.Button();
-            this.button10_6 = new System.Windows.Forms.Button();
-            this.button10_5 = new System.Windows.Forms.Button();
-            this.button10_4 = new System.Windows.Forms.Button();
-            this.button10_3 = new System.Windows.Forms.Button();
-            this.button10_2 = new System.Windows.Forms.Button();
-            this.button10_1 = new System.Windows.Forms.Button();
-            this.buttonEvaluateSavedDraws = new System.Windows.Forms.Button();
             this.buttonResultDraw_TeamInput_SaveAs = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonDrawPerm = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,7 +68,6 @@
             this.buttonStartDraw_TeamInput_SaveProd = new System.Windows.Forms.Button();
             this.dataGridViewInput = new System.Windows.Forms.DataGridView();
             this.buttonDrawNew = new System.Windows.Forms.Button();
-            this.buttonDrawTeams = new System.Windows.Forms.Button();
             this.dataGridTeamsGrid = new System.Windows.Forms.DataGridView();
             this.dataGridPlayerMatrixStats = new System.Windows.Forms.DataGridView();
             this.dataGridPlayerMatrix = new System.Windows.Forms.DataGridView();
@@ -372,18 +361,8 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button10_8);
-            this.tabPage3.Controls.Add(this.button10_7);
-            this.tabPage3.Controls.Add(this.button10_6);
-            this.tabPage3.Controls.Add(this.button10_5);
-            this.tabPage3.Controls.Add(this.button10_4);
-            this.tabPage3.Controls.Add(this.button10_3);
-            this.tabPage3.Controls.Add(this.button10_2);
-            this.tabPage3.Controls.Add(this.button10_1);
-            this.tabPage3.Controls.Add(this.buttonEvaluateSavedDraws);
             this.tabPage3.Controls.Add(this.buttonResultDraw_TeamInput_SaveAs);
             this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.buttonDrawPerm);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.label1);
@@ -397,7 +376,6 @@
             this.tabPage3.Controls.Add(this.buttonStartDraw_TeamInput_SaveProd);
             this.tabPage3.Controls.Add(this.dataGridViewInput);
             this.tabPage3.Controls.Add(this.buttonDrawNew);
-            this.tabPage3.Controls.Add(this.buttonDrawTeams);
             this.tabPage3.Controls.Add(this.dataGridTeamsGrid);
             this.tabPage3.Controls.Add(this.dataGridPlayerMatrixStats);
             this.tabPage3.Controls.Add(this.dataGridPlayerMatrix);
@@ -410,108 +388,9 @@
             this.tabPage3.Text = "Draw";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button10_8
-            // 
-            this.button10_8.Location = new System.Drawing.Point(248, 531);
-            this.button10_8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_8.Name = "button10_8";
-            this.button10_8.Size = new System.Drawing.Size(60, 35);
-            this.button10_8.TabIndex = 34;
-            this.button10_8.Text = "10_8";
-            this.button10_8.UseVisualStyleBackColor = true;
-            this.button10_8.Click += new System.EventHandler(this.button10_8_Click);
-            // 
-            // button10_7
-            // 
-            this.button10_7.Location = new System.Drawing.Point(183, 531);
-            this.button10_7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_7.Name = "button10_7";
-            this.button10_7.Size = new System.Drawing.Size(60, 35);
-            this.button10_7.TabIndex = 33;
-            this.button10_7.Text = "10_7";
-            this.button10_7.UseVisualStyleBackColor = true;
-            this.button10_7.Click += new System.EventHandler(this.button10_7_Click);
-            // 
-            // button10_6
-            // 
-            this.button10_6.Location = new System.Drawing.Point(310, 492);
-            this.button10_6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_6.Name = "button10_6";
-            this.button10_6.Size = new System.Drawing.Size(60, 35);
-            this.button10_6.TabIndex = 32;
-            this.button10_6.Text = "10_6";
-            this.button10_6.UseVisualStyleBackColor = true;
-            this.button10_6.Click += new System.EventHandler(this.button10_6_Click);
-            // 
-            // button10_5
-            // 
-            this.button10_5.Location = new System.Drawing.Point(248, 492);
-            this.button10_5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_5.Name = "button10_5";
-            this.button10_5.Size = new System.Drawing.Size(60, 35);
-            this.button10_5.TabIndex = 31;
-            this.button10_5.Text = "10_5";
-            this.button10_5.UseVisualStyleBackColor = true;
-            this.button10_5.Click += new System.EventHandler(this.button10_5_Click);
-            // 
-            // button10_4
-            // 
-            this.button10_4.Location = new System.Drawing.Point(183, 492);
-            this.button10_4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_4.Name = "button10_4";
-            this.button10_4.Size = new System.Drawing.Size(60, 35);
-            this.button10_4.TabIndex = 30;
-            this.button10_4.Text = "10_4";
-            this.button10_4.UseVisualStyleBackColor = true;
-            this.button10_4.Click += new System.EventHandler(this.button10_4_Click);
-            // 
-            // button10_3
-            // 
-            this.button10_3.Location = new System.Drawing.Point(310, 452);
-            this.button10_3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_3.Name = "button10_3";
-            this.button10_3.Size = new System.Drawing.Size(60, 35);
-            this.button10_3.TabIndex = 29;
-            this.button10_3.Text = "10_3";
-            this.button10_3.UseVisualStyleBackColor = true;
-            this.button10_3.Click += new System.EventHandler(this.button10_3_Click);
-            // 
-            // button10_2
-            // 
-            this.button10_2.Location = new System.Drawing.Point(248, 452);
-            this.button10_2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_2.Name = "button10_2";
-            this.button10_2.Size = new System.Drawing.Size(60, 35);
-            this.button10_2.TabIndex = 28;
-            this.button10_2.Text = "10_2";
-            this.button10_2.UseVisualStyleBackColor = true;
-            this.button10_2.Click += new System.EventHandler(this.button10_2_Click);
-            // 
-            // button10_1
-            // 
-            this.button10_1.Location = new System.Drawing.Point(183, 452);
-            this.button10_1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button10_1.Name = "button10_1";
-            this.button10_1.Size = new System.Drawing.Size(60, 35);
-            this.button10_1.TabIndex = 27;
-            this.button10_1.Text = "10_1";
-            this.button10_1.UseVisualStyleBackColor = true;
-            this.button10_1.Click += new System.EventHandler(this.button10_1_Click);
-            // 
-            // buttonEvaluateSavedDraws
-            // 
-            this.buttonEvaluateSavedDraws.Location = new System.Drawing.Point(567, 322);
-            this.buttonEvaluateSavedDraws.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonEvaluateSavedDraws.Name = "buttonEvaluateSavedDraws";
-            this.buttonEvaluateSavedDraws.Size = new System.Drawing.Size(195, 45);
-            this.buttonEvaluateSavedDraws.TabIndex = 26;
-            this.buttonEvaluateSavedDraws.Text = "Evaluate Saved Draws";
-            this.buttonEvaluateSavedDraws.UseVisualStyleBackColor = true;
-            this.buttonEvaluateSavedDraws.Click += new System.EventHandler(this.buttonEvaluateSavedDraws_Click);
-            // 
             // buttonResultDraw_TeamInput_SaveAs
             // 
-            this.buttonResultDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(1756, 758);
+            this.buttonResultDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(733, 489);
             this.buttonResultDraw_TeamInput_SaveAs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonResultDraw_TeamInput_SaveAs.Name = "buttonResultDraw_TeamInput_SaveAs";
             this.buttonResultDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(195, 40);
@@ -523,23 +402,13 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1752, 9);
+            this.label4.Location = new System.Drawing.Point(659, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 100);
+            this.label4.Size = new System.Drawing.Size(113, 140);
             this.label4.TabIndex = 24;
-            this.label4.Text = "Input Team:\r\n4B: A1, A1, A2, A2\r\nWinch: A1, A2, A3\r\n2B: A1, A2\r\nabandon: 0\r\n";
-            // 
-            // buttonDrawPerm
-            // 
-            this.buttonDrawPerm.Location = new System.Drawing.Point(567, 378);
-            this.buttonDrawPerm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonDrawPerm.Name = "buttonDrawPerm";
-            this.buttonDrawPerm.Size = new System.Drawing.Size(195, 32);
-            this.buttonDrawPerm.TabIndex = 23;
-            this.buttonDrawPerm.Text = "Draw Permutations";
-            this.buttonDrawPerm.UseVisualStyleBackColor = true;
-            this.buttonDrawPerm.Click += new System.EventHandler(this.buttonDrawPerm_Click);
+            this.label4.Text = "Input Team:\r\n4B:\r\nA1, A1, A2, A2\r\nWinch:\r\nA1, A2, A3\r\n2B: A1, A2\r\nabandon: 0\r\n";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -554,7 +423,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(768, 152);
+            this.label2.Location = new System.Drawing.Point(830, 178);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 20);
@@ -573,7 +442,7 @@
             // 
             // buttonResultDraw_TeamInput_SaveProd
             // 
-            this.buttonResultDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(1756, 629);
+            this.buttonResultDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(733, 439);
             this.buttonResultDraw_TeamInput_SaveProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonResultDraw_TeamInput_SaveProd.Name = "buttonResultDraw_TeamInput_SaveProd";
             this.buttonResultDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(195, 40);
@@ -594,7 +463,7 @@
             // 
             // buttonStartDraw_TeamInput_LoadFrom
             // 
-            this.buttonStartDraw_TeamInput_LoadFrom.Location = new System.Drawing.Point(410, 451);
+            this.buttonStartDraw_TeamInput_LoadFrom.Location = new System.Drawing.Point(161, 451);
             this.buttonStartDraw_TeamInput_LoadFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_LoadFrom.Name = "buttonStartDraw_TeamInput_LoadFrom";
             this.buttonStartDraw_TeamInput_LoadFrom.Size = new System.Drawing.Size(152, 35);
@@ -605,10 +474,10 @@
             // 
             // buttonStartDraw_TeamInput_SaveAs
             // 
-            this.buttonStartDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(410, 489);
+            this.buttonStartDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(161, 489);
             this.buttonStartDraw_TeamInput_SaveAs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_SaveAs.Name = "buttonStartDraw_TeamInput_SaveAs";
-            this.buttonStartDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(152, 40);
+            this.buttonStartDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(152, 34);
             this.buttonStartDraw_TeamInput_SaveAs.TabIndex = 16;
             this.buttonStartDraw_TeamInput_SaveAs.Text = "Save (as)...";
             this.buttonStartDraw_TeamInput_SaveAs.UseVisualStyleBackColor = true;
@@ -619,26 +488,26 @@
             this.dataGridDrawRestrictionInput.AllowUserToAddRows = false;
             this.dataGridDrawRestrictionInput.AllowUserToDeleteRows = false;
             this.dataGridDrawRestrictionInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDrawRestrictionInput.Location = new System.Drawing.Point(567, 9);
+            this.dataGridDrawRestrictionInput.Location = new System.Drawing.Point(780, 9);
             this.dataGridDrawRestrictionInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridDrawRestrictionInput.Name = "dataGridDrawRestrictionInput";
-            this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(1176, 138);
+            this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(1127, 159);
             this.dataGridDrawRestrictionInput.TabIndex = 15;
             // 
             // buttonDisplayStats
             // 
-            this.buttonDisplayStats.Location = new System.Drawing.Point(567, 489);
+            this.buttonDisplayStats.Location = new System.Drawing.Point(456, 451);
             this.buttonDisplayStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDisplayStats.Name = "buttonDisplayStats";
             this.buttonDisplayStats.Size = new System.Drawing.Size(195, 35);
             this.buttonDisplayStats.TabIndex = 14;
-            this.buttonDisplayStats.Text = "Display Stats";
+            this.buttonDisplayStats.Text = "Display Stats For Input";
             this.buttonDisplayStats.UseVisualStyleBackColor = true;
             this.buttonDisplayStats.Click += new System.EventHandler(this.buttonDisplayStats_Click);
             // 
             // buttonStartDraw_TeamInput_LoadProd
             // 
-            this.buttonStartDraw_TeamInput_LoadProd.Location = new System.Drawing.Point(21, 452);
+            this.buttonStartDraw_TeamInput_LoadProd.Location = new System.Drawing.Point(9, 451);
             this.buttonStartDraw_TeamInput_LoadProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_LoadProd.Name = "buttonStartDraw_TeamInput_LoadProd";
             this.buttonStartDraw_TeamInput_LoadProd.Size = new System.Drawing.Size(144, 35);
@@ -649,7 +518,7 @@
             // 
             // buttonStartDraw_TeamInput_SaveProd
             // 
-            this.buttonStartDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(21, 489);
+            this.buttonStartDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(9, 488);
             this.buttonStartDraw_TeamInput_SaveProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_SaveProd.Name = "buttonStartDraw_TeamInput_SaveProd";
             this.buttonStartDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(144, 35);
@@ -663,33 +532,22 @@
             this.dataGridViewInput.AllowUserToAddRows = false;
             this.dataGridViewInput.AllowUserToDeleteRows = false;
             this.dataGridViewInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewInput.Location = new System.Drawing.Point(21, 9);
+            this.dataGridViewInput.Location = new System.Drawing.Point(9, 9);
             this.dataGridViewInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewInput.Name = "dataGridViewInput";
-            this.dataGridViewInput.Size = new System.Drawing.Size(538, 438);
+            this.dataGridViewInput.Size = new System.Drawing.Size(642, 438);
             this.dataGridViewInput.TabIndex = 10;
             // 
             // buttonDrawNew
             // 
-            this.buttonDrawNew.Location = new System.Drawing.Point(569, 268);
+            this.buttonDrawNew.Location = new System.Drawing.Point(659, 243);
             this.buttonDrawNew.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawNew.Name = "buttonDrawNew";
             this.buttonDrawNew.Size = new System.Drawing.Size(195, 35);
             this.buttonDrawNew.TabIndex = 9;
-            this.buttonDrawNew.Text = "Draw Teams (new)";
+            this.buttonDrawNew.Text = "Draw Teams";
             this.buttonDrawNew.UseVisualStyleBackColor = true;
             this.buttonDrawNew.Click += new System.EventHandler(this.buttonDrawNew_Click);
-            // 
-            // buttonDrawTeams
-            // 
-            this.buttonDrawTeams.Location = new System.Drawing.Point(567, 444);
-            this.buttonDrawTeams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonDrawTeams.Name = "buttonDrawTeams";
-            this.buttonDrawTeams.Size = new System.Drawing.Size(195, 35);
-            this.buttonDrawTeams.TabIndex = 5;
-            this.buttonDrawTeams.Text = "Draw Teams orig(10)";
-            this.buttonDrawTeams.UseVisualStyleBackColor = true;
-            this.buttonDrawTeams.Click += new System.EventHandler(this.buttonDrawTeams_Click_1);
             // 
             // dataGridTeamsGrid
             // 
@@ -699,7 +557,7 @@
             this.dataGridTeamsGrid.Location = new System.Drawing.Point(568, 629);
             this.dataGridTeamsGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridTeamsGrid.Name = "dataGridTeamsGrid";
-            this.dataGridTeamsGrid.Size = new System.Drawing.Size(1176, 422);
+            this.dataGridTeamsGrid.Size = new System.Drawing.Size(1339, 422);
             this.dataGridTeamsGrid.TabIndex = 7;
             // 
             // dataGridPlayerMatrixStats
@@ -718,10 +576,10 @@
             this.dataGridPlayerMatrix.AllowUserToAddRows = false;
             this.dataGridPlayerMatrix.AllowUserToDeleteRows = false;
             this.dataGridPlayerMatrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPlayerMatrix.Location = new System.Drawing.Point(771, 178);
+            this.dataGridPlayerMatrix.Location = new System.Drawing.Point(936, 178);
             this.dataGridPlayerMatrix.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridPlayerMatrix.Name = "dataGridPlayerMatrix";
-            this.dataGridPlayerMatrix.Size = new System.Drawing.Size(972, 440);
+            this.dataGridPlayerMatrix.Size = new System.Drawing.Size(972, 441);
             this.dataGridPlayerMatrix.TabIndex = 6;
             // 
             // tabPage2
@@ -841,7 +699,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button buttonDrawTeams;
         private System.Windows.Forms.DataGridView dataGridTeamsGrid;
         private System.Windows.Forms.DataGridView dataGridPlayerMatrixStats;
         private System.Windows.Forms.DataGridView dataGridPlayerMatrix;
@@ -875,18 +732,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonDrawPerm;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonResultDraw_TeamInput_SaveAs;
-        private System.Windows.Forms.Button buttonEvaluateSavedDraws;
-        private System.Windows.Forms.Button button10_1;
-        private System.Windows.Forms.Button button10_6;
-        private System.Windows.Forms.Button button10_5;
-        private System.Windows.Forms.Button button10_4;
-        private System.Windows.Forms.Button button10_3;
-        private System.Windows.Forms.Button button10_2;
-        private System.Windows.Forms.Button button10_8;
-        private System.Windows.Forms.Button button10_7;
         private System.Windows.Forms.Button buttonExtraPts;
         private System.Windows.Forms.Button buttonInitialiseForDay;
         private System.Windows.Forms.Button buttonInitialiseforYear;
