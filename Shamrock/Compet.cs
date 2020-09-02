@@ -140,33 +140,78 @@ namespace Shamrock
             #region 2nd Loop Sum up and sort for weekly stable
             for (int i = 1; i <= toDayNr; ++i)
             {
+                
                 Dictionary<String, Double> sortableScores = new Dictionary<string, Double>();
                 foreach (Player P in Players)
                 {
-                    Double factor = 1;
-                    Double sortableScore = (100 - (double)getResultsbyDayNr(1)[P.name].posStblDay) / 1000; //initialise with position from the 1st stbl
-                    int sumStbl = 0;
-                    Double sumEff = 0;
-                    for (int j = 1; j <= i; ++j) //loop from begin to ctToDayNr
+                    //loop to identify the worst day for the player (scratch it) (from begin to i)
+                    int worstDay = 1;
+                    int worstDayStbl = 1000;
+                    int cntDaysValidForStbl = 0;
+                    for (int j = 1; j <= i; ++j) //loop from begin to i (ctDay in the mainloop)
                     {
+                        day ctDay = getDaybyNr(j);
+                        if (ctDay.isFoursome)
+                            continue;
+                        cntDaysValidForStbl++;
                         int ctStbl = getResultsbyDayNr(j)[P.name].StblDay; // get the daily stbl
+                        if(worstDayStbl>ctStbl)
+                        {
+                            worstDay = j;
+                            worstDayStbl = ctStbl;
+                        }
+                    }
+                    if (cntDaysValidForStbl <= 1)
+                        worstDay = -1; //do not scratch if there is only one day of competition valid for stbl
+                    getResultsbyDayNr(i)[P.name].worstDay = worstDay; //worst day
+
+                    //sortable score looks like 144 (sum) 0036 (stbl day4) 0033 (stbl day3) 0041 (stbl day2) 0034 (stbl day1). 0008 (position from 1st stbl)  and is used to sort out players with same sum for the week
+                    Double factor = 1;
+                    Double factor_X = 1;
+                    Double sortableScore = (100 - (double)getResultsbyDayNr(1)[P.name].posStblDay) / 1000; //initialise with position from the 1st stbl (position (not stbl) forces a position even at beginning)
+                    Double sortableScore_X = (100 - (double)getResultsbyDayNr(1)[P.name].posStblDay) / 1000;
+                    int sumStbl = 0;
+                    int sumStbl_X = 0;
+                    Double sumEff = 0;
+                    for (int j = 1; j <= i; ++j) //loop from begin to i (ctDay in the mainloop)
+                    {
+                        sumEff += getResultsbyDayNr(j)[P.name].shMatch + getResultsbyDayNr(j)[P.name].shStblDay + getResultsbyDayNr(j)[P.name].shExtraDay;
+
+                        day ctDay = getDaybyNr(j);
+                        if (ctDay.isFoursome)
+                            continue;
+
+                        int ctStbl = getResultsbyDayNr(j)[P.name].StblDay; // get the daily stbl
+
                         sumStbl += ctStbl; // sum up
                         sortableScore += factor * (double)ctStbl; //store for sort
                         factor *= 1000;
-                        sumEff += getResultsbyDayNr(j)[P.name].shMatch + getResultsbyDayNr(j)[P.name].shStblDay + getResultsbyDayNr(j)[P.name].shExtraDay;
+
+                        //don't use the score from the worstday
+                        if(j!=worstDay)
+                        { 
+                            sumStbl_X += ctStbl; // sum up
+                            sortableScore_X += factor_X * (double)(ctStbl == 0 ? 1: ctStbl); //store for sort (0 is not good)
+                            factor_X *= 1000;
+                        }
                     }
                     sortableScore += factor * (double)sumStbl; //store for sort
-                    getResultsbyDayNr(i)[P.name].shEffective = sumEff; //sum of matchs + daily sh
+                    sortableScore_X += factor_X * (double)sumStbl_X; //store for sort
+                    getResultsbyDayNr(i)[P.name].shEffective = sumEff; //sum of matchs + daily sh + extra if defined
                     getResultsbyDayNr(i)[P.name].StblWeek = sumStbl; //save sum for week
-                    sortableScores.Add(P.name, sortableScore); //add sortableScore to dictionary
+                    getResultsbyDayNr(i)[P.name].StblWeek_X = sumStbl_X; //save sum for week (scratch)
+                    if (configForYear.useScratch)
+                        sortableScores.Add(P.name, sortableScore_X); //add sortableScore to dictionary
+                    else
+                        sortableScores.Add(P.name, sortableScore); //add sortableScore to dictionary
                 }
                 List<String> sortedList = sortableScores.OrderByDescending(kp => kp.Value).Select(kp => kp.Key).ToList();
                 sortableScores.Clear();
                 foreach (Player P in Players) //loop again to get Position and sh
                 {
                     int Position = sortedList.FindIndex(x => x == P.name);
-                    if (!getDaybyNr(i).stblPoints.isValidForStblDay())
-                        Position = 8; // make sure 
+                    //if (!getDaybyNr(i).stblPoints.isValidForStblDay())
+                    //    Position = 8; // make sure 
                     getResultsbyDayNr(i)[P.name].posStblWeek = Position + 1;
                     String[] splits = configForYear.stlWeek.Replace(" ", "").Split(',');
                     double ctSh = 0;
@@ -385,6 +430,7 @@ namespace Shamrock
         public int PlayModeR7 { get; set; }
         public int nbRounds { get; set; }
         public bool useExtra { get; set; }
+        public bool useScratch { get; set; }
         public day.PlayMode getPlayModeForRound(int Rnr)
         {
             day.PlayMode ret = day.PlayMode.P8_2x4b;
@@ -440,6 +486,8 @@ namespace Shamrock
         public double shStblDay;
         public double shExtraDay;
         public int StblWeek;
+        public int StblWeek_X;
+        public int worstDay;
         public int posStblWeek;
         public double shStblWeek;
         public double shEffective;

@@ -35,6 +35,7 @@ namespace Shamrock
                 _c.configForYear.stlDay = "1.5,1,0.5";
                 _c.configForYear.stlWeek = "4,3,2,1,0.5";
                 _c.configForYear.useExtra = false;
+                _c.configForYear.useScratch = false;
             }
 
             display();
