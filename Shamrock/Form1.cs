@@ -1670,7 +1670,7 @@ namespace Shamrock
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
             saveFileDialog1.InitialDirectory = _dataInputTeamsSubFolder;
-            saveFileDialog1.Filter = "json files (*.json)";
+            saveFileDialog1.Filter = "*.json|";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
