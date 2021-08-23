@@ -168,8 +168,8 @@ namespace Shamrock
                     //sortable score looks like 144 (sum) 0036 (stbl day4) 0033 (stbl day3) 0041 (stbl day2) 0034 (stbl day1). 0008 (position from 1st stbl)  and is used to sort out players with same sum for the week
                     Double factor = 1;
                     Double factor_X = 1;
-                    Double sortableScore = (100 - (double)getResultsbyDayNr(1)[P.name].posStblDay) / 1000; //initialise with position from the 1st stbl (position (not stbl) forces a position even at beginning)
-                    Double sortableScore_X = (100 - (double)getResultsbyDayNr(1)[P.name].posStblDay) / 1000;
+                    Double sortableScore = (100 - (double)getResultsFirstStbl()[P.name].posStblDay) / 1000; //initialise with position from the 1st stbl (position (not stbl) forces a position even at beginning)
+                    Double sortableScore_X = (100 - (double)getResultsFirstStbl()[P.name].posStblDay) / 1000;
                     int sumStbl = 0;
                     int sumStbl_X = 0;
                     Double sumEff = 0;
@@ -244,6 +244,17 @@ namespace Shamrock
         {
             return results[dayNr - 1];
         }
+        public Dictionary<String, PlayerResult> getResultsFirstStbl()
+        {
+            foreach (day d in days)
+            {
+                if (d.isFoursome)
+                    continue;
+                if(results.Count >= d.nr)
+                    return getResultsbyDayNr(d.nr);
+            }
+            return getResultsbyDayNr(1);
+        }
         public List<string> getSortedPlayer(int dayNr)
         {
             Dictionary<string, double> temp = new Dictionary<string, double>();
@@ -263,7 +274,8 @@ namespace Shamrock
             for (int i = 1; i <= toDayNr; ++i)
             {
                 day ctDay = getDaybyNr(i);
-                ret.AddRange(ctDay.statHoles);
+                if(!ctDay.isFoursome)
+                    ret.AddRange(ctDay.statHoles);
             }
             return ret;
         }

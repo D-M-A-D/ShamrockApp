@@ -37,6 +37,8 @@
             this.buttonShPoints = new System.Windows.Forms.Button();
             this.textBoxDataFolder = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.buttonExtraPts = new System.Windows.Forms.Button();
             this.buttonCalcHoleStats = new System.Windows.Forms.Button();
             this.buttonSimulatePlayerScores = new System.Windows.Forms.Button();
@@ -75,8 +77,6 @@
             this.listBoxYearForStats = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -123,7 +123,7 @@
             // 
             // buttonInitialiseForDay
             // 
-            this.buttonInitialiseForDay.Location = new System.Drawing.Point(721, 355);
+            this.buttonInitialiseForDay.Location = new System.Drawing.Point(722, 355);
             this.buttonInitialiseForDay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonInitialiseForDay.Name = "buttonInitialiseForDay";
             this.buttonInitialiseForDay.Size = new System.Drawing.Size(176, 38);
@@ -134,7 +134,7 @@
             // 
             // buttonInitialiseforYear
             // 
-            this.buttonInitialiseforYear.Location = new System.Drawing.Point(721, 403);
+            this.buttonInitialiseforYear.Location = new System.Drawing.Point(722, 403);
             this.buttonInitialiseforYear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonInitialiseforYear.Name = "buttonInitialiseforYear";
             this.buttonInitialiseforYear.Size = new System.Drawing.Size(176, 38);
@@ -161,7 +161,7 @@
             this.textBoxDataFolder.Name = "textBoxDataFolder";
             this.textBoxDataFolder.Size = new System.Drawing.Size(174, 26);
             this.textBoxDataFolder.TabIndex = 10;
-            this.textBoxDataFolder.Text = "2020";
+            this.textBoxDataFolder.Text = "2021";
             // 
             // groupBox2
             // 
@@ -188,9 +188,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Courses";
             // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(26, 249);
+            this.radioButton7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(77, 24);
+            this.radioButton7.TabIndex = 14;
+            this.radioButton7.Text = "Rnd 7";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(26, 215);
+            this.radioButton6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(77, 24);
+            this.radioButton6.TabIndex = 13;
+            this.radioButton6.Text = "Rnd 6";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
             // buttonExtraPts
             // 
-            this.buttonExtraPts.Location = new System.Drawing.Point(404, 90);
+            this.buttonExtraPts.Location = new System.Drawing.Point(404, 89);
             this.buttonExtraPts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonExtraPts.Name = "buttonExtraPts";
             this.buttonExtraPts.Size = new System.Drawing.Size(124, 38);
@@ -224,7 +246,7 @@
             // 
             // buttonMatchResults
             // 
-            this.buttonMatchResults.Location = new System.Drawing.Point(272, 90);
+            this.buttonMatchResults.Location = new System.Drawing.Point(272, 89);
             this.buttonMatchResults.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonMatchResults.Name = "buttonMatchResults";
             this.buttonMatchResults.Size = new System.Drawing.Size(124, 38);
@@ -246,7 +268,7 @@
             // 
             // buttonScores
             // 
-            this.buttonScores.Location = new System.Drawing.Point(140, 90);
+            this.buttonScores.Location = new System.Drawing.Point(140, 89);
             this.buttonScores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonScores.Name = "buttonScores";
             this.buttonScores.Size = new System.Drawing.Size(124, 38);
@@ -390,7 +412,7 @@
             // 
             // buttonResultDraw_TeamInput_SaveAs
             // 
-            this.buttonResultDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(733, 489);
+            this.buttonResultDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(734, 489);
             this.buttonResultDraw_TeamInput_SaveAs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonResultDraw_TeamInput_SaveAs.Name = "buttonResultDraw_TeamInput_SaveAs";
             this.buttonResultDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(195, 40);
@@ -402,7 +424,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(659, 9);
+            this.label4.Location = new System.Drawing.Point(658, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 140);
@@ -442,7 +464,7 @@
             // 
             // buttonResultDraw_TeamInput_SaveProd
             // 
-            this.buttonResultDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(733, 439);
+            this.buttonResultDraw_TeamInput_SaveProd.Location = new System.Drawing.Point(734, 438);
             this.buttonResultDraw_TeamInput_SaveProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonResultDraw_TeamInput_SaveProd.Name = "buttonResultDraw_TeamInput_SaveProd";
             this.buttonResultDraw_TeamInput_SaveProd.Size = new System.Drawing.Size(195, 40);
@@ -463,7 +485,7 @@
             // 
             // buttonStartDraw_TeamInput_LoadFrom
             // 
-            this.buttonStartDraw_TeamInput_LoadFrom.Location = new System.Drawing.Point(161, 451);
+            this.buttonStartDraw_TeamInput_LoadFrom.Location = new System.Drawing.Point(160, 451);
             this.buttonStartDraw_TeamInput_LoadFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_LoadFrom.Name = "buttonStartDraw_TeamInput_LoadFrom";
             this.buttonStartDraw_TeamInput_LoadFrom.Size = new System.Drawing.Size(152, 35);
@@ -474,7 +496,7 @@
             // 
             // buttonStartDraw_TeamInput_SaveAs
             // 
-            this.buttonStartDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(161, 489);
+            this.buttonStartDraw_TeamInput_SaveAs.Location = new System.Drawing.Point(160, 489);
             this.buttonStartDraw_TeamInput_SaveAs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStartDraw_TeamInput_SaveAs.Name = "buttonStartDraw_TeamInput_SaveAs";
             this.buttonStartDraw_TeamInput_SaveAs.Size = new System.Drawing.Size(152, 34);
@@ -491,7 +513,7 @@
             this.dataGridDrawRestrictionInput.Location = new System.Drawing.Point(780, 9);
             this.dataGridDrawRestrictionInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridDrawRestrictionInput.Name = "dataGridDrawRestrictionInput";
-            this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(1127, 159);
+            this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(1126, 158);
             this.dataGridDrawRestrictionInput.TabIndex = 15;
             // 
             // buttonDisplayStats
@@ -540,7 +562,7 @@
             // 
             // buttonDrawNew
             // 
-            this.buttonDrawNew.Location = new System.Drawing.Point(659, 243);
+            this.buttonDrawNew.Location = new System.Drawing.Point(658, 243);
             this.buttonDrawNew.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDrawNew.Name = "buttonDrawNew";
             this.buttonDrawNew.Size = new System.Drawing.Size(195, 35);
@@ -557,7 +579,7 @@
             this.dataGridTeamsGrid.Location = new System.Drawing.Point(568, 629);
             this.dataGridTeamsGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridTeamsGrid.Name = "dataGridTeamsGrid";
-            this.dataGridTeamsGrid.Size = new System.Drawing.Size(1339, 422);
+            this.dataGridTeamsGrid.Size = new System.Drawing.Size(1340, 422);
             this.dataGridTeamsGrid.TabIndex = 7;
             // 
             // dataGridPlayerMatrixStats
@@ -579,7 +601,7 @@
             this.dataGridPlayerMatrix.Location = new System.Drawing.Point(936, 178);
             this.dataGridPlayerMatrix.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridPlayerMatrix.Name = "dataGridPlayerMatrix";
-            this.dataGridPlayerMatrix.Size = new System.Drawing.Size(972, 441);
+            this.dataGridPlayerMatrix.Size = new System.Drawing.Size(972, 442);
             this.dataGridPlayerMatrix.TabIndex = 6;
             // 
             // tabPage2
@@ -614,7 +636,8 @@
             "2016",
             "2017",
             "2018",
-            "2019"});
+            "2019",
+            "2020"});
             this.listBoxYearForStats.Location = new System.Drawing.Point(99, 34);
             this.listBoxYearForStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxYearForStats.Name = "listBoxYearForStats";
@@ -638,28 +661,6 @@
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(26, 216);
-            this.radioButton6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(77, 24);
-            this.radioButton6.TabIndex = 13;
-            this.radioButton6.Text = "Rnd 6";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(26, 250);
-            this.radioButton7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(77, 24);
-            this.radioButton7.TabIndex = 14;
-            this.radioButton7.Text = "Rnd 7";
-            this.radioButton7.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
