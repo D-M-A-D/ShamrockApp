@@ -274,7 +274,10 @@ namespace Shamrock
                     AddDetailCell((object)ctPdfPTable, "Sh.Points Match", isEvenLine);
                     foreach (Player P in c.Players)
                     {
-                        AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shMatch, isEvenLine, OutputFormat.Number1);
+                        if (ctDay.PlayersSurLaTouche.Contains(P.name))
+                            AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shMatch, isEvenLine, OutputFormat.Number1, BackGroundColor: BaseColor.ORANGE);
+                        else
+                            AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shMatch, isEvenLine, OutputFormat.Number1);
                     }
                     if (ctDay.stblPoints.isValidForStblDay())
                     {
@@ -282,11 +285,16 @@ namespace Shamrock
                         AddDetailCell((object)ctPdfPTable, "Stbl.Day", isEvenLine);
                         foreach (Player P in c.Players)
                         {
-                            int worstday = c.getResultsbyDayNr(c.ctDayOfCompetition)[P.name].worstDay; //taken at the ct day of competition (worst as of today, not each day)
-                            if (c.configForYear.useScratch && worstday > 0 && ctDay.nr == worstday)
-                                AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid, BackGroundColor: BaseColor.ORANGE);
+                            if (ctDay.PlayersSurLaTouche.Contains(P.name))
+                                AddDetailCell((object)ctPdfPTable, $"{ c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.Number, BackGroundColor: BaseColor.ORANGE);
                             else
-                                AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid);
+                            {
+                                int worstday = c.getResultsbyDayNr(c.ctDayOfCompetition)[P.name].worstDay; //taken at the ct day of competition (worst as of today, not each day)
+                                if (c.configForYear.useScratch && worstday > 0 && ctDay.nr == worstday)
+                                    AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid, BackGroundColor: BaseColor.ORANGE);
+                                else
+                                    AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid);
+                            }
                         }
                         //AddDetailCell((object)ctPdfPTable, "Position Stbl.Day", isEvenLine);
                         //foreach (Player P in c.Players)
@@ -852,7 +860,10 @@ namespace Shamrock
                         AddDetailCell((object)ctPdfPTable, "Pts Stable Jour ASG", isEvenLine);
                         foreach (Player P in c.Players)
                         {
-                            AddDetailCell((object)ctPdfPTable, ctDay.stblPointsForNewHcp.getStblPointsForLastHoles(P.name), isEvenLine, OutputFormat.Number);
+                            if (!ctDay.PlayersSurLaTouche.Contains(P.name))
+                                AddDetailCell((object)ctPdfPTable, ctDay.stblPointsForNewHcp.getStblPointsForLastHoles(P.name), isEvenLine, OutputFormat.Number);
+                            else
+                                AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
                         }
                         isEvenLine = !isEvenLine;
                         AddDetailCell((object)ctPdfPTable, "Hcp ASG", isEvenLine);
@@ -1039,11 +1050,11 @@ namespace Shamrock
                     ((PdfPTable)destination).AddCell(GetDetailCell(cellContent.ToString(), isEvenLine, format, customfont, BackGroundColor, separator));
             }
         }
-        void AddDetailCell(object destination, Double cellContent, Boolean isEvenLine = true, OutputFormat format = OutputFormat.Number, Boolean UseNegColor = true, bool separator = false, bool isLarge = false)
+        void AddDetailCell(object destination, Double cellContent, Boolean isEvenLine = true, OutputFormat format = OutputFormat.Number, Boolean UseNegColor = true, bool separator = false, bool isLarge = false, BaseColor BackGroundColor = null)
         {
             if (destination is PdfPTable)
             {
-                ((PdfPTable)destination).AddCell(GetDetailCell(cellContent, isEvenLine, format, UseNegColor, separator, isLarge));
+                ((PdfPTable)destination).AddCell(GetDetailCell(cellContent, isEvenLine, format, UseNegColor, separator, isLarge, BackGroundColor : BackGroundColor));
             }
         }
         void AddDetailCell(object destination, String cellContent, Boolean isEvenLine = true, OutputFormat format = OutputFormat.Text, iTextSharp.text.Font customfont = null, BaseColor BackGroundColor = null, bool separator = false)
@@ -1068,7 +1079,7 @@ namespace Shamrock
             }
         }
 
-        PdfPCell GetDetailCell(Double cellContent, Boolean isEvenLine = true, OutputFormat format = OutputFormat.Number, Boolean UseNegColor = true, bool separator = false, bool isLarge = false)
+        PdfPCell GetDetailCell(Double cellContent, Boolean isEvenLine = true, OutputFormat format = OutputFormat.Number, Boolean UseNegColor = true, bool separator = false, bool isLarge = false, BaseColor BackGroundColor = null )
         {
             String cellAsString;
             if (cellContent == 0)
@@ -1099,9 +1110,9 @@ namespace Shamrock
                 }
             }
             if (UseNegColor && cellContent < 0)
-                return GetDetailCell(cellAsString, isEvenLine, format, fontDetailNeg, separator: separator);
+                return GetDetailCell(cellAsString, isEvenLine, format, fontDetailNeg, BackGroundColor: BackGroundColor, separator: separator);
 
-            return GetDetailCell(cellAsString, isEvenLine, format, separator: separator);
+            return GetDetailCell(cellAsString, isEvenLine, format, BackGroundColor: BackGroundColor, separator: separator);
 
         }
         PdfPCell GetDetailCell(String cellContent, Boolean isEvenLine = true, OutputFormat format = OutputFormat.Text, iTextSharp.text.Font customfont = null, BaseColor BackGroundColor = null, bool separator = false)

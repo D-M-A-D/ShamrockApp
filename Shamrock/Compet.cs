@@ -54,6 +54,7 @@ namespace Shamrock
         {
             #region loop through inputTeams, extract info for day
             List<dayInputTeamForPlayer> diPs = new List<dayInputTeamForPlayer>();
+            List<dayInputTeamForPlayer> diPsSurLaTouche = new List<dayInputTeamForPlayer>();
             foreach (TeamInput ti in InputTeams)
             {
                 String ctInput = "";
@@ -78,6 +79,14 @@ namespace Shamrock
                         BallName = ctInput.Remove(0, 2)
                     });
                 }
+                else if(ctInput.ToLower() == "x") // sur la touche
+                {
+                    diPsSurLaTouche.Add(new dayInputTeamForPlayer
+                    {
+                        PlayerName = ti.Player
+                    });
+
+                }
             }
             #endregion
 
@@ -88,6 +97,10 @@ namespace Shamrock
                 Player P = Players.Find(x => x.name == diP.PlayerName).CloneJson();
                 P.playingHcp = ctCourse.getPlayingHcp(P.initialHcp);
                 ctDay.SetPlayer(diP, P);
+            }
+            foreach (dayInputTeamForPlayer diP in diPsSurLaTouche)
+            {
+                ctDay.PlayersSurLaTouche.Add(diP.PlayerName);
             }
             ctDay.CalcCoupsRecu();
             ctDay.InitialiseMatchsWithTeams();
@@ -119,21 +132,47 @@ namespace Shamrock
                 day ctDay = getDaybyNr(i);
                 ctDay.calculateStbl(); //calculate stbl for the day and every Players
                 ctDay.calculateStblNewHcps(prHcps);
-                prHcps = ctDay.NewHcps;
                 Dictionary<string, PlayerResult> ctDailyResults = new Dictionary<string, PlayerResult>();
                 List<String> sortedList = ctDay.stblPoints.getSortedPlayerList();
                 foreach (Player P in Players)
                 {
                     PlayerResult ctPR = new PlayerResult();
                     ctPR.PlayerName = P.name;
-                    ctPR.StblDay = ctDay.stblPoints.getStblPointsForLastHoles(P.name);
-                    ctPR.shExtraDay = ctDay.getShPointsForExtra(P.name);
-                    ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear);
-                    ctPR.shStblDay = ctDay.getShPointsForStblDaily(P.name, configForYear);
-                    int Position = sortedList.FindIndex(x => x == P.name);
-                    ctPR.posStblDay = Position + 1;
+
+                    if (!ctDay.PlayersSurLaTouche.Contains(P.name))
+                    {
+                        ctPR.StblDay = ctDay.stblPoints.getStblPointsForLastHoles(P.name);
+                        ctPR.shExtraDay = ctDay.getShPointsForExtra(P.name);
+                        ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear);
+                        ctPR.shStblDay = ctDay.getShPointsForStblDaily(P.name, configForYear);
+                        int Position = sortedList.FindIndex(x => x == P.name);
+                        ctPR.posStblDay = Position + 1;
+                    }
+                    else // player is sur la touche
+                    {
+                        string nameOfTheMedianPlayer = sortedList[sortedList.Count / 2 -1]; //4th if 8 "normal" players
+                        ctPR.StblDay = ctDay.stblPoints.getStblPointsForLastHoles(nameOfTheMedianPlayer); //same nb of stbl points as the median player
+                        ctPR.shExtraDay = ctDay.getShPointsForExtra(P.name);
+                        ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear, true);
+                        ctPR.shStblDay = 0; //no daily stbl if sur la touche
+                        ctPR.posStblDay = sortedList.Count + 1; //Last in daily stbl if sur la touche
+
+                        //copy newHcps if sur la touche
+                        foreach (Player pFromList in Players)
+                        {
+                            if (pFromList.name == P.name)
+                            {
+                                Double oldHcp = pFromList.initialHcp;
+                                if (prHcps != null && prHcps.hpcs.ContainsKey(P.name))
+                                    oldHcp = prHcps.hpcs[P.name];
+                                if(!ctDay.NewHcps.hpcs.ContainsKey(P.name))
+                                    ctDay.NewHcps.hpcs.Add(P.name, oldHcp);
+                            }
+                        }
+                    }
                     ctDailyResults.Add(ctPR.PlayerName, ctPR);
                 }
+                prHcps = ctDay.NewHcps;
                 results.Add(ctDailyResults); // stores daily scores for the day
             }
             #endregion

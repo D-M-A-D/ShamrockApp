@@ -24,6 +24,7 @@ namespace Shamrock
         }
         public List<Player> PlayersLeftToDraw = new List<Player>();
         public List<Player> PlayersForTheDay = new List<Player>();
+        public List<string> PlayersSurLaTouche = new List<string>();
         public day(PlayMode mode, string Year)
         {
             year = Year;
@@ -493,9 +494,18 @@ namespace Shamrock
                 ret = extras.extras[PlayerName];
             return ret;
         }
-        public double getShPointsForMatch(String PlayerName, ConfigsForYear shPointsDef)
+        public double getShPointsForMatch(String PlayerName, ConfigsForYear shPointsDef, bool isSurLaTouche = false)
         {
             double ret = 0;
+            if (isSurLaTouche)
+            {
+                foreach (flight f in flights.Values)
+                {
+                    double shForMatch = getShPointsForMatchType(f.matchType, shPointsDef);
+                    return shForMatch / 2; //Half the points if sur la touche
+                }
+            }
+
             flight ctF = getMyFlight(PlayerName);
             if (ctF != null)
             {
