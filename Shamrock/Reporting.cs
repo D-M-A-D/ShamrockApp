@@ -263,7 +263,7 @@ namespace Shamrock
                         break;
                     isEvenLine = true;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, ctDay.getRndDescription()));
 
                     AddHeaderCell((object)ctPdfPTable, " ");
                     foreach (Player P in c.Players)
@@ -378,7 +378,7 @@ namespace Shamrock
                         break;
                     isEvenLine = false;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, ctDay.getRndDescription()));
 
                     AddHeaderCell((object)ctPdfPTable, "Flt");
                     AddHeaderCell((object)ctPdfPTable, "Type");
@@ -490,7 +490,7 @@ namespace Shamrock
                         break;
                     isEvenLine = false;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns - 5, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns - 5, ctDay.getRndDescription()));
                     ctPdfPTable.AddCell(GetTitleCellAlternative(5, String.Format("")));
 
                     #region course par
@@ -618,7 +618,7 @@ namespace Shamrock
                         break;
                     isEvenLine = false;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, ctDay.getRndDescription()));
                     #region Table Column Headers
                     AddHeaderCell((object)ctPdfPTable, "Mode");
                     AddHeaderCell((object)ctPdfPTable, "T");
@@ -852,7 +852,7 @@ namespace Shamrock
                         break;
                     isEvenLine = true;
                     //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, String.Format("Rnd {0} ({7}): {1} ({4}, par:{6} cr:{2}, sr:{3}, Dist: {5})", new object[] { ctDay.nr, ctDay.courseDefinition.name, ctDay.courseDefinition.cr, ctDay.courseDefinition.sr, ctDay.courseDefinition.TeeColor, ctDay.courseDefinition.Yards, ctDay.courseDefinition.getSumPar(), ctDay.playModeDisplay })));
+                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, ctDay.getRndDescription()));
 
                     if (ctDay.stblPoints.isValidForStblDay())
                     {

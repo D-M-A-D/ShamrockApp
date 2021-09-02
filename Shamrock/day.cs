@@ -247,6 +247,10 @@ namespace Shamrock
         {
             return getMyFlight(name).getMyTeam(name);
         }
+        public string getRndDescription()
+        {
+            return $"Rnd {nr} ({playModeDisplay}): {courseDefinition.name} ({courseDefinition.TeeColor} par:{courseDefinition.getSumPar()} cr:{courseDefinition.cr} sr:{courseDefinition.sr} Dist: {courseDefinition.Yards})";
+        }
 
         public int CountPlayer()
         {

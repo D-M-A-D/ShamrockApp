@@ -21,7 +21,7 @@ namespace Shamrock
         List<TeamInput> InputTeamsStartOfDraw = new List<TeamInput>();
         List<TeamInput> InputTeamsResultOfDraw = new List<TeamInput>();
         List<DrawRestriction> DrawRestrictions = new List<DrawRestriction>();
-        Compet _c; 
+        Compet _c;
         String _dataFolder;
         String _dataInputTeamsSubFolder;
         String _dataRoot;
@@ -43,7 +43,7 @@ namespace Shamrock
         {
             labelDrawText.Text = "";
             initialiseFolders();
-            ctDay = untilDay > 0 ? untilDay:getDayNrFromRadio();
+            ctDay = untilDay > 0 ? untilDay : getDayNrFromRadio();
             _c = new Compet(textBoxDataFolder.Text);
             _c.Players = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(Path.Combine(_dataFolder, "Players.json")));
             _c.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(_dataFolder, "configForYear.json")));
@@ -60,12 +60,12 @@ namespace Shamrock
                 try
                 {
                     string path = Path.Combine(_dataFolder, $"Course{i}.json");
-                    if(File.Exists(path))
+                    if (File.Exists(path))
                         _c.getDaybyNr(i).courseDefinition = JsonConvert.DeserializeObject<course>(File.ReadAllText(path));
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(String.Format("Could not initialise courseDefinition for day {0}: {1}",ctDay, ex.Message));
+                    MessageBox.Show(String.Format("Could not initialise courseDefinition for day {0}: {1}", ctDay, ex.Message));
                 }
                 try
                 {
@@ -88,7 +88,7 @@ namespace Shamrock
                     }
                     catch (Exception ex)
                     {
-                       MessageBox.Show(String.Format("Could not initialise dailyScores for day {0}: {1}", ctDay, ex.Message));
+                        MessageBox.Show(String.Format("Could not initialise dailyScores for day {0}: {1}", ctDay, ex.Message));
                     }
                     try
                     {
@@ -320,7 +320,7 @@ namespace Shamrock
                     continue;
                 else if (drawRes.statXTEnemy[0] > 4)
                     continue;
-                else if(drawRes.statXTFlight[0] > 0)
+                else if (drawRes.statXTFlight[0] > 0)
                     continue;
                 else
                 {
@@ -342,8 +342,8 @@ namespace Shamrock
 
             drawResults drawRes = new drawResults();
             drawResults drawResLastTry = new drawResults();
-            
-            int nbOfDay = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds: getDayNrFromRadio();
+
+            int nbOfDay = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds : getDayNrFromRadio();
             day ctDay;
             InitialiseForDraw_ReadSetPlayers(nbOfDay, drawRes, lPlayers2);
 
@@ -373,7 +373,7 @@ namespace Shamrock
             labelDrawText.Refresh();
             string diagnostic = "";
             List<string> ListOfDrawsBeforeCheck = new List<string>();
-            if(File.Exists(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")))
+            if (File.Exists(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")))
                 ListOfDrawsBeforeCheck = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")));
             for (int tryNr = 0; tryNr < maxTry; tryNr++)
             {
@@ -457,7 +457,7 @@ namespace Shamrock
                                                     #region 4B and foursome
                                                     int HowManyTimeInSameTeam = 0;
                                                     Boolean maxTimeOk = false;
-                                                    if (ctFlight.matchType == flight.MatchType.Match4b || ctFlight.matchType == flight.MatchType.Foursome )
+                                                    if (ctFlight.matchType == flight.MatchType.Match4b || ctFlight.matchType == flight.MatchType.Foursome)
                                                     {
                                                         int HowManyTime = drawResTry.GetHowManyTimeIn4B(candidate);
                                                         diagnostic += " " + ctFlight.matchType + " " + HowManyTime;
@@ -510,7 +510,7 @@ namespace Shamrock
                                             doInterruptDraw = true;
                                             break;
                                         }
-                                        ctTeam.SetPlayer(new dayInputTeamForPlayer { PlayerName = candidate.name, FlightName = ctFlight.name, TeamName = ctTeam.name1based  }, candidate);
+                                        ctTeam.SetPlayer(new dayInputTeamForPlayer { PlayerName = candidate.name, FlightName = ctFlight.name, TeamName = ctTeam.name1based }, candidate);
                                         drawPool.Remove(validDraw);
                                     }
                                 }
@@ -551,7 +551,7 @@ namespace Shamrock
                         }
                     }
                 }
-                    #endregion
+                #endregion
                 #endregion
                 #region if succesfull (doInterruptDraw=false) end + display stats
                 if (!doInterruptDraw)
@@ -693,7 +693,7 @@ namespace Shamrock
 
             InitialiseForDraw_ReadSetPlayers(5, drawRes, lPlayers);
 
-            int[] Players = new int[]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] Players = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             int[] Positions = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             List<int> PlayersLeftFor2b = new List<int>(8);
@@ -813,7 +813,7 @@ namespace Shamrock
                     addDayToDrawRes(drawResTry, lPlayers, (int[])dailyPerm, PermDayNr++);
                 }
                 drawResTry.calculateDrawStatXT(lPlayers);
-                if(drawResTry.statXTIn2B[1] != 10)
+                if (drawResTry.statXTIn2B[1] != 10)
                     continue;
                 if (drawResTry.statXTIn4B[4] != 10)
                     continue;
@@ -1009,7 +1009,7 @@ namespace Shamrock
                         }
                     }
                 }
-                    #endregion
+                #endregion
                 #endregion
                 #region if succesfull (doInterruptDraw=false) end + display stats
                 if (!doInterruptDraw)
@@ -1102,7 +1102,7 @@ namespace Shamrock
 
         private void EvaluateDrawRes(drawResults drawRes, List<Player> lPlayers2)
         {
-            
+
 
         }
         private void addDayToDrawRes(drawResults drawRes, List<Player> lPlayers2, int[] perm, int dayNr)
@@ -1113,7 +1113,7 @@ namespace Shamrock
             {
                 Player candidate = lPlayers2[permI];
                 int ctPosition = perm[permI];
-                switch(ctPosition)
+                switch (ctPosition)
                 {
                     case 0: ctDay.flights["C"].teams["0"].players.Add(candidate.name, candidate); break;
                     case 1: ctDay.flights["C"].teams["1"].players.Add(candidate.name, candidate); break;
@@ -1128,7 +1128,7 @@ namespace Shamrock
                 }
             }
         }
-        private List<TeamInput> GetInputTeamFromDraw (drawResults drawRes)
+        private List<TeamInput> GetInputTeamFromDraw(drawResults drawRes)
         {
             Dictionary<string, TeamInput> tis = new Dictionary<string, TeamInput>();
             foreach (day ctD in drawRes.days)
@@ -1233,7 +1233,7 @@ namespace Shamrock
                 Console.WriteLine(cntCombination.ToString() + ": " + string.Join(",", ArrayPlayer));
                 Perms.Add(ArrayPlayer);
             }
-            File.WriteAllText(Path.Combine(_dataFolder, "DailyPerms10.json"), JsonConvert.SerializeObject(Perms)); 
+            File.WriteAllText(Path.Combine(_dataFolder, "DailyPerms10.json"), JsonConvert.SerializeObject(Perms));
         }
 
         private void SetPlayersForCombination_4b(List<Player> lPlayers, drawResults drawRes, int[] pairKeys_4b, Dictionary<int, List<int>> dictionaryPairs_4b)
@@ -1328,7 +1328,7 @@ namespace Shamrock
                 //cntD++;
             }
         }
-        private void GetCombination_2balls_8player_4days (List<int> PlayersLeft, out Dictionary<int, List<int>> dictionaryPairs, out List<int[]> CombinationOfKeys)
+        private void GetCombination_2balls_8player_4days(List<int> PlayersLeft, out Dictionary<int, List<int>> dictionaryPairs, out List<int[]> CombinationOfKeys)
         {
             dictionaryPairs = new Dictionary<int, List<int>>();
             IEnumerable<IEnumerable<int>> combs = GetPermutations(PlayersLeft, PlayersLeft.Count); //Permutation 8 people
@@ -1391,7 +1391,7 @@ namespace Shamrock
         {
             int[] myList = new int[] { 1, 2, 3, 4, 5 };
             var result = myList.Combinations<int>(3);
-            foreach(var res in result)
+            foreach (var res in result)
             {
                 foreach (var i in res)
                     Console.Write(i + " ");
@@ -1592,10 +1592,10 @@ namespace Shamrock
                         for (int i = 0; i < ctTeam.nbOfMensh; i++)
                         {
                             ++cnt;
-                            
+
                             Player candidate = tmpPlayers[dayOrder[cnt] - 1];
                             TeamInput ti = InputTeamsStartOfDraw.Find(x => x.Player == candidate.name);
-                            if(ti != null)
+                            if (ti != null)
                                 InputTeamsStartOfDraw.Remove(ti);
                             else
                                 ti = new TeamInput();
@@ -1614,7 +1614,7 @@ namespace Shamrock
                         }
                     }
                 }
-                
+
             }
             InputTeamsStartOfDraw.Sort((x, y) => x.R1.CompareTo(y.R1));
             var bindingListP = new BindingList<TeamInput>(InputTeamsStartOfDraw);
@@ -1687,7 +1687,7 @@ namespace Shamrock
 
             //initialiseCompet();
             drawResults drawRes = new drawResults();
-            
+
             InitialiseForDraw_ReadSetPlayers(_c.days.Count, drawRes, lPlayers, InputTeamsStartOfDraw);
             drawRes.calculateDrawStatXT(lPlayers);
 
@@ -1710,59 +1710,7 @@ namespace Shamrock
 
             try
             {
-                #region read everything for years
-                foreach (string ctYear in years)
-                {
-                    string ctDF = Path.Combine(_dataRoot, ctYear);
-                    Compet ctC = new Compet(ctYear);
-                    ctC.Players = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(Path.Combine(ctDF, "Players.json")));
-                    ctC.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(ctDF, "configForYear.json")));
-                    List<TeamInput> ctTeams = new List<TeamInput>();
-                    ctTeams = JsonConvert.DeserializeObject<List<TeamInput>>(File.ReadAllText(Path.Combine(ctDF, "InputTeams.json")));
-                    int nbRounds = _c.configForYear.nbRounds > 0 ? _c.configForYear.nbRounds : 5;
-
-                    for (int i = 1; i <= nbRounds; ++i)
-                    {
-                        day.PlayMode ctPlayMode = ctC.configForYear.getPlayModeForRound(i);
-                        if (ctPlayMode == day.PlayMode.NoGame)
-                            continue;
-                        ctC.newDay(ctPlayMode);
-                        try
-                        {
-                            ctC.getDaybyNr(i).courseDefinition = JsonConvert.DeserializeObject<course>(File.ReadAllText(Path.Combine(ctDF, String.Format("Course{0}.json", i))));
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format("Could not initialise courseDefinition for day {0}: {1}", i, ex.Message));
-                        }
-                        try
-                        {
-                            ctC.initialiseflightsFromInputTeam(i, ctTeams);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Could not initialise Flights for Dossard, check dossard nr" + ex.Message);
-                        }
-                        try
-                        {
-                            ctC.getDaybyNr(i).scores = JsonConvert.DeserializeObject<dailyScores>(File.ReadAllText(Path.Combine(ctDF, String.Format("PlayerScores{0}.json", i))));
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format("Could not initialise dailyScores for day {0}: {1}", ctDay, ex.Message));
-                        }
-                        try
-                        {
-                            ctC.getDaybyNr(i).matchScores = JsonConvert.DeserializeObject<MatchScores>(File.ReadAllText(Path.Combine(ctDF, String.Format("MatchScores{0}.json", i))));
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format("Could not initialise MatchScores for day {0}: {1}", ctDay, ex.Message));
-                        }
-                    }
-                    hC.Add(ctYear, ctC);
-                }
-                #endregion
+                hC = getHistoricalCompetForYears(years);
                 #region loop and create PlayerMatchHistory
                 statsMatch statsM = new statsMatch();
                 foreach (string ctYear in years)
@@ -1907,7 +1855,7 @@ namespace Shamrock
                 csvFile.Close();
                 #endregion
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(String.Format("unknown in Calc History : {0}", ex.Message));
             }
@@ -2148,8 +2096,8 @@ namespace Shamrock
                         f.initialiseFileWithoutDialog(i, _dataFolder, _c);
                     }
                 }
-                    initialiseCompet(false, i);
-                
+                initialiseCompet(false, i);
+
                 //Extras
                 if (_c.configForYear.useExtra && iniExtra)
                 {
@@ -2165,6 +2113,165 @@ namespace Shamrock
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<string> years = new List<string>();
+            foreach (var item in listBoxYearForStats.SelectedItems)
+            {
+                years.Add(item.ToString());
+
+            }
+            years.Clear();
+            years = new List<string> { "2020", "2019", "2018","2017","2016","2015" };
+            Dictionary<string, Compet> hC = new Dictionary<string, Compet>();
+            List<Dictionary<String, PlayerResult>> Results = new List<Dictionary<String, PlayerResult>>();
+            try
+            {
+                System.IO.StreamWriter csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, "StblResults.csv"));
+                string separator = ",";
+                csvFile.Write("Year" + separator);
+                csvFile.Write("day" + separator);
+                csvFile.Write("Par" + separator);
+                csvFile.Write("CR" + separator);
+                csvFile.Write("SR" + separator);
+                csvFile.Write("Player" + separator);
+                csvFile.Write("hcpFix" + separator);
+                csvFile.Write("Play" + separator);
+                csvFile.Write("Stbl" + separator);
+                csvFile.Write("diff" + separator);
+                csvFile.Write("desc" + separator);
+                csvFile.WriteLine();
+
+                hC = getHistoricalCompetForYears(years);
+                List<string> hP = new List<string>();
+                foreach (Compet c in hC.Values)
+                {
+                    //aggregate Players
+                    foreach(Player ctP in c.Players)
+                    {
+                        if (!hP.Contains(ctP.name))
+                            hP.Add(ctP.name);
+                    }
+                }
+                foreach (Compet c in hC.Values)
+                {
+                    c.calculate(c.days.Count);
+                    foreach(day d in c.days)
+                    {
+                        var r = c.getResultsbyDayNr(d.nr);
+                        foreach (string ctPName in hP)
+                        {
+                            csvFile.Write(c.year + separator);
+                            csvFile.Write(d.nr + separator);
+                            csvFile.Write(d.courseDefinition.getSumPar() + separator);
+                            csvFile.Write(d.courseDefinition.cr + separator);
+                            csvFile.Write(d.courseDefinition.sr + separator);
+                            csvFile.Write(ctPName + separator);
+                            Player P = c.Players.Find(i => i.name == ctPName);
+                            if (r.ContainsKey(ctPName)&& P != null && d.stblPoints.isValidForStblDay())
+                            {
+                                csvFile.Write(P.initialHcp + separator);
+                                csvFile.Write(d.getMyBall(ctPName).GetPlayingHcp() + separator);
+                                csvFile.Write(r[ctPName].StblDay + separator);
+                                
+                                //(par+playing-(stbl-36)-CR)*113/SR
+                                double diff = d.courseDefinition.getSumPar();
+                                diff += d.getMyBall(ctPName).GetPlayingHcp();
+                                diff -= (r[ctPName].StblDay - 36);
+                                diff -= d.courseDefinition.cr;
+                                diff *= 113/d.courseDefinition.sr;
+                                csvFile.Write(diff + separator);
+                            }
+                            else
+                            {
+                                csvFile.Write("na" + separator);
+                                csvFile.Write("na" + separator);
+                                csvFile.Write("na" + separator);
+                                csvFile.Write("na" + separator);
+                            }
+
+                            csvFile.Write(d.getRndDescription() + separator);
+                            csvFile.WriteLine();
+
+                        }
+                    }
+                    //foreach (var ctResult in c.results)
+                    //    Results.Add(ctResult);
+
+                }
+                csvFile.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format("unknown in Calc Historica Hcp (New 2021): {0}", ex.Message));
+            }
+        }
+        private Dictionary<string, Compet> getHistoricalCompetForYears(List<string> years)
+        {
+            Dictionary<string, Compet> ret = new Dictionary<string, Compet>();
+            try
+            {
+                #region read everything for years
+                foreach (string ctYear in years)
+                {
+                    string ctDF = Path.Combine(_dataRoot, ctYear);
+                    Compet ctC = new Compet(ctYear);
+                    ctC.Players = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(Path.Combine(ctDF, "Players.json")));
+                    ctC.configForYear = JsonConvert.DeserializeObject<ConfigsForYear>(File.ReadAllText(Path.Combine(ctDF, "configForYear.json")));
+                    List<TeamInput> ctTeams = new List<TeamInput>();
+                    ctTeams = JsonConvert.DeserializeObject<List<TeamInput>>(File.ReadAllText(Path.Combine(ctDF, "InputTeams.json")));
+                    int nbRounds = ctC.configForYear.nbRounds > 0 ? ctC.configForYear.nbRounds : 5;
+
+                    for (int i = 1; i <= nbRounds; ++i)
+                    {
+                        day.PlayMode ctPlayMode = ctC.configForYear.getPlayModeForRound(i);
+                        if (ctPlayMode == day.PlayMode.NoGame)
+                            continue;
+                        ctC.newDay(ctPlayMode);
+                        try
+                        {
+                            ctC.getDaybyNr(i).courseDefinition = JsonConvert.DeserializeObject<course>(File.ReadAllText(Path.Combine(ctDF, String.Format("Course{0}.json", i))));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Could not initialise courseDefinition for day {0}: {1}", i, ex.Message));
+                        }
+                        try
+                        {
+                            ctC.initialiseflightsFromInputTeam(i, ctTeams);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Could not initialise Flights for Dossard, check dossard nr" + ex.Message);
+                        }
+                        try
+                        {
+                            ctC.getDaybyNr(i).scores = JsonConvert.DeserializeObject<dailyScores>(File.ReadAllText(Path.Combine(ctDF, String.Format("PlayerScores{0}.json", i))));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Could not initialise dailyScores for day {0}: {1}", ctDay, ex.Message));
+                        }
+                        try
+                        {
+                            ctC.getDaybyNr(i).matchScores = JsonConvert.DeserializeObject<MatchScores>(File.ReadAllText(Path.Combine(ctDF, String.Format("MatchScores{0}.json", i))));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Could not initialise MatchScores for day {0}: {1}", ctDay, ex.Message));
+                        }
+                    }
+                    ret.Add(ctYear, ctC);
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format("unknown in Calc History : {0}", ex.Message));
+            }
+            return ret;
         }
     }
     public class TeamInput
