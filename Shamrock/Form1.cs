@@ -2126,86 +2126,17 @@ namespace Shamrock
             years.Clear();
             years = new List<string> { "2020", "2019", "2018","2017","2016","2015" };
             Dictionary<string, Compet> hC = new Dictionary<string, Compet>();
-            List<Dictionary<String, PlayerResult>> Results = new List<Dictionary<String, PlayerResult>>();
+            
             try
             {
-                System.IO.StreamWriter csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, "StblResults.csv"));
-                string separator = ",";
-                csvFile.Write("Year" + separator);
-                csvFile.Write("day" + separator);
-                csvFile.Write("Par" + separator);
-                csvFile.Write("CR" + separator);
-                csvFile.Write("SR" + separator);
-                csvFile.Write("Player" + separator);
-                csvFile.Write("hcpFix" + separator);
-                csvFile.Write("Play" + separator);
-                csvFile.Write("Stbl" + separator);
-                csvFile.Write("diff" + separator);
-                csvFile.Write("desc" + separator);
-                csvFile.WriteLine();
-
                 hC = getHistoricalCompetForYears(years);
-                List<string> hP = new List<string>();
-                foreach (Compet c in hC.Values)
-                {
-                    //aggregate Players
-                    foreach(Player ctP in c.Players)
-                    {
-                        if (!hP.Contains(ctP.name))
-                            hP.Add(ctP.name);
-                    }
-                }
-                foreach (Compet c in hC.Values)
-                {
-                    c.calculate(c.days.Count);
-                    foreach(day d in c.days)
-                    {
-                        var r = c.getResultsbyDayNr(d.nr);
-                        foreach (string ctPName in hP)
-                        {
-                            csvFile.Write(c.year + separator);
-                            csvFile.Write(d.nr + separator);
-                            csvFile.Write(d.courseDefinition.getSumPar() + separator);
-                            csvFile.Write(d.courseDefinition.cr + separator);
-                            csvFile.Write(d.courseDefinition.sr + separator);
-                            csvFile.Write(ctPName + separator);
-                            Player P = c.Players.Find(i => i.name == ctPName);
-                            if (r.ContainsKey(ctPName)&& P != null && d.stblPoints.isValidForStblDay())
-                            {
-                                csvFile.Write(P.initialHcp + separator);
-                                csvFile.Write(d.getMyBall(ctPName).GetPlayingHcp() + separator);
-                                csvFile.Write(r[ctPName].StblDay + separator);
-                                
-                                //(par+playing-(stbl-36)-CR)*113/SR
-                                double diff = d.courseDefinition.getSumPar();
-                                diff += d.getMyBall(ctPName).GetPlayingHcp();
-                                diff -= (r[ctPName].StblDay - 36);
-                                diff -= d.courseDefinition.cr;
-                                diff *= 113/d.courseDefinition.sr;
-                                csvFile.Write(diff + separator);
-                            }
-                            else
-                            {
-                                csvFile.Write("na" + separator);
-                                csvFile.Write("na" + separator);
-                                csvFile.Write("na" + separator);
-                                csvFile.Write("na" + separator);
-                            }
+                HistoricalHcps HH = new HistoricalHcps(hC);
+                HH.Calc();
 
-                            csvFile.Write(d.getRndDescription() + separator);
-                            csvFile.WriteLine();
-
-                        }
-                    }
-                    //foreach (var ctResult in c.results)
-                    //    Results.Add(ctResult);
-
-                }
-                csvFile.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("unknown in Calc Historica Hcp (New 2021): {0}", ex.Message));
+                MessageBox.Show(String.Format("unknown in Calc Historical Hcp (New 2021): {0}", ex.Message));
             }
         }
         private Dictionary<string, Compet> getHistoricalCompetForYears(List<string> years)

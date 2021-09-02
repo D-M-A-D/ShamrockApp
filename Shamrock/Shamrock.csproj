@@ -131,6 +131,7 @@
     <Compile Include="Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistoricalHcps.cs" />
     <Compile Include="parcours.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
