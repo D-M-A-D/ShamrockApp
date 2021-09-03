@@ -885,6 +885,129 @@ namespace Shamrock
                 document.Close();
             }
         }
+        public void CreateHistoricalHcpPDF(Stream output, HistoricalHcps hh)
+        {
+            int pageN = 1;
+            Document document = new Document(PageSize.A4.Rotate(), 50, 50, 25, 25);
+            //Document document = new Document(PageSize.A4, 50, 50, 25, 25);
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(document, output);
+                document.Open();
+                PdfContentByte contentbyte = writer.DirectContent;
+
+                #region declaration
+                float ctImageWidth = 0;
+                float ctImageHeight = 0;
+                float origImageWidth = 0;
+                float origImageHeight = 0;
+
+                float ctX = document.Left; // X Axis starting left wich is the value of the leftMargin
+                float ctY = document.Top; // Y Axis starting at top which is page.height - topmargin) substract the height of object to progress towards bottom of the page
+                float interstice = 10f;
+                float ctColWidth = 100f;
+                float ctRowHeight = 100f;
+                float colWidth_1st = 250f;
+                float colWidth_2nd = document.Right - document.Left - colWidth_1st - interstice;
+                float colWidth_3nd = document.Right - document.Left - colWidth_1st - interstice;
+                float topAfterHeader = 50f;
+                Boolean isEvenLine = true;
+
+                String sText = "";
+                String shortText = "";
+                PdfPTable ctPdfPTable = null;
+
+                interstice = 10f;
+                #endregion
+
+                #region page newHcps
+                CreatePDFHeaderAndFooter(document, null, "New Hcps (historical) as of ASG Rules 2021", "", contentbyte, pageN);
+
+                colWidth_1st = document.Right - document.Left - interstice;
+
+                #region 1st Row
+                ctColWidth = colWidth_1st;
+                ctX = document.Left;
+                ctY = document.Top - topAfterHeader;
+                #region 1st newHcps
+
+                List<float> colDefs = new List<float>();
+                
+                colDefs.Add(50f);
+                foreach (string P in hh.hP)
+                {
+                    colDefs.Add(4f);
+                    colDefs.Add(4f);
+                    colDefs.Add(4f);
+                }
+                ctPdfPTable = new PdfPTable(colDefs.ToArray());
+                ctPdfPTable.TotalWidth = ctColWidth;
+                isEvenLine = false;
+                AddHeaderCell((object)ctPdfPTable, " ");
+                foreach (string P in hh.hP)
+                {
+                    ctPdfPTable.AddCell(GetTitleCell(3, P));
+                }
+                AddDetailCell((object)ctPdfPTable, "new Hcp", isEvenLine);
+                foreach (string P in hh.hP)
+                {
+                    //ctPdfPTable.AddCell(GetTitleCell(2, $"avg {hh.Hcps[P].cntBestRnd} best out of last{hh.Hcps[P].cntRndIn20Range}"));
+                    AddDetailCell((object)ctPdfPTable, $"best{hh.Hcps[P].cntBestRnd}", isEvenLine, OutputFormat.Number);
+                    AddDetailCell((object)ctPdfPTable, $"last{hh.Hcps[P].cntRndIn20Range}", isEvenLine, OutputFormat.Number);
+                    AddDetailCell((object)ctPdfPTable, hh.Hcps[P].hcp, isEvenLine, OutputFormat.Number2, BackGroundColor: BaseColor.ORANGE);
+                }
+                //ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, "History"));
+                AddHeaderCell((object)ctPdfPTable, "Round History");
+                foreach (string P in hh.hP)
+                {
+                    ctPdfPTable.AddCell(GetTitleCell(1, "play"));
+                    ctPdfPTable.AddCell(GetTitleCell(1, "stbl"));
+                    ctPdfPTable.AddCell(GetTitleCell(1, "diff"));
+                }
+
+
+                isEvenLine = true;
+                foreach (HH_Rnd hhRnd in hh.hRnds)
+                {
+                    if (hhRnd.desc == null)
+                        break;
+                    //Title
+                    //ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, hhRnd.desc));
+
+                    isEvenLine = !isEvenLine;
+                    //AddDetailCell((object)ctPdfPTable, "Pts Stbl.", isEvenLine);
+                    AddDetailCell((object)ctPdfPTable, $"{hhRnd.year} {hhRnd.desc}", isEvenLine);
+                    foreach (string P in hh.hP)
+                    {
+                        AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpPlay, isEvenLine, OutputFormat.Number2);
+                        AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].stbl, isEvenLine, OutputFormat.Number);
+                        if(hhRnd.Stbls[P].isBestInRange)
+                            AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpDiff, isEvenLine, OutputFormat.Number2, BackGroundColor: BaseColor.ORANGE);
+                        else if(hhRnd.Stbls[P].isIn20Range)
+                            AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpDiff, isEvenLine, OutputFormat.Number2, BackGroundColor: BaseColor.WHITE);
+                        else
+                            AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpDiff, isEvenLine, OutputFormat.Number2);
+                    }
+                }
+                ctPdfPTable.WriteSelectedRows(0, ctPdfPTable.Rows.Count, ctX, ctY, contentbyte);
+
+                #endregion
+
+                #endregion
+                #endregion
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                document.Close();
+            }
+
+
+        }
         void CreatePDFHeaderAndFooter(Document document, Dictionary<String, String> ImageNames, string PageTitle, string PageSubTitle, PdfContentByte contentByte, int pageN)
         {
             #region Page Header + Logo

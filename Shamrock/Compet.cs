@@ -106,9 +106,10 @@ namespace Shamrock
             ctDay.InitialiseMatchsWithTeams();
         }
 
-        public day newDay(day.PlayMode mode)
+        public day newDay(day.PlayMode mode, bool is9Holes = false)
         {
             day newDay = new day(mode, year);
+            newDay.is9Holes = is9Holes;
             newDay.nr = days.Count + 1;
 
             days.Add(newDay);
@@ -513,17 +514,74 @@ namespace Shamrock
             switch (playModeNr)
             {
                 case 71: ret = day.PlayMode.P7_4b_W; break;
+                case 71005: ret = day.PlayMode.P7_4b_W; break;
                 case 72: ret = day.PlayMode.P7_Fs_Fs3; break;
+                case 72005: ret = day.PlayMode.P7_Fs_Fs3; break;
                 case 81: ret = day.PlayMode.P8_2x4b; break;
+                case 81005: ret = day.PlayMode.P8_2x4b; break;
                 case 82: ret = day.PlayMode.P8_Fs; break;
+                case 82005: ret = day.PlayMode.P8_Fs; break;
                 case 91: ret = day.PlayMode.P9_4b_4b5fs; break;
+                case 91005: ret = day.PlayMode.P9_4b_4b5fs; break;
                 case 92: ret = day.PlayMode.P9_3xW; break;
+                case 92005: ret = day.PlayMode.P9_3xW; break;
                 case 93: ret = day.PlayMode.P9_Fs_Fs5W; break;
+                case 93005: ret = day.PlayMode.P9_Fs_Fs5W; break;
                 case 94: ret = day.PlayMode.P9_432; break;
+                case 94005: ret = day.PlayMode.P9_432; break;
                 case 101: ret = day.PlayMode.P10_2x4b_2b; break;
+                case 101005: ret = day.PlayMode.P10_2x4b_2b; break;
                 case 102: ret = day.PlayMode.P10_2xFs_2b; break;
+                case 102005: ret = day.PlayMode.P10_2xFs_2b; break;
                 case 103: ret = day.PlayMode.P10_2xFs5W; break;
+                case 103005: ret = day.PlayMode.P10_2xFs5W; break;
                 default: ret = day.PlayMode.NoGame; break;
+            }
+            return ret;
+        }
+        public bool is9Holes(int Rnr)
+        {
+            bool ret = false;
+            int playModeNr = 0;
+            switch (Rnr)
+            {
+                case 1:
+                    playModeNr = PlayModeR1;
+                    break;
+                case 2:
+                    playModeNr = PlayModeR2;
+                    break;
+                case 3:
+                    playModeNr = PlayModeR3;
+                    break;
+                case 4:
+                    playModeNr = PlayModeR4;
+                    break;
+                case 5:
+                    playModeNr = PlayModeR5;
+                    break;
+                case 6:
+                    playModeNr = PlayModeR6;
+                    break;
+                case 7:
+                    playModeNr = PlayModeR7;
+                    break;
+            }
+            switch (playModeNr)
+            {
+                case 71005:
+                case 72005:
+                case 81005:
+                case 82005:
+                case 91005:
+                case 92005:
+                case 93005:
+                case 94005:
+                case 101005:
+                case 102005:
+                case 103005:
+                    ret = true;
+                    break;
             }
             return ret;
         }

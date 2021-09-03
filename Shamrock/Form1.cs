@@ -52,7 +52,7 @@ namespace Shamrock
 
             for (int i = 1; i <= nbRounds; ++i)
             {
-                _c.newDay(_c.configForYear.getPlayModeForRound(i));
+                _c.newDay(_c.configForYear.getPlayModeForRound(i), _c.configForYear.is9Holes(i));
             }
             for (int i = 1; i <= ctDay; ++i)
             {
@@ -2123,8 +2123,8 @@ namespace Shamrock
                 years.Add(item.ToString());
 
             }
-            years.Clear();
-            years = new List<string> { "2020", "2019", "2018","2017","2016","2015" };
+            //years.Clear();
+            //years = new List<string> { "2020", "2019", "2018","2017","2016","2015" };
             Dictionary<string, Compet> hC = new Dictionary<string, Compet>();
             
             try
@@ -2132,6 +2132,9 @@ namespace Shamrock
                 hC = getHistoricalCompetForYears(years);
                 HistoricalHcps HH = new HistoricalHcps(hC);
                 HH.Calc();
+                Stream Output = new FileStream(Path.Combine(_dataRoot, "NewHcp.pdf"), FileMode.Create);
+                Reporting r = new Reporting();
+                r.CreateHistoricalHcpPDF(Output, HH);
 
             }
             catch (Exception ex)
@@ -2160,7 +2163,7 @@ namespace Shamrock
                         day.PlayMode ctPlayMode = ctC.configForYear.getPlayModeForRound(i);
                         if (ctPlayMode == day.PlayMode.NoGame)
                             continue;
-                        ctC.newDay(ctPlayMode);
+                        ctC.newDay(ctPlayMode, ctC.configForYear.is9Holes(i));
                         try
                         {
                             ctC.getDaybyNr(i).courseDefinition = JsonConvert.DeserializeObject<course>(File.ReadAllText(Path.Combine(ctDF, String.Format("Course{0}.json", i))));

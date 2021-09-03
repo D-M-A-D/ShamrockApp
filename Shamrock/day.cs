@@ -12,6 +12,7 @@ namespace Shamrock
         public int nr = 0;
         public Boolean isFoursome = false;
         public PlayMode playMode = PlayMode.P8_2x4b;
+        public bool is9Holes = false;
         public string playModeDisplay = "";
         public int nbOfPlayerForDay = 0;
         public string year = "";

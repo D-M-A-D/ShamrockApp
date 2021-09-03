@@ -8,9 +8,9 @@ namespace Shamrock
 {
     public class HistoricalHcps
     {
-        List<string> hP = new List<string>();
+        public List<string> hP = new List<string>();
         Dictionary<string, Compet> hC = new Dictionary<string, Compet>();
-        List<HH_Rnd> hRnds = new List<HH_Rnd>();
+        public List<HH_Rnd> hRnds = new List<HH_Rnd>();
         public Dictionary<string, HH_Hcp> Hcps = new Dictionary<string, HH_Hcp>();
         public HistoricalHcps(Dictionary<string, Compet> Compets)
         {
@@ -34,6 +34,7 @@ namespace Shamrock
                         case "choff":
                         case "bob":
                         case "tim":
+                        case "chams":
                             break;
                         default:
                             if (!hP.Contains(ctP.name))
