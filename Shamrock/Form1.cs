@@ -421,9 +421,21 @@ namespace Shamrock
                                                 int ctHT = drawResTry.GetHowManyTimeInSameFlight(candidate, ctFlightMate);
                                                 if (ctHT > HowManyTimeInSameFlight)
                                                     HowManyTimeInSameFlight = ctHT;
-                                                int ctHTE = drawResTry.GetHowManyTimeEnemy(candidate, ctFlightMate);
-                                                if (ctHTE > HowManyTimeEnemy)
-                                                    HowManyTimeEnemy = ctHTE;
+                                                bool isEnemy = true;
+                                                foreach (Player ctTeamMate in ctTeam.GetTeamMates(candidate))
+                                                {
+                                                    if (ctTeamMate.name == ctFlightMate.name)
+                                                    {
+                                                        isEnemy = false;
+                                                        break;
+                                                    }
+                                                }
+                                                if (isEnemy)
+                                                {
+                                                    int ctHTE = drawResTry.GetHowManyTimeEnemy(candidate, ctFlightMate);
+                                                    if (ctHTE > HowManyTimeEnemy)
+                                                        HowManyTimeEnemy = ctHTE;
+                                                }
                                             }
                                             if (HowManyTimeInSameFlight <= (maxTimeInSameFlight - 1) && HowManyTimeEnemy <= (maxTimeEnnemy - 1)) // good go ahead with this candidate
                                             {
@@ -535,7 +547,8 @@ namespace Shamrock
                             ListOfDrawsBeforeCheck.Add(ctsInputTeam);
 
                         diagnostic = "End of day check: ";
-                        drawResTry.calculateDrawStatXT(ctDay.PlayersForTheDay);
+                        //drawResTry.calculateDrawStatXT(ctDay.PlayersForTheDay);
+                        drawResTry.calculateDrawStatXT(lPlayers2);
                         int statMaxFlight0 = drawResTry.statXTFlight.ContainsKey(0) ? drawResTry.statXTFlight[0] : 0;
                         int statMaxEnnemy0 = drawResTry.statXTEnemy.ContainsKey(0) ? drawResTry.statXTEnemy[0] : 0;
                         if (statMaxFlight0 > maxFlight0 || statMaxEnnemy0 > maxEnnemy0
@@ -1414,11 +1427,11 @@ namespace Shamrock
                 foreach (TeamInput ti in InputTeamsStartOfDraw)
                 {
                     String ctI = ((String)ti.GetType().GetProperty(String.Format("R{0}", dayNr)).GetValue(ti));
-                    if (!string.IsNullOrEmpty(ctI))
+                    if (!string.IsNullOrWhiteSpace(ctI))
                         ctI.Trim();
-                    if (ctI == "0")
+                    if (ctI == "0" || ctI.ToLower() == "x")
                         ctPlayers.RemoveAt(ctPlayers.FindIndex(x => x.name == ti.Player));
-                    else if (!string.IsNullOrEmpty(ctI)) //players with info
+                    else if (!string.IsNullOrWhiteSpace(ctI)) //players with info
                     {
                         ctDay.SetPlayer(new dayInputTeamForPlayer
                         {
@@ -1452,7 +1465,7 @@ namespace Shamrock
                     String ctI = ((String)ti.GetType().GetProperty(String.Format("R{0}", dayNr)).GetValue(ti));
                     if (!string.IsNullOrEmpty(ctI))
                         ctI.Trim();
-                    if (ctI == "0")
+                    if (ctI == "0" || ctI.ToLower() == "x")
                         ctPlayers.RemoveAt(ctPlayers.FindIndex(x => x.name == ti.Player));
                     else if (!string.IsNullOrEmpty(ctI)) //players with info
                     {
@@ -1478,7 +1491,15 @@ namespace Shamrock
             dataGridTeamsGrid.Rows.Clear();
 
             if (drawRes.days.Count > 0)
-                dataGridTeamsGrid.Rows.Add(drawRes.days[0].CountPlayer());
+            {
+                int nbOfPlayerAllDays = -1;
+                foreach(day d in drawRes.days)
+                {
+                    if (nbOfPlayerAllDays < d.nbOfPlayerForDay)
+                        nbOfPlayerAllDays = d.nbOfPlayerForDay;
+                }
+                dataGridTeamsGrid.Rows.Add(nbOfPlayerAllDays);
+            }
             foreach (day ctD in drawRes.days)
             {
                 int ctRow = -1;
