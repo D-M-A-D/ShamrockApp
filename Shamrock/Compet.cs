@@ -144,7 +144,7 @@ namespace Shamrock
                     {
                         ctPR.StblDay = ctDay.stblPoints.getStblPointsForLastHoles(P.name);
                         ctPR.shExtraDay = ctDay.getShPointsForExtra(P.name);
-                        ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear);
+                        ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear, ctDay.is9Holes);
                         ctPR.shStblDay = ctDay.getShPointsForStblDaily(P.name, configForYear);
                         int Position = sortedList.FindIndex(x => x == P.name);
                         ctPR.posStblDay = Position + 1;

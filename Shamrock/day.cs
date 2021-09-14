@@ -366,10 +366,14 @@ namespace Shamrock
                                     if(b.nbOfPlayerForBall == 1)
                                         stblPointsForNewHcp.points[ctP.name][holeNr - 1] = Stbl;
                                 }
+                                double nhcp = oldHcp;
                                 if (stblPointsForNewHcp.isValidForStblDay() && b.nbOfPlayerForBall == 1)
-                                    NewHcps.hpcs.Add(ctP.name, NewHcps.calcNewHcpASG(oldHcp, stblPointsForNewHcp.getStblPointsForLastHoles(ctP.name)));
+                                    nhcp = NewHcps.calcNewHcpASG(oldHcp, stblPointsForNewHcp.getStblPointsForLastHoles(ctP.name));
+
+                                if (NewHcps.hpcs.ContainsKey(ctP.name))
+                                    NewHcps.hpcs[ctP.name] = nhcp;
                                 else
-                                    NewHcps.hpcs.Add(ctP.name, oldHcp);
+                                    NewHcps.hpcs.Add(ctP.name, nhcp);
                             }
                             else
                                 throw new Exception(String.Format("Could not find holeResults for Player {0}", playerString));
@@ -499,14 +503,14 @@ namespace Shamrock
                 ret = extras.extras[PlayerName];
             return ret;
         }
-        public double getShPointsForMatch(String PlayerName, ConfigsForYear shPointsDef, bool isSurLaTouche = false)
+        public double getShPointsForMatch(String PlayerName, ConfigsForYear shPointsDef, bool is9Holes, bool isSurLaTouche = false)
         {
             double ret = 0;
             if (isSurLaTouche)
             {
                 foreach (flight f in flights.Values)
                 {
-                    double shForMatch = getShPointsForMatchType(f.matchType, shPointsDef);
+                    double shForMatch = getShPointsForMatchType(f.matchType, shPointsDef, is9Holes);
                     return shForMatch / 2; //Half the points if sur la touche
                 }
             }
@@ -514,7 +518,7 @@ namespace Shamrock
             flight ctF = getMyFlight(PlayerName);
             if (ctF != null)
             {
-                double shForMatch = getShPointsForMatchType(ctF.matchType, shPointsDef);
+                double shForMatch = getShPointsForMatchType(ctF.matchType, shPointsDef, is9Holes);
                 foreach (match m in ctF.matchs.Values)
                 {
                     team myTeam = m.GetMyTeam(PlayerName);
@@ -556,7 +560,7 @@ namespace Shamrock
             }
             return ret;
         }
-        public double getShPointsForMatchType(flight.MatchType matchType, ConfigsForYear shPointsDef)
+        public double getShPointsForMatchType(flight.MatchType matchType, ConfigsForYear shPointsDef, bool is9Holes)
         {
             double ret = 2;
             String[] splits = shPointsDef.ptsMatch.Replace(" ", "").Split(',');
@@ -575,6 +579,8 @@ namespace Shamrock
                         break;
                 }
             }
+            if (is9Holes) //only half points for 9 holes
+                ret = ret / 2;
             return ret;
         }
         public void initialiseEmptyExtra()

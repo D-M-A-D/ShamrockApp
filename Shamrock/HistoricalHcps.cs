@@ -16,11 +16,11 @@ namespace Shamrock
         {
             hC = Compets;
         }
-        public void Calc()
+        public void Calc(int nbRndToIgnore = 0)
         {
             getPlayersOutHistory(); //get a List of historical Players 
             getHH();//calc for every compet(year) and extract needed Info for every round
-            calcHcp(); //loop in reverse order get the last 20 valid rounds and average the 8 best to get the new hcp
+            calcHcp(nbRndToIgnore); //loop in reverse order get the last 20 valid rounds and average the 8 best to get the new hcp
         }
         void getPlayersOutHistory()
         {
@@ -60,7 +60,7 @@ namespace Shamrock
                     var r = c.getResultsbyDayNr(d.nr);
                     foreach (string ctPName in hP)
                     {
-                        HH_Stbl hhStbl = new HH_Stbl {pName = ctPName, year = hhRnd.year, day = hhRnd.day };
+                        HH_Stbl hhStbl = new HH_Stbl { pName = ctPName, year = hhRnd.year, day = hhRnd.day };
 
                         Player P = c.Players.Find(i => i.name == ctPName);
                         if (r.ContainsKey(ctPName) && P != null && d.stblPoints.isValidForStblDay())
@@ -68,6 +68,7 @@ namespace Shamrock
                             hhStbl.hcpFix = P.initialHcp;
                             hhStbl.hcpPlay = d.getMyBall(ctPName).GetPlayingHcp();
                             hhStbl.stbl = r[ctPName].StblDay;
+                            hhStbl.hcpOldCalcMethod = d.NewHcps.hpcs[ctPName];
 
                             //(par+playing-(stbl-36)-CR)*113/SR
                             double diff = hhRnd.par; // d.courseDefinition.getSumPar();
@@ -87,14 +88,30 @@ namespace Shamrock
                 }
             }
         }
-        void calcHcp()
+        void calcHcp(int nbRndToIgnore = 0)
         {
             //sort list of rounds (year desc, day desc)
             hRnds = hRnds.OrderByDescending(o => o.orderHelper).ToList<HH_Rnd>();
+            int cntRnd = 0;
+            #region Remove Rnds if specified
+            List<HH_Rnd> hRndsToRemove = new List<HH_Rnd>();
+            foreach (HH_Rnd hhRnd in hRnds)
+            {
+                if (cntRnd < nbRndToIgnore)
+                    hRndsToRemove.Add(hhRnd);
+                else
+                    break;
+                cntRnd++;
+            }
+            foreach (HH_Rnd hhRnd in hRndsToRemove)
+            {
+                hRnds.Remove(hhRnd);
+            }
+            #endregion
             foreach (string ctPName in hP)
             {
                 List<HH_Stbl> tmpStbls = new List<HH_Stbl>();
-                int cntRnd = 0;
+                cntRnd = 0;
                 #region 1st loop and set "in20range", normally 20, but could be less for new player
                 foreach (HH_Rnd hhRnd in hRnds)
                 {
@@ -202,6 +219,7 @@ namespace Shamrock
         public double hcpPlay;
         public int stbl;
         public double hcpDiff;
+        public double hcpOldCalcMethod = -1;
         public bool valid = true;
         public bool isIn20Range = false;
         public bool isBestInRange = false;

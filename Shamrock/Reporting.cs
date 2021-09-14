@@ -885,9 +885,10 @@ namespace Shamrock
                 document.Close();
             }
         }
-        public void CreateHistoricalHcpPDF(Stream output, HistoricalHcps hh)
+        public void CreateHistoricalHcpPDF(Stream output, System.IO.StreamWriter csvFile, HistoricalHcps hh)
         {
             int pageN = 1;
+            string separator = ",";
             Document document = new Document(PageSize.A4.Rotate(), 50, 50, 25, 25);
             //Document document = new Document(PageSize.A4, 50, 50, 25, 25);
             try
@@ -965,6 +966,16 @@ namespace Shamrock
                     ctPdfPTable.AddCell(GetTitleCell(1, "diff"));
                 }
 
+                csvFile.Write("year_day" + separator);
+                csvFile.Write("rnd" + separator);
+                csvFile.Write("player" + separator);
+                csvFile.Write("hcpFix" + separator);
+                csvFile.Write("hcpPlay" + separator);
+                csvFile.Write("stbl" + separator);
+                csvFile.Write("diff" + separator);
+                csvFile.Write("newHcp" + separator);
+                csvFile.Write("oldHcp" + separator);
+                csvFile.WriteLine();
 
                 isEvenLine = true;
                 foreach (HH_Rnd hhRnd in hh.hRnds)
@@ -987,6 +998,18 @@ namespace Shamrock
                             AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpDiff, isEvenLine, OutputFormat.Number2, BackGroundColor: BaseColor.WHITE);
                         else
                             AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpDiff, isEvenLine, OutputFormat.Number2);
+
+                        csvFile.Write($"{hhRnd.year}_{hhRnd.day}" + separator);
+                        csvFile.Write(hhRnd.desc + separator);
+                        csvFile.Write(P + separator);
+                        csvFile.Write(hhRnd.Stbls[P].hcpFix + separator);
+                        csvFile.Write(hhRnd.Stbls[P].hcpPlay + separator);
+                        csvFile.Write(hhRnd.Stbls[P].stbl + separator);
+                        csvFile.Write(hhRnd.Stbls[P].hcpDiff + separator);
+                        csvFile.Write(hh.Hcps[P].hcp + separator);
+                        csvFile.Write(hhRnd.Stbls[P].hcpOldCalcMethod + separator);
+                        csvFile.WriteLine();
+
                     }
                 }
                 ctPdfPTable.WriteSelectedRows(0, ctPdfPTable.Rows.Count, ctX, ctY, contentbyte);
@@ -1004,6 +1027,7 @@ namespace Shamrock
             finally
             {
                 document.Close();
+                csvFile.Close();
             }
 
 

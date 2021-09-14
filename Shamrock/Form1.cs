@@ -2115,8 +2115,10 @@ namespace Shamrock
 
         }
 
+        //Historical Hcp Calc
         private void button2_Click(object sender, EventArgs e)
         {
+            string separator = ",";
             List<string> years = new List<string>();
             foreach (var item in listBoxYearForStats.SelectedItems)
             {
@@ -2129,13 +2131,31 @@ namespace Shamrock
             
             try
             {
-                hC = getHistoricalCompetForYears(years);
-                HistoricalHcps HH = new HistoricalHcps(hC);
-                HH.Calc();
-                Stream Output = new FileStream(Path.Combine(_dataRoot, "NewHcp.pdf"), FileMode.Create);
-                Reporting r = new Reporting();
-                r.CreateHistoricalHcpPDF(Output, HH);
+                System.IO.StreamWriter csvFile2 = new System.IO.StreamWriter(Path.Combine(_dataRoot, $"NewHcp_new.csv"));
+                csvFile2.Write("year_day" + separator);
+                csvFile2.Write("player" + separator);
+                csvFile2.Write("newHcp" + separator);
+                csvFile2.WriteLine();
 
+                hC = getHistoricalCompetForYears(years);
+                for (int i = 0; i < hC.Count * 4; i++)
+                {
+                    HistoricalHcps HH = new HistoricalHcps(hC);
+                    HH.Calc(i);
+                    Stream Output = new FileStream(Path.Combine(_dataRoot, $"NewHcp_{i}.pdf"), FileMode.Create);
+                    System.IO.StreamWriter csvFile = new System.IO.StreamWriter(Path.Combine(_dataRoot, $"NewHcp_{i}.csv"));
+                    Reporting r = new Reporting();
+                    r.CreateHistoricalHcpPDF(Output, csvFile, HH);
+
+                    foreach (string P in HH.hP)
+                    {
+                        csvFile2.Write($"{HH.hRnds[0].year}_{HH.hRnds[0].day}" + separator);
+                        csvFile2.Write(P + separator);
+                        csvFile2.Write(HH.Hcps[P].hcp + separator);
+                        csvFile2.WriteLine();
+                    }
+                }
+                csvFile2.Close();
             }
             catch (Exception ex)
             {
