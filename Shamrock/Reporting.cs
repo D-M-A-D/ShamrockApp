@@ -803,82 +803,82 @@ namespace Shamrock
                 #endregion
                 #endregion
                 document.NewPage(); ++pageN;
-                #region page newHcps
-                CreatePDFHeaderAndFooter(document, null, "New Hcps for Next Year", "", contentbyte, pageN);
+                //#region page newHcps
+                //CreatePDFHeaderAndFooter(document, null, "New Hcps for Next Year", "", contentbyte, pageN);
 
-                colWidth_1st = 380;
-                colWidth_2nd = document.Right - document.Left - colWidth_1st - interstice;
+                //colWidth_1st = 380;
+                //colWidth_2nd = document.Right - document.Left - colWidth_1st - interstice;
 
-                #region 1st Row
-                ctColWidth = colWidth_1st;
-                ctX = document.Left;
-                ctY = document.Top - topAfterHeader;
-                #region 1st newHcps
+                //#region 1st Row
+                //ctColWidth = colWidth_1st;
+                //ctX = document.Left;
+                //ctY = document.Top - topAfterHeader;
+                //#region 1st newHcps
 
-                switch (nbOfPlayer)
-                {
-                    case 11:
-                        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
-                        break;
-                    case 10:
-                        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
-                        break;
-                    case 9:
-                        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
-                        break;
-                    case 8:
-                        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
-                        break;
-                    case 7:
-                        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
-                        break;
-                }
-                ctPdfPTable.TotalWidth = ctColWidth;
+                //switch (nbOfPlayer)
+                //{
+                //    case 11:
+                //        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                //        break;
+                //    case 10:
+                //        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                //        break;
+                //    case 9:
+                //        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                //        break;
+                //    case 8:
+                //        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                //        break;
+                //    case 7:
+                //        ctPdfPTable = new PdfPTable(new float[] { 10f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                //        break;
+                //}
+                //ctPdfPTable.TotalWidth = ctColWidth;
 
-                AddHeaderCell((object)ctPdfPTable, " ");
-                foreach (Player P in c.Players)
-                {
-                    AddHeaderCell((object)ctPdfPTable, P.name.Left(4));
-                }
-                AddDetailCell((object)ctPdfPTable, "initial Hcp", isEvenLine);
-                foreach (Player P in c.Players)
-                {
-                    AddDetailCell((object)ctPdfPTable, P.initialHcp, isEvenLine, OutputFormat.Number1);
-                }
+                //AddHeaderCell((object)ctPdfPTable, " ");
+                //foreach (Player P in c.Players)
+                //{
+                //    AddHeaderCell((object)ctPdfPTable, P.name.Left(4));
+                //}
+                //AddDetailCell((object)ctPdfPTable, "initial Hcp", isEvenLine);
+                //foreach (Player P in c.Players)
+                //{
+                //    AddDetailCell((object)ctPdfPTable, P.initialHcp, isEvenLine, OutputFormat.Number1);
+                //}
                 
-                foreach (day ctDay in c.days)
-                {
-                    if (ctDay.courseDefinition == null)
-                        break;
-                    isEvenLine = true;
-                    //Title
-                    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, ctDay.getRndDescription()));
+                //foreach (day ctDay in c.days)
+                //{
+                //    if (ctDay.courseDefinition == null)
+                //        break;
+                //    isEvenLine = true;
+                //    //Title
+                //    ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, ctDay.getRndDescription()));
 
-                    if (ctDay.stblPoints.isValidForStblDay())
-                    {
-                        isEvenLine = !isEvenLine;
-                        AddDetailCell((object)ctPdfPTable, "Pts Stable Jour ASG", isEvenLine);
-                        foreach (Player P in c.Players)
-                        {
-                            if (!ctDay.PlayersSurLaTouche.Contains(P.name))
-                                AddDetailCell((object)ctPdfPTable, ctDay.stblPointsForNewHcp.getStblPointsForLastHoles(P.name), isEvenLine, OutputFormat.Number);
-                            else
-                                AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
-                        }
-                        isEvenLine = !isEvenLine;
-                        AddDetailCell((object)ctPdfPTable, "Hcp ASG", isEvenLine);
-                        foreach (Player P in c.Players)
-                        {
-                            AddDetailCell((object)ctPdfPTable, ctDay.NewHcps.hpcs[P.name], isEvenLine, OutputFormat.Number1);
-                        }
-                    }
-                }
-                ctPdfPTable.WriteSelectedRows(0, ctPdfPTable.Rows.Count, ctX, ctY, contentbyte);
+                //    if (ctDay.stblPoints.isValidForStblDay())
+                //    {
+                //        isEvenLine = !isEvenLine;
+                //        AddDetailCell((object)ctPdfPTable, "Pts Stable Jour ASG", isEvenLine);
+                //        foreach (Player P in c.Players)
+                //        {
+                //            if (!ctDay.PlayersSurLaTouche.Contains(P.name))
+                //                AddDetailCell((object)ctPdfPTable, ctDay.stblPointsForNewHcp.getStblPointsForLastHoles(P.name), isEvenLine, OutputFormat.Number);
+                //            else
+                //                AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
+                //        }
+                //        isEvenLine = !isEvenLine;
+                //        AddDetailCell((object)ctPdfPTable, "Hcp ASG", isEvenLine);
+                //        foreach (Player P in c.Players)
+                //        {
+                //            AddDetailCell((object)ctPdfPTable, ctDay.NewHcps.hpcs[P.name], isEvenLine, OutputFormat.Number1);
+                //        }
+                //    }
+                //}
+                //ctPdfPTable.WriteSelectedRows(0, ctPdfPTable.Rows.Count, ctX, ctY, contentbyte);
 
-                #endregion
+                //#endregion
 
-                #endregion
-                #endregion
+                //#endregion
+                //#endregion
             }
             finally
             {
