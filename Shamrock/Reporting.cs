@@ -119,8 +119,8 @@ namespace Shamrock
                     if(c.configForYear.useExtra)
                         colWidths.Add(4f); //Ex
                     colWidths.Add(4f); //SW
-                    colWidths.Add(4f); //Ef
-                    colWidths.Add(4f); //Vi
+                    colWidths.Add(5f); //Ef
+                    colWidths.Add(5f); //Vi
                     colWidths.Add(4f); //R
                 }
 
@@ -172,7 +172,14 @@ namespace Shamrock
                             if(c.getResultsbyDayNr(ctDay.nr)[playerName].shMatch == 0)
                                 AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
                             else
-                                AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shMatch, isEvenLine, OutputFormat.Number1);
+                            {
+                                if (ctDay.PlayersSurLaTouche.Contains(playerName))
+                                    AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shMatch, isEvenLine, OutputFormat.Number1, BackGroundColor: BaseColor.ORANGE);
+                                else
+                                    AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[playerName].shMatch, isEvenLine, OutputFormat.Number1);
+
+                            }
+                                
 
                             if (c.getResultsbyDayNr(ctDay.nr)[playerName].shStblDay == 0)
                                 AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.Number);
@@ -922,7 +929,7 @@ namespace Shamrock
                 #endregion
 
                 #region page newHcps
-                CreatePDFHeaderAndFooter(document, null, "New Hcps (historical) as of ASG Rules 2021", "", contentbyte, pageN);
+                CreatePDFHeaderAndFooter(document, null, "New Hcps (WHS) best 8 of last 20", "", contentbyte, pageN);
 
                 colWidth_1st = document.Right - document.Left - interstice;
 
@@ -933,9 +940,15 @@ namespace Shamrock
                 #region 1st newHcps
 
                 List<float> colDefs = new List<float>();
-                
-                colDefs.Add(50f);
+                Dictionary<string, double> PlayerOrderedByHcp = new Dictionary<string, double>();
                 foreach (string P in hh.hP)
+                {
+                    PlayerOrderedByHcp.Add(P, hh.Hcps[P].hcp);
+                }
+                PlayerOrderedByHcp = PlayerOrderedByHcp.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+                colDefs.Add(50f);
+                foreach (string P in PlayerOrderedByHcp.Keys)
                 {
                     colDefs.Add(4f);
                     colDefs.Add(4f);
@@ -945,12 +958,12 @@ namespace Shamrock
                 ctPdfPTable.TotalWidth = ctColWidth;
                 isEvenLine = false;
                 AddHeaderCell((object)ctPdfPTable, " ");
-                foreach (string P in hh.hP)
+                foreach (string P in PlayerOrderedByHcp.Keys)
                 {
                     ctPdfPTable.AddCell(GetTitleCell(3, P));
                 }
                 AddDetailCell((object)ctPdfPTable, "new Hcp", isEvenLine);
-                foreach (string P in hh.hP)
+                foreach (string P in PlayerOrderedByHcp.Keys)
                 {
                     //ctPdfPTable.AddCell(GetTitleCell(2, $"avg {hh.Hcps[P].cntBestRnd} best out of last{hh.Hcps[P].cntRndIn20Range}"));
                     AddDetailCell((object)ctPdfPTable, $"best{hh.Hcps[P].cntBestRnd}", isEvenLine, OutputFormat.Number);
@@ -959,7 +972,7 @@ namespace Shamrock
                 }
                 //ctPdfPTable.AddCell(GetTitleCell(ctPdfPTable.NumberOfColumns, "History"));
                 AddHeaderCell((object)ctPdfPTable, "Round History");
-                foreach (string P in hh.hP)
+                foreach (string P in PlayerOrderedByHcp.Keys)
                 {
                     ctPdfPTable.AddCell(GetTitleCell(1, "play"));
                     ctPdfPTable.AddCell(GetTitleCell(1, "stbl"));
@@ -988,7 +1001,7 @@ namespace Shamrock
                     isEvenLine = !isEvenLine;
                     //AddDetailCell((object)ctPdfPTable, "Pts Stbl.", isEvenLine);
                     AddDetailCell((object)ctPdfPTable, $"{hhRnd.year} {hhRnd.desc}", isEvenLine);
-                    foreach (string P in hh.hP)
+                    foreach (string P in PlayerOrderedByHcp.Keys)
                     {
                         AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].hcpPlay, isEvenLine, OutputFormat.Number2);
                         AddDetailCell((object)ctPdfPTable, hhRnd.Stbls[P].stbl, isEvenLine, OutputFormat.Number);

@@ -63,7 +63,7 @@ namespace Shamrock
                         HH_Stbl hhStbl = new HH_Stbl { pName = ctPName, year = hhRnd.year, day = hhRnd.day };
 
                         Player P = c.Players.Find(i => i.name == ctPName);
-                        if (r.ContainsKey(ctPName) && P != null && d.stblPoints.isValidForStblDay())
+                        if (r.ContainsKey(ctPName) && P != null && d.stblPoints.isValidForStblDay() && !d.PlayersSurLaTouche.Contains(ctPName))
                         {
                             hhStbl.hcpFix = P.initialHcp;
                             hhStbl.hcpPlay = d.getMyBall(ctPName).GetPlayingHcp();

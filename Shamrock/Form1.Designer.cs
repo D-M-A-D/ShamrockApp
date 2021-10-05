@@ -74,10 +74,10 @@
             this.dataGridPlayerMatrixStats = new System.Windows.Forms.DataGridView();
             this.dataGridPlayerMatrix = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.listBoxYearForStats = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -114,7 +114,7 @@
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1275, 660);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Input";
@@ -378,7 +378,7 @@
             this.tabPage3.Controls.Add(this.dataGridPlayerMatrix);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1275, 660);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Draw";
@@ -572,6 +572,16 @@
             this.tabPage2.Text = "History";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(134, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(142, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "CalcNewHcp2021";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // listBoxYearForStats
             // 
             this.listBoxYearForStats.FormattingEnabled = true;
@@ -592,7 +602,8 @@
             "2017",
             "2018",
             "2019",
-            "2020"});
+            "2020",
+            "2021"});
             this.listBoxYearForStats.Location = new System.Drawing.Point(66, 22);
             this.listBoxYearForStats.Name = "listBoxYearForStats";
             this.listBoxYearForStats.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -614,16 +625,6 @@
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(134, 51);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(142, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "CalcNewHcp2021";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

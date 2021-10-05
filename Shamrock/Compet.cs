@@ -154,7 +154,7 @@ namespace Shamrock
                         string nameOfTheMedianPlayer = sortedList[sortedList.Count / 2 -1]; //4th if 8 "normal" players
                         ctPR.StblDay = ctDay.stblPoints.getStblPointsForLastHoles(nameOfTheMedianPlayer); //same nb of stbl points as the median player
                         ctPR.shExtraDay = ctDay.getShPointsForExtra(P.name);
-                        ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear, true);
+                        ctPR.shMatch = ctDay.getShPointsForMatch(P.name, configForYear, ctDay.is9Holes, true);
                         ctPR.shStblDay = 0; //no daily stbl if sur la touche
                         ctPR.posStblDay = sortedList.Count + 1; //Last in daily stbl if sur la touche
 
