@@ -123,6 +123,26 @@ namespace Shamrock
             return ret;
         }
         #region results
+        public double getAvgPositionForPreviousStbl(Player P, int ctDay)
+        {
+            //loop through previous days
+            int cnt = 0;
+            int sumPos = 0;
+            for (int i = 1; i <= ctDay; ++i)
+            {
+                day prDay = getDaybyNr(i);
+                if (prDay.stblPoints.isValidForStblDay() && !prDay.PlayersSurLaTouche.Contains(P.name))
+                {
+                    int prPos = results[i - 1][P.name].posStblDay;
+                    sumPos += prPos;
+                    cnt++;
+                }
+            }
+            double avgPos = 4; //median for first day
+            if (cnt> 0)
+                avgPos = (double)sumPos / cnt;
+            return avgPos;
+        }
         public void calculate(int toDayNr)
         {
             #region 1st Loop with calc daily stbl
@@ -177,7 +197,36 @@ namespace Shamrock
                 results.Add(ctDailyResults); // stores daily scores for the day
             }
             #endregion
-            #region 2nd Loop Sum up and sort for weekly stable
+            #region 2nd Loop change shStblDay based on avgPos
+            for (int i = 1; i <= toDayNr; ++i)
+            {
+                foreach (Player P in Players)
+                {
+                    results[i - 1][P.name].avgPosFromPrStblDays = getAvgPositionForPreviousStbl(P, i);
+                }
+            }
+            for (int i = 1; i <= toDayNr; ++i)
+            {
+                day ctDay = getDaybyNr(i);
+                foreach (Player P in Players)
+                {
+                    double latestAvgPos = results[toDayNr - 1][P.name].avgPosFromPrStblDays;
+                    results[i - 1][P.name].avgPosFromPrStblDays = latestAvgPos;
+                    foreach (var res in results[i - 1].Values)
+                    {
+                        if (res.posStblDay == (int)Math.Round(latestAvgPos, 0))
+                        {
+                            if (ctDay.PlayersSurLaTouche.Contains(P.name) && ctDay.stblPoints.isValidForStblDay())
+                            {
+                                results[i - 1][P.name].StblDay = res.StblDay;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            #endregion
+            #region 3rd Loop Sum up and sort for weekly stable
             for (int i = 1; i <= toDayNr; ++i)
             {
                 
@@ -592,6 +641,7 @@ namespace Shamrock
         public double shMatch;
         public int StblDay;
         public int posStblDay;
+        public double avgPosFromPrStblDays;
         public double shStblDay;
         public double shExtraDay;
         public int StblWeek;

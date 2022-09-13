@@ -292,8 +292,9 @@ namespace Shamrock
                         AddDetailCell((object)ctPdfPTable, "Stbl.Day", isEvenLine);
                         foreach (Player P in c.Players)
                         {
+                            var ctRes = c.getResultsbyDayNr(ctDay.nr)[P.name];
                             if (ctDay.PlayersSurLaTouche.Contains(P.name))
-                                AddDetailCell((object)ctPdfPTable, $"{ c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.Number, BackGroundColor: BaseColor.ORANGE);
+                                AddDetailCell((object)ctPdfPTable, $"#{ctRes.avgPosFromPrStblDays} - {ctRes.StblDay}", isEvenLine, OutputFormat.Number, BackGroundColor: BaseColor.ORANGE);
                             else
                             {
                                 int worstday = c.getResultsbyDayNr(c.ctDayOfCompetition)[P.name].worstDay; //taken at the ct day of competition (worst as of today, not each day)
