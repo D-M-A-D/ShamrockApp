@@ -254,7 +254,7 @@ namespace Shamrock
                         ctPdfPTable = new PdfPTable(new float[] { 14f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
                         break;
                     case 9:
-                        ctPdfPTable = new PdfPTable(new float[] { 14f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
+                        ctPdfPTable = new PdfPTable(new float[] { 8f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
                         break;
                     case 8:
                         ctPdfPTable = new PdfPTable(new float[] { 14f, 4f, 4f, 4f, 4f, 4f, 4f, 4f, 4f });
@@ -278,7 +278,7 @@ namespace Shamrock
                         AddHeaderCell((object)ctPdfPTable, P.name.Left(4));
                     }
 
-                    AddDetailCell((object)ctPdfPTable, "Sh.Points Match", isEvenLine);
+                    AddDetailCell((object)ctPdfPTable, "Sh.Pts Match", isEvenLine);
                     foreach (Player P in c.Players)
                     {
                         if (ctDay.PlayersSurLaTouche.Contains(P.name))
@@ -294,14 +294,14 @@ namespace Shamrock
                         {
                             var ctRes = c.getResultsbyDayNr(ctDay.nr)[P.name];
                             if (ctDay.PlayersSurLaTouche.Contains(P.name))
-                                AddDetailCell((object)ctPdfPTable, $"#{ctRes.avgPosFromPrStblDays} - {ctRes.StblDay}", isEvenLine, OutputFormat.Number, BackGroundColor: BaseColor.ORANGE);
+                                AddDetailCell((object)ctPdfPTable, $"Ø{ctRes.avgPosFromPrStblDays.ToString("N1")} - {ctRes.StblDay}", isEvenLine, OutputFormat.Number, BackGroundColor: BaseColor.ORANGE);
                             else
                             {
                                 int worstday = c.getResultsbyDayNr(c.ctDayOfCompetition)[P.name].worstDay; //taken at the ct day of competition (worst as of today, not each day)
                                 if (c.configForYear.useScratch && worstday > 0 && ctDay.nr == worstday)
-                                    AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid, BackGroundColor: BaseColor.ORANGE);
+                                    AddDetailCell((object)ctPdfPTable, $"#{ctRes.posStblDay.ToString("N0")} - {ctRes.StblDay}", isEvenLine, OutputFormat.TextMid, BackGroundColor: BaseColor.ORANGE);
                                 else
-                                    AddDetailCell((object)ctPdfPTable, $"#{c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")} - {c.getResultsbyDayNr(ctDay.nr)[P.name].StblDay}", isEvenLine, OutputFormat.TextMid);
+                                    AddDetailCell((object)ctPdfPTable, $"#{ctRes.posStblDay.ToString("N0")} - {ctRes.StblDay}", isEvenLine, OutputFormat.TextMid);
                             }
                         }
                         //AddDetailCell((object)ctPdfPTable, "Position Stbl.Day", isEvenLine);
@@ -310,7 +310,7 @@ namespace Shamrock
                         //    AddDetailCell((object)ctPdfPTable, String.Format("#{0}", c.getResultsbyDayNr(ctDay.nr)[P.name].posStblDay.ToString("N0")), isEvenLine);
                         //}
                         isEvenLine = !isEvenLine;
-                        AddDetailCell((object)ctPdfPTable, "Sh.Points Stbl.Day", isEvenLine);
+                        AddDetailCell((object)ctPdfPTable, "Sh.Pts Stbl.Day", isEvenLine);
                         foreach (Player P in c.Players)
                         {
                             AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shStblDay, isEvenLine, OutputFormat.Number1);
@@ -335,17 +335,17 @@ namespace Shamrock
                     //}
 
                     isEvenLine = !isEvenLine;
-                    AddDetailCell((object)ctPdfPTable, "Sh.Points Stbl.Week", isEvenLine);
+                    AddDetailCell((object)ctPdfPTable, "Sh.Pts Stbl.Week", isEvenLine);
                     foreach (Player P in c.Players)
                     {
                         AddDetailCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shStblWeek, isEvenLine, OutputFormat.Number1);
                     }
-                    AddTotalCell((object)ctPdfPTable, "Sh.Points Effective", isEvenLine);
+                    AddTotalCell((object)ctPdfPTable, "Sh.Pts Effective", isEvenLine);
                     foreach (Player P in c.Players)
                     {
                         AddTotalCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shEffective, isEvenLine, OutputFormat.Number1);
                     }
-                    AddTotalCell((object)ctPdfPTable, "Sh.Points Virtual", isEvenLine);
+                    AddTotalCell((object)ctPdfPTable, "Sh.Pts Virtual", isEvenLine);
                     foreach (Player P in c.Players)
                     {
                         AddTotalCell((object)ctPdfPTable, c.getResultsbyDayNr(ctDay.nr)[P.name].shVirtual, isEvenLine, OutputFormat.Number1);
