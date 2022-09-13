@@ -603,7 +603,8 @@
             "2018",
             "2019",
             "2020",
-            "2021"});
+            "2021",
+            "2022"});
             this.listBoxYearForStats.Location = new System.Drawing.Point(66, 22);
             this.listBoxYearForStats.Name = "listBoxYearForStats";
             this.listBoxYearForStats.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
