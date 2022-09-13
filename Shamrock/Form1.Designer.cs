@@ -156,7 +156,7 @@
             this.textBoxDataFolder.Name = "textBoxDataFolder";
             this.textBoxDataFolder.Size = new System.Drawing.Size(117, 20);
             this.textBoxDataFolder.TabIndex = 10;
-            this.textBoxDataFolder.Text = "2021";
+            this.textBoxDataFolder.Text = "2022";
             // 
             // groupBox2
             // 
