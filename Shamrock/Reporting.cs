@@ -948,7 +948,7 @@ namespace Shamrock
                 }
                 PlayerOrderedByHcp = PlayerOrderedByHcp.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
-                colDefs.Add(50f);
+                colDefs.Add(35f);
                 foreach (string P in PlayerOrderedByHcp.Keys)
                 {
                     colDefs.Add(4f);

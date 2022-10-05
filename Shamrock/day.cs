@@ -252,6 +252,10 @@ namespace Shamrock
         {
             return $"Rnd {nr} ({playModeDisplay}): {courseDefinition.name} ({courseDefinition.TeeColor} par:{courseDefinition.getSumPar()} cr:{courseDefinition.cr} sr:{courseDefinition.sr} Dist: {courseDefinition.Yards})";
         }
+        public string getRndShortDescription()
+        {
+            return $"({playModeDisplay}) {courseDefinition.name}";
+        }
 
         public int CountPlayer()
         {

@@ -51,11 +51,13 @@ namespace Shamrock
                 c.calculate(c.days.Count);
                 foreach (day d in c.days)
                 {
+                    if (!d.stblPoints.isValidForStblDay())
+                        continue;
                     HH_Rnd hhRnd = new HH_Rnd { year = c.year, day = d.nr };
                     hhRnd.par = d.courseDefinition.getSumPar();
                     hhRnd.cr = d.courseDefinition.cr;
                     hhRnd.sr = d.courseDefinition.sr;
-                    hhRnd.desc = d.getRndDescription();
+                    hhRnd.desc = d.getRndShortDescription();
 
                     var r = c.getResultsbyDayNr(d.nr);
                     foreach (string ctPName in hP)
