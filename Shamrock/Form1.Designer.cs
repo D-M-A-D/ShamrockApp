@@ -156,7 +156,7 @@
             this.textBoxDataFolder.Name = "textBoxDataFolder";
             this.textBoxDataFolder.Size = new System.Drawing.Size(117, 20);
             this.textBoxDataFolder.TabIndex = 10;
-            this.textBoxDataFolder.Text = "2022";
+            this.textBoxDataFolder.Text = "2023";
             // 
             // groupBox2
             // 
@@ -186,7 +186,7 @@
             this.radioButton7.AutoSize = true;
             this.radioButton7.Location = new System.Drawing.Point(17, 162);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(54, 17);
+            this.radioButton7.Size = new System.Drawing.Size(61, 20);
             this.radioButton7.TabIndex = 14;
             this.radioButton7.Text = "Rnd 7";
             this.radioButton7.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             this.radioButton6.AutoSize = true;
             this.radioButton6.Location = new System.Drawing.Point(17, 140);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(54, 17);
+            this.radioButton6.Size = new System.Drawing.Size(61, 20);
             this.radioButton6.TabIndex = 13;
             this.radioButton6.Text = "Rnd 6";
             this.radioButton6.UseVisualStyleBackColor = true;
@@ -277,7 +277,7 @@
             this.radioButton5.AutoSize = true;
             this.radioButton5.Location = new System.Drawing.Point(17, 118);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(54, 17);
+            this.radioButton5.Size = new System.Drawing.Size(61, 20);
             this.radioButton5.TabIndex = 5;
             this.radioButton5.Text = "Rnd 5";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -287,7 +287,7 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(17, 96);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(54, 17);
+            this.radioButton4.Size = new System.Drawing.Size(61, 20);
             this.radioButton4.TabIndex = 4;
             this.radioButton4.Text = "Rnd 4";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -297,7 +297,7 @@
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(17, 73);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(54, 17);
+            this.radioButton3.Size = new System.Drawing.Size(61, 20);
             this.radioButton3.TabIndex = 3;
             this.radioButton3.Text = "Rnd 3";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -307,7 +307,7 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(17, 51);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 17);
+            this.radioButton2.Size = new System.Drawing.Size(61, 20);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.Text = "Rnd 2";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -318,7 +318,7 @@
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(17, 27);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(54, 17);
+            this.radioButton1.Size = new System.Drawing.Size(61, 20);
             this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Rnd 1";
@@ -353,6 +353,7 @@
             this.dataGridViewPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPlayers.Location = new System.Drawing.Point(6, 19);
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
+            this.dataGridViewPlayers.RowHeadersWidth = 62;
             this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 293);
             this.dataGridViewPlayers.TabIndex = 5;
             // 
@@ -477,6 +478,7 @@
             this.dataGridDrawRestrictionInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDrawRestrictionInput.Location = new System.Drawing.Point(520, 6);
             this.dataGridDrawRestrictionInput.Name = "dataGridDrawRestrictionInput";
+            this.dataGridDrawRestrictionInput.RowHeadersWidth = 62;
             this.dataGridDrawRestrictionInput.Size = new System.Drawing.Size(751, 103);
             this.dataGridDrawRestrictionInput.TabIndex = 15;
             // 
@@ -517,6 +519,7 @@
             this.dataGridViewInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewInput.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewInput.Name = "dataGridViewInput";
+            this.dataGridViewInput.RowHeadersWidth = 62;
             this.dataGridViewInput.Size = new System.Drawing.Size(428, 285);
             this.dataGridViewInput.TabIndex = 10;
             // 
@@ -537,6 +540,7 @@
             this.dataGridTeamsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTeamsGrid.Location = new System.Drawing.Point(379, 409);
             this.dataGridTeamsGrid.Name = "dataGridTeamsGrid";
+            this.dataGridTeamsGrid.RowHeadersWidth = 62;
             this.dataGridTeamsGrid.Size = new System.Drawing.Size(893, 274);
             this.dataGridTeamsGrid.TabIndex = 7;
             // 
@@ -547,6 +551,7 @@
             this.dataGridPlayerMatrixStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPlayerMatrixStats.Location = new System.Drawing.Point(6, 409);
             this.dataGridPlayerMatrixStats.Name = "dataGridPlayerMatrixStats";
+            this.dataGridPlayerMatrixStats.RowHeadersWidth = 62;
             this.dataGridPlayerMatrixStats.Size = new System.Drawing.Size(367, 274);
             this.dataGridPlayerMatrixStats.TabIndex = 8;
             // 
@@ -557,6 +562,7 @@
             this.dataGridPlayerMatrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPlayerMatrix.Location = new System.Drawing.Point(624, 116);
             this.dataGridPlayerMatrix.Name = "dataGridPlayerMatrix";
+            this.dataGridPlayerMatrix.RowHeadersWidth = 62;
             this.dataGridPlayerMatrix.Size = new System.Drawing.Size(648, 287);
             this.dataGridPlayerMatrix.TabIndex = 6;
             // 

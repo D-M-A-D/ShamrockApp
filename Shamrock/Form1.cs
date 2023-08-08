@@ -373,8 +373,8 @@ namespace Shamrock
             labelDrawText.Refresh();
             string diagnostic = "";
             List<string> ListOfDrawsBeforeCheck = new List<string>();
-            if (File.Exists(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")))
-                ListOfDrawsBeforeCheck = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")));
+            //if (File.Exists(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")))
+            //    ListOfDrawsBeforeCheck = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json")));
             for (int tryNr = 0; tryNr < maxTry; tryNr++)
             {
                 ctTry = tryNr;
@@ -541,10 +541,10 @@ namespace Shamrock
                     {
                         List<TeamInput> ctInputTeam = GetInputTeamFromDraw(drawResTry);
                         string ctsInputTeam = JsonConvert.SerializeObject(ctInputTeam);
-                        if (ListOfDrawsBeforeCheck.Contains(ctsInputTeam))
-                            diagnostic = "";
-                        else
-                            ListOfDrawsBeforeCheck.Add(ctsInputTeam);
+                        //if (ListOfDrawsBeforeCheck.Contains(ctsInputTeam))
+                        //    diagnostic = "";
+                        //else
+                        //    ListOfDrawsBeforeCheck.Add(ctsInputTeam);
 
                         diagnostic = "End of day check: ";
                         //drawResTry.calculateDrawStatXT(ctDay.PlayersForTheDay);
@@ -645,7 +645,7 @@ namespace Shamrock
                 DisplayDrawPlayer(drawRes, lPlayers2);
                 DisplayTeamsGrid(drawRes);
             }
-            File.WriteAllText(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json"), JsonConvert.SerializeObject(ListOfDrawsBeforeCheck));
+            //File.WriteAllText(Path.Combine(_dataInputTeamsSubFolder, "ListOfDraws1stGrade.json"), JsonConvert.SerializeObject(ListOfDrawsBeforeCheck));
 
             #region add results to InputTeamsTemp
             Dictionary<string, TeamInput> tis = new Dictionary<string, TeamInput>();
@@ -1429,7 +1429,7 @@ namespace Shamrock
                     String ctI = ((String)ti.GetType().GetProperty(String.Format("R{0}", dayNr)).GetValue(ti));
                     if (!string.IsNullOrWhiteSpace(ctI))
                         ctI.Trim();
-                    if (ctI == "0" || ctI.ToLower() == "x")
+                    if (ctI == "0" || ctI == "x" || ctI == "X")
                         ctPlayers.RemoveAt(ctPlayers.FindIndex(x => x.name == ti.Player));
                     else if (!string.IsNullOrWhiteSpace(ctI)) //players with info
                     {
