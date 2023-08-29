@@ -1465,7 +1465,7 @@ namespace Shamrock
                     String ctI = ((String)ti.GetType().GetProperty(String.Format("R{0}", dayNr)).GetValue(ti));
                     if (!string.IsNullOrEmpty(ctI))
                         ctI.Trim();
-                    if (ctI == "0" || ctI.ToLower() == "x")
+                    if (ctI == null || ctI == "0" || ctI.ToLower() == "x")
                         ctPlayers.RemoveAt(ctPlayers.FindIndex(x => x.name == ti.Player));
                     else if (!string.IsNullOrEmpty(ctI)) //players with info
                     {

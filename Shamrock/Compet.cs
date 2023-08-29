@@ -79,7 +79,7 @@ namespace Shamrock
                         BallName = ctInput.Remove(0, 2)
                     });
                 }
-                else if(ctInput.ToLower() == "x") // sur la touche
+                else if(string.IsNullOrWhiteSpace(ctInput) || ctInput.ToLower() == "x") // sur la touche
                 {
                     diPsSurLaTouche.Add(new dayInputTeamForPlayer
                     {
@@ -532,6 +532,8 @@ namespace Shamrock
         public int nbRounds { get; set; }
         public bool useExtra { get; set; }
         public bool useScratch { get; set; }
+
+        public string Title { get; set; }
         public day.PlayMode getPlayModeForRound(int Rnr)
         {
             day.PlayMode ret = day.PlayMode.P8_2x4b;

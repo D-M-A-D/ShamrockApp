@@ -39,7 +39,7 @@ namespace Shamrock
             }
 
             display();
-            this.Text = "Input for Shamrock Points ";
+            this.Text = "Config for the Shamrock edition";
 
             this.ShowDialog();
 
