@@ -8,9 +8,9 @@ namespace Shamrock
 {
     public class day
     {
-        public enum PlayMode { P7_4b_W, P7_Fs_Fs3, P8_2x4b, P8_Fs, P10_2x4b_2b, P10_2xFs_2b, P10_2xFs5W, P9_4b_4b5fs, P9_3xW, P9_Fs_Fs5W, P9_432, NoGame};
+        public enum PlayMode { P7_4b_W, P7_Fs_Fs3, P8_2x4b, P8_Fs, P8_2x4bbb, P10_2x4b_2b, P10_2xFs_2b, P10_2xFs5W, P9_4b_4b5fs, P9_3xW, P9_Fs_Fs5W, P9_432, P9_3xH, NoGame };
         public int nr = 0;
-        public Boolean isFoursome = false;
+        public Boolean isFoursomeOrBestBall = false;
         public PlayMode playMode = PlayMode.P8_2x4b;
         public bool is9Holes = false;
         public string playModeDisplay = "";
@@ -41,7 +41,7 @@ namespace Shamrock
                     break;
                 case PlayMode.P7_Fs_Fs3:
                     nbOfPlayerForDay = 7;
-                    isFoursome = true;
+                    isFoursomeOrBestBall = true;
                     playModeDisplay = "Foursome";
                     MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.Foursome, MatchName));
                     MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.Foursome3, MatchName));
@@ -54,10 +54,17 @@ namespace Shamrock
                     break;
                 case PlayMode.P8_Fs:
                     nbOfPlayerForDay = 8;
-                    isFoursome = true;
+                    isFoursomeOrBestBall = true;
                     playModeDisplay = "Foursome";
                     MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.Foursome, MatchName));
                     MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.Foursome, MatchName));
+                    break;
+                case PlayMode.P8_2x4bbb:
+                    nbOfPlayerForDay = 8;
+                    isFoursomeOrBestBall = true;
+                    playModeDisplay = "4b best only";
+                    MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.Match4bbb, MatchName));
+                    MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.Match4bbb, MatchName));
                     break;
                 case PlayMode.P9_3xW:
                     nbOfPlayerForDay = 9;
@@ -74,7 +81,7 @@ namespace Shamrock
                     break;
                 case PlayMode.P9_Fs_Fs5W:
                     nbOfPlayerForDay = 9;
-                    isFoursome = true;
+                    isFoursomeOrBestBall = true;
                     playModeDisplay = "Foursome";
                     MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.Foursome, MatchName));
                     MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.FoursomeWinch5, MatchName));
@@ -86,6 +93,13 @@ namespace Shamrock
                     MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.Winch, MatchName));
                     MatchName = "C"; flights.Add(MatchName, new flight(flight.MatchType.Match2b, MatchName));
                     break;
+                case PlayMode.P9_3xH:
+                    nbOfPlayerForDay = 9;
+                    playModeDisplay = "3xHunters";
+                    MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.Hunters, MatchName));
+                    MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.Hunters, MatchName));
+                    MatchName = "C"; flights.Add(MatchName, new flight(flight.MatchType.Hunters, MatchName));
+                    break;
                 case PlayMode.P10_2x4b_2b:
                     nbOfPlayerForDay = 10;
                     playModeDisplay = "4Balles";
@@ -95,14 +109,14 @@ namespace Shamrock
                     break;
                 case PlayMode.P10_2xFs5W:
                     nbOfPlayerForDay = 10;
-                    isFoursome = true;
+                    isFoursomeOrBestBall = true;
                     playModeDisplay = "Foursome";
                     MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.FoursomeWinch5, MatchName));
                     MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.FoursomeWinch5, MatchName));
                     break;
                 case PlayMode.P10_2xFs_2b:
                     nbOfPlayerForDay = 10;
-                    isFoursome = true;
+                    isFoursomeOrBestBall = true;
                     playModeDisplay = "Foursome";
                     MatchName = "A"; flights.Add(MatchName, new flight(flight.MatchType.Foursome, MatchName));
                     MatchName = "B"; flights.Add(MatchName, new flight(flight.MatchType.Foursome, MatchName));
@@ -117,7 +131,7 @@ namespace Shamrock
             ret.nr = nr;
             ret.playMode = playMode;
             ret.nbOfPlayerForDay = nbOfPlayerForDay;
-            ret.isFoursome = isFoursome;
+            ret.isFoursomeOrBestBall = isFoursomeOrBestBall;
             ret.PlayersForTheDay = PlayersForTheDay.ConvertAll<Player>(x => new Player {name = x.name, startNumber = x.startNumber });
             ret.PlayersLeftToDraw = PlayersLeftToDraw.ConvertAll<Player>(x => new Player { name = x.name, startNumber = x.startNumber });
             foreach (flight f in flights.Values)
@@ -303,7 +317,7 @@ namespace Shamrock
             int ret = 0;
             foreach (flight ctFlight in flights.Values)
             {
-                if (ctFlight.matchType == flight.MatchType.Winch && ctFlight.ContainsPlayer(P.name))
+                if ((ctFlight.matchType == flight.MatchType.Winch || ctFlight.matchType == flight.MatchType.Hunters) && ctFlight.ContainsPlayer(P.name))
                     ++ret;
             }
             return ret;
@@ -314,7 +328,8 @@ namespace Shamrock
             int ret = 0;
             foreach (flight ctFlight in flights.Values)
             {
-                if ((ctFlight.matchType == flight.MatchType.Match4b || 
+                if ((ctFlight.matchType == flight.MatchType.Match4b ||
+                    ctFlight.matchType == flight.MatchType.Match4bbb ||
                     ctFlight.matchType == flight.MatchType.Foursome ||
                     ctFlight.matchType == flight.MatchType.Foursome3 ||
                     ctFlight.matchType == flight.MatchType.FoursomeWinch5 ||

@@ -8,7 +8,7 @@ namespace Shamrock
 {
     public class flight
     {
-        public enum MatchType{Foursome, Match4b, Match2b, Winch, Match4b5, FoursomeWinch5, Foursome3 };
+        public enum MatchType{Foursome, Match4b, Match4bbb, Match2b, Winch, Hunters, Match4b5, FoursomeWinch5, Foursome3 };
         public MatchType matchType = MatchType.Match4b;
         public readonly List<String> WinchCombin = new List<String> { "01", "02", "12" }; //do not change this, or the saved results (MatchScoresN.json) will be wrong interpreted
         public Dictionary<string, team> teams = new Dictionary<string, team>();
@@ -29,6 +29,10 @@ namespace Shamrock
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(2, 2, teamName));
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(2, 2, teamName));
                     break;
+                case MatchType.Match4bbb:
+                    teamName = teams.Count().ToString(); teams.Add(teamName, new team(2, 2, teamName));
+                    teamName = teams.Count().ToString(); teams.Add(teamName, new team(2, 2, teamName));
+                    break;
                 case MatchType.Foursome:
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 2, teamName));
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 2, teamName));
@@ -41,6 +45,10 @@ namespace Shamrock
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 1, teamName));
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 1, teamName));
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 1, teamName));
+                    break;
+                case MatchType.Hunters:
+                    teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 1, teamName));
+                    teamName = teams.Count().ToString(); teams.Add(teamName, new team(2, 2, teamName));
                     break;
                 case MatchType.FoursomeWinch5:
                     teamName = teams.Count().ToString(); teams.Add(teamName, new team(1, 2, teamName));
@@ -211,7 +219,7 @@ namespace Shamrock
             else
                 throw new Exception(String.Format("Team {0} (zeroBase:{2}) not found in flight {1}", diP.TeamName, name, diP.TeamName0based));
         }
-        public void CalcCoupsRecu(Double perc4B = 0.85)
+        public void CalcCoupsRecu(Double perc4B = 0.85, Double percHunters = 0.55)
         {
             //ToCheck9
             double BestBallHcpInFlight = GetBestBallHcpInFlight();
@@ -229,6 +237,7 @@ namespace Shamrock
                     }
                 }
                 coupsRecuFS.Add(ctT.name, (ctT.GetAvgPlayingHcp() - bestTeamHcp));
+                coupsRecuHunters.Add(ctT.name, ((ctT.GetAvgPlayingHcp() - bestTeamHcp) * percHunters));
             }
         }
         /// <summary>
@@ -257,6 +266,7 @@ namespace Shamrock
         }
         public Dictionary<String, Double> coupsRecu4B = new Dictionary<String, Double>();
         public Dictionary<String, Double> coupsRecuFS = new Dictionary<String, Double>();
+        public Dictionary<String, Double> coupsRecuHunters = new Dictionary<String, Double>();
     }
     public class team
     {

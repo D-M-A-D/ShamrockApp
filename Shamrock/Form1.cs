@@ -469,7 +469,7 @@ namespace Shamrock
                                                     #region 4B and foursome
                                                     int HowManyTimeInSameTeam = 0;
                                                     Boolean maxTimeOk = false;
-                                                    if (ctFlight.matchType == flight.MatchType.Match4b || ctFlight.matchType == flight.MatchType.Foursome)
+                                                    if (ctFlight.matchType == flight.MatchType.Match4b || ctFlight.matchType == flight.MatchType.Match4bbb || ctFlight.matchType == flight.MatchType.Foursome)
                                                     {
                                                         int HowManyTime = drawResTry.GetHowManyTimeIn4B(candidate);
                                                         diagnostic += " " + ctFlight.matchType + " " + HowManyTime;

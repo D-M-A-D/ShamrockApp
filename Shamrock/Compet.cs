@@ -240,7 +240,7 @@ namespace Shamrock
                     for (int j = 1; j <= i; ++j) //loop from begin to i (ctDay in the mainloop)
                     {
                         day ctDay = getDaybyNr(j);
-                        if (ctDay.isFoursome)
+                        if (ctDay.isFoursomeOrBestBall)
                             continue;
                         cntDaysValidForStbl++;
                         int ctStbl = getResultsbyDayNr(j)[P.name].StblDay; // get the daily stbl
@@ -267,7 +267,7 @@ namespace Shamrock
                         sumEff += getResultsbyDayNr(j)[P.name].shMatch + getResultsbyDayNr(j)[P.name].shStblDay + getResultsbyDayNr(j)[P.name].shExtraDay;
 
                         day ctDay = getDaybyNr(j);
-                        if (ctDay.isFoursome)
+                        if (ctDay.isFoursomeOrBestBall)
                             continue;
 
                         int ctStbl = getResultsbyDayNr(j)[P.name].StblDay; // get the daily stbl
@@ -337,7 +337,7 @@ namespace Shamrock
         {
             foreach (day d in days)
             {
-                if (d.isFoursome)
+                if (d.isFoursomeOrBestBall)
                     continue;
                 if(results.Count >= d.nr)
                     return getResultsbyDayNr(d.nr);
@@ -363,7 +363,7 @@ namespace Shamrock
             for (int i = 1; i <= toDayNr; ++i)
             {
                 day ctDay = getDaybyNr(i);
-                if(!ctDay.isFoursome)
+                if(!ctDay.isFoursomeOrBestBall)
                     ret.AddRange(ctDay.statHoles);
             }
             return ret;
@@ -572,6 +572,8 @@ namespace Shamrock
                 case 81005: ret = day.PlayMode.P8_2x4b; break;
                 case 82: ret = day.PlayMode.P8_Fs; break;
                 case 82005: ret = day.PlayMode.P8_Fs; break;
+                case 83: ret = day.PlayMode.P8_2x4bbb; break;
+                case 83005: ret = day.PlayMode.P8_2x4bbb; break;
                 case 91: ret = day.PlayMode.P9_4b_4b5fs; break;
                 case 91005: ret = day.PlayMode.P9_4b_4b5fs; break;
                 case 92: ret = day.PlayMode.P9_3xW; break;
@@ -580,6 +582,8 @@ namespace Shamrock
                 case 93005: ret = day.PlayMode.P9_Fs_Fs5W; break;
                 case 94: ret = day.PlayMode.P9_432; break;
                 case 94005: ret = day.PlayMode.P9_432; break;
+                case 95: ret = day.PlayMode.P9_3xH; break;
+                case 95005: ret = day.PlayMode.P9_3xH; break;
                 case 101: ret = day.PlayMode.P10_2x4b_2b; break;
                 case 101005: ret = day.PlayMode.P10_2x4b_2b; break;
                 case 102: ret = day.PlayMode.P10_2xFs_2b; break;
@@ -628,6 +632,7 @@ namespace Shamrock
                 case 92005:
                 case 93005:
                 case 94005:
+                case 95005:
                 case 101005:
                 case 102005:
                 case 103005:

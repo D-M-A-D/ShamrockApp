@@ -117,4 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>71: P7_4b_W
+72: P7_Fs_Fs3
+81: P8_2x4b
+82: P8_Fs
+83: P8_2x4bbb (best ball)
+91: P9_4b_4b5fs
+92: P9_3xW (Winch)
+93: P9_Fs_Fs5W
+94: P9_432
+95: P9_3xH (Hunters)
+101: P10_2x4b_2b
+102: P10_2xFs_2b
+103: P10_2xFs5W
+</value>
+  </data>
 </root>

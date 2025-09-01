@@ -636,7 +636,7 @@ namespace Shamrock
                     AddHeaderCell((object)ctPdfPTable, "c4B", OutputFormat.TextRight);
                     AddHeaderCell((object)ctPdfPTable, "1/3", OutputFormat.TextRight);
                     AddHeaderCell((object)ctPdfPTable, "cFS", OutputFormat.TextRight);
-                    AddHeaderCell((object)ctPdfPTable, "2/3", OutputFormat.TextRight);
+                    AddHeaderCell((object)ctPdfPTable, "Hunt", OutputFormat.TextRight);
                     #endregion
                     #region DetailsCells
                     int cnt = -1;
@@ -672,13 +672,22 @@ namespace Shamrock
                                     if (ctFlight.coupsRecuFS[ctTeam.name] > 0)
                                     {
                                         AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuFS[ctTeam.name], isEvenLine, OutputFormat.Number2);
-                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuFS[ctTeam.name]*2/3, isEvenLine, OutputFormat.Number2);
                                     }
                                     else
                                     {
                                         AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
+                                    }
+
+                                    if (ctFlight.coupsRecuHunters[ctTeam.name] > 0)
+                                    {
+                                        //AddDetailCell((object)ctPdfPTable, "H", isEvenLine, OutputFormat.TextRight);
+                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuHunters[ctTeam.name], isEvenLine, OutputFormat.Number2);
+                                    }
+                                    else
+                                    {
                                         AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
                                     }
+
                                     //if (ctDay.isFoursome && ctFlight.matchType != flight.MatchType.Match2b)
                                     //{
                                     //    if (ctFlight.coupsRecuFS[ctTeam.name] > 0)
