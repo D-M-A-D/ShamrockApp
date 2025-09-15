@@ -234,10 +234,10 @@ namespace Shamrock
                     foreach (Player ctPlayer in b.players.Values)
                     {
                         coupsRecu4B.Add(ctT.name + ctPlayer.name, (ctPlayer.playingHcp - BestPlayerHcpInFlight) * perc4B);
+                        coupsRecuHunters.Add(ctT.name + ctPlayer.name, (ctPlayer.playingHcp - BestPlayerHcpInFlight) * percHunters);
                     }
                 }
                 coupsRecuFS.Add(ctT.name, (ctT.GetAvgPlayingHcp() - bestTeamHcp));
-                coupsRecuHunters.Add(ctT.name, ((ctT.GetAvgPlayingHcp() - bestTeamHcp) * percHunters));
             }
         }
         /// <summary>

@@ -678,10 +678,10 @@ namespace Shamrock
                                         AddDetailCell((object)ctPdfPTable, "-", isEvenLine, OutputFormat.TextRight);
                                     }
 
-                                    if (ctFlight.coupsRecuHunters[ctTeam.name] > 0)
+
+                                    if (ctFlight.coupsRecuHunters[ctTeam.name + ctPlayer.name] > 0)
                                     {
-                                        //AddDetailCell((object)ctPdfPTable, "H", isEvenLine, OutputFormat.TextRight);
-                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuHunters[ctTeam.name], isEvenLine, OutputFormat.Number2);
+                                        AddDetailCell((object)ctPdfPTable, ctFlight.coupsRecuHunters[ctTeam.name + ctPlayer.name], isEvenLine, OutputFormat.Number2);
                                     }
                                     else
                                     {
