@@ -612,11 +612,12 @@
             "2021",
             "2022",
             "2023",
-            "2024"});
+            "2024",
+            "2025"});
             this.listBoxYearForStats.Location = new System.Drawing.Point(66, 22);
             this.listBoxYearForStats.Name = "listBoxYearForStats";
             this.listBoxYearForStats.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxYearForStats.Size = new System.Drawing.Size(39, 277);
+            this.listBoxYearForStats.Size = new System.Drawing.Size(62, 329);
             this.listBoxYearForStats.TabIndex = 2;
             // 
             // button1

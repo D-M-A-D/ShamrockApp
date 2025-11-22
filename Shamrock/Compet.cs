@@ -628,6 +628,7 @@ namespace Shamrock
                 case 72005:
                 case 81005:
                 case 82005:
+                case 83005:
                 case 91005:
                 case 92005:
                 case 93005:
